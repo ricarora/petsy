@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @levels = [1,2,3,4,5]
   end
 
   def create
