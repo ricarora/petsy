@@ -8,4 +8,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def authenticate
+    
+  end
+
 end
