@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     author?
     if @review.save
-      redirect_to new_review_path
+      redirect_to reviews_path
     else
       render:new
     end
