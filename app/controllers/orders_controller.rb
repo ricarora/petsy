@@ -7,19 +7,22 @@ class OrdersController < ApplicationController
     redirect_to(root_path)
   end
 
-  def create #create an order & save the order_id to guest's session
-    @order = Order.new(status: :pending)
-    session[:order_id] = @order.id
+  def create #create an order
+    @order = Order.create(status: "Pending") #creates order with pending status
+    session[:order_id] = @order.id #saves @order.id to session
   end
 
   def edit #view cart
-    find_order ? find_order : create #this line returns @order
-    @line_items = @order.orderitems
+    find_order ? find_order : create #this returns @order, finding or creating the order
+    @line_items = @order.orderitems #this finds the associated orderitems
 
-    if @line_items.size < 1
+    if @line_items.size < 1 #this displays if there are no associated orderitems
       @empty_cart = "Your cart is empty!"
     end
+  end
 
+  def checkout
+    reset_session #just for testing...
   end
 
   # def update #add/update products here
