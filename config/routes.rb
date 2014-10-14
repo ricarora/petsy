@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get "/reviews", to: "reviews#index", as: :reviews
+  get "/reviews/new", to: "reviews#new", as: :new_review
+  post "/reviews/new", to: "reviews#create"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
