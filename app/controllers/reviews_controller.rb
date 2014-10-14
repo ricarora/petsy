@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  include ActiveModel::Validations
+  
   validates :rating, presence: true, numericality: true
   validates_inclusion_of :rating, :in => 1..5
 
