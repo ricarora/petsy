@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
   # Orders Routes
+  get    "/orders",               to: "orders#index" #currently redirected... correct?
 
-  # Wouldn't ever need/want to see all orders... Right?
-  # get    "/orders",               to: "orders#index",        as: :orders
-  get    "/orders/new",           to: "orders#new",          as: :new_order
+  get    "/cart",                 to: "orders#edit",        as: :edit_order
+
   post   "/orders/new",           to: "orders#create"
-  get    "/orders/:id",           to: "orders#show",         as: :show_order
-  get    "/orders/:id/edit",      to: "orders#edit",         as: :edit_order
   put    "/orders/:id",           to: "orders#update"
-  get    "/orders/:id/delete",    to: "orders#destroy_prep", as: :delete_order
   delete "/orders/:id",           to: "orders#destroy"
+
+  get    "/checkout",             to: "orders#checkout",    as: :checkout
+  get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   root "home#index"
 
