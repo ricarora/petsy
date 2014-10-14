@@ -20,7 +20,7 @@
         <tr>
           <td><%= item.product.name %></td>
           <td><%= item.product.price %></td>
-          <td><%= number_field_tag(item.id, item.qty, in: 0..item.product.stock, step: 1 ) %></td>
+          <td><%= number_field_tag("order[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
           <td><%= item.totalprice %></td>
           <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
         </tr>

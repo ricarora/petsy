@@ -21,21 +21,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update #add/update products here
-    if @order = find_order
-      #add orderitems to order and set qty to 1 and update total price
-    else
-      create #create order
-      #add orderitems to order
-    end
-  end
-
-  def checkout
+  def clear
     reset_session #just for testing...
   end
 
-  #
-  # def checkout #this will post to update
+  # def checkout #this will put Order to update
   #
   # end
   #
@@ -43,7 +33,7 @@ class OrdersController < ApplicationController
   #   #display order, not editable with all orderitems
   # end
   #
-  # def destroy #this will be posted to from edit ("clear cart")
+  # def destroy #clear cart
   #
   # end
 

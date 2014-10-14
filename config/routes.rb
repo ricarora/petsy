@@ -7,11 +7,13 @@ Rails.application.routes.draw do
 
   post   "/orders/new",           to: "orders#create" #needed?
 
-  put    "/orders/:id",           to: "orders#update",      as: :order_update
+  put    "/orders/:id",           to: "orderitems#update",      as: :order_update
   delete "/orders/:id",           to: "orders#destroy"
 
   get    "/checkout",             to: "orders#checkout",    as: :checkout
   get    "/order-confirmation",   to: "orders#show",        as: :show_order
+
+  get    "/clear",                to: "orders#clear"
 
   # Orderitem Routes
 
