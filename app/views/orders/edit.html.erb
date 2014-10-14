@@ -21,9 +21,11 @@
           <!-- replace below with: item.product.name when products created -->
           <td><%= item.product_id %></td>
           <!-- replace below with: item.product.price when products created -->
-          <td><%= item.id %></td>
+          <td><%= item.id * 2 %></td>
           <!-- replace below with: number_field(item.id, :qty, value: item.qty, in: 0..item.product.stock, step: 1) -->
-          <td><%= number_field_tag(item.id, value: item.qty, in: 0..10, step: 1 ) %></td>
+
+          <td><%= number_field_tag(item.id, item.qty, in: 0..10, step: 1 ) %></td>
+
           <td><%= item.totalprice %></td>
           <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
         </tr>
