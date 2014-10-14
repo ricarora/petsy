@@ -1,5 +1,29 @@
 <h2>Cart</h2>
 
-<!-- put cart form here -->
+<!-- display empty cart message if no items in cart-->
+<% if @empty_cart %>
+  <p><%= @empty_cart %></p>
 
-<p><%= @empty_cart %></p>
+<!-- otherwise display cart table -->
+<% else %>
+  <table>
+    <tr>
+      <td>Product</td>
+      <td>Price</td>
+      <td>Quantity</td>
+      <td>Subtotal</td>
+      <td>Remove</td>
+    </tr>
+    <% @line_items.each do |item| %>
+      <tr>
+        <!-- replace below with item.product.name when products created -->
+        <td><%= item.product_id %></td>
+        <!-- replace below with item.product.price when products created -->
+        <td><%= item.id %></td>
+
+        <td><%= item.qty %></td>
+        <td><%= item.total %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
