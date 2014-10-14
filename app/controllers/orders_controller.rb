@@ -1,20 +1,29 @@
 class OrdersController < ApplicationController
 
-  def index #all orders; don't want people to be able to see this
+  def index #view all orders; don't want people to see this
     redirect_to(root_path)
   end
 
-  def create #create an order object
-
+  def create #create an order & save the order_id to guest's session
+    @order = Order.new(status: "Pending")
+    session[:order_id] = @order.id
   end
 
-  def edit #individual order add products or update products
-    #needs if statement for when order not created yet
-    #display cart with all orderitems
+  def edit #view cart
+    if session[:order_id]
+      #display cart with all orderitems
+    else
+      @empty_cart = "Your cart is empty!"
+    end
   end
 
-  def update
-
+  def update #add/update products here
+    if session[:order_id]
+      #add orderitems to order
+    else
+      create #create order
+      #add orderitems to order
+    end
   end
 
   def checkout #this will post to update
