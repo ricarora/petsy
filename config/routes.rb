@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get    "/orders/:id/delete",    to: "orders#destroy_prep", as: :delete_order
   delete "/orders/:id",           to: "orders#destroy"
 
-  
+  root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
