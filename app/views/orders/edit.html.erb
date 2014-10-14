@@ -6,24 +6,30 @@
 
 <!-- otherwise display cart table -->
 <% else %>
-  <table>
-    <tr>
-      <td>Product</td>
-      <td>Price</td>
-      <td>Quantity</td>
-      <td>Subtotal</td>
-      <td>Remove</td>
-    </tr>
-    <% @line_items.each do |item| %>
-      <tr>
-        <!-- replace below with item.product.name when products created -->
-        <td><%= item.product_id %></td>
-        <!-- replace below with item.product.price when products created -->
-        <td><%= item.id %></td>
 
-        <td><%= item.qty %></td>
-        <td><%= item.total %></td>
+  <%= form_tag(order_update_path(@order.id), method: "put") do %>
+    <table>
+      <tr>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Subtotal</td>
+        <td>Remove</td>
       </tr>
-    <% end %>
-  </table>
+      <% @line_items.each do |item| %>
+        <tr>
+          <!-- replace below with: item.product.name when products created -->
+          <td><%= item.product_id %></td>
+          <!-- replace below with: item.product.price when products created -->
+          <td><%= item.id %></td>
+          <!-- replace below with: number_field(item.id, :qty, value: item.qty, in: 0..item.product.stock, step: 1) -->
+          <td><%= number_field_tag(item.id, value: item.qty, in: 0..10, step: 1 ) %></td>
+          <td><%= item.totalprice %></td>
+          <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <%= submit_tag("Update") %>
+  <% end %>
+
 <% end %>

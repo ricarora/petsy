@@ -21,18 +21,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update #add/update products here
+    if @order = find_order
+      #add orderitems to order and set qty to 1 and update total price
+    else
+      create #create order
+      #add orderitems to order
+    end
+  end
+
   def checkout
     reset_session #just for testing...
   end
 
-  # def update #add/update products here
-  #   if @order = find_order
-  #     #add orderitems to order
-  #   else
-  #     create #create order
-  #     #add orderitems to order
-  #   end
-  # end
   #
   # def checkout #this will post to update
   #
