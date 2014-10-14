@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  # Orders Routes
+
+  # Wouldn't ever need/want to see all orders... Right?
+  # get    "/orders",               to: "orders#index",        as: :orders
+  get    "/orders/new",           to: "orders#new",          as: :new_order
+  post   "/orders/new",           to: "orders#create"
+  get    "/orders/:id",           to: "orders#show",         as: :show_order
+  get    "/orders/:id/edit",      to: "orders#edit",         as: :edit_order
+  put    "/orders/:id",           to: "orders#update"
+  get    "/orders/:id/delete",    to: "orders#destroy_prep", as: :delete_order
+  delete "/orders/:id",           to: "orders#destroy"
+
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
