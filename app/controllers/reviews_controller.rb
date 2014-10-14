@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
-  
+  validates :rating, presence: true, numericality: true
+  validates_inclusion_of :rating, :in => 1..5
+
   def index
     @reviews = Review.all
   end
@@ -18,6 +20,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+
   end
 
   private
