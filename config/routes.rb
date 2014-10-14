@@ -5,12 +5,17 @@ Rails.application.routes.draw do
 
   get    "/cart",                 to: "orders#edit",        as: :edit_order
 
-  post   "/orders/new",           to: "orders#create"
+  post   "/orders/new",           to: "orders#create" #needed?
+
   put    "/orders/:id",           to: "orders#update",      as: :order_update
   delete "/orders/:id",           to: "orders#destroy"
 
   get    "/checkout",             to: "orders#checkout",    as: :checkout
   get    "/order-confirmation",   to: "orders#show",        as: :show_order
+
+  # Orderitem Routes
+
+  get    "/orderitem/:id/delete", to: "orderitems#destroy",  as: :delete_orderitem
 
   root "home#index"
 
