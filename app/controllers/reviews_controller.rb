@@ -1,8 +1,4 @@
 class ReviewsController < ApplicationController
-  include ActiveModel::Validations
-  
-  validates :rating, presence: true, numericality: true
-  validates_inclusion_of :rating, :in => 1..5
 
   def index
     @reviews = Review.all
@@ -14,6 +10,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    author?
     if @review.save
       redirect_to new_review_path
     else
@@ -21,8 +18,20 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def show
+  def author?
+    if @review.author.empty?
+      @review.author = nil
+    end
+  end
 
+  def average_rating
+    total = 0
+
+    @reviews.each do |review|
+      total += review.rating
+    end
+
+    total/@reviews.count
   end
 
   private
