@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141014233715) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "orders", force: true do |t|
