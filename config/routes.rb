@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+#Product Routes
   # resources :products
   # get "/products/:id",  to: "products#show"
   get  "/products",     to: "products#index"
@@ -8,6 +9,40 @@ Rails.application.routes.draw do
   get "/products/destroy/:id",  to: "products#destroy"
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
+
+  # Orders Routes
+  get    "/orders",               to: "orders#index" #currently redirected... a-okay?
+  get    "/cart",                 to: "orders#edit",        as: :cart
+  delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
+  # get    "/checkout",             to: "orders#checkout",    as: :checkout
+  # put    "/checkout",             to: "orders#order_finalize",     as: :order_finalize
+  # get    "/order-confirmation",   to: "orders#show",        as: :show_order
+
+  # Orderitem Routes
+  post   "/orderitems/new",       to: "orderitems#new",     as: :orderitems_new
+  put    "/orders/:id",           to: "orderitems#update",  as: :update_order
+  get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
+
+  # Reviews Routes
+  get "/reviews",                 to: "reviews#index",      as: :reviews
+  get "/reviews/new",             to: "reviews#new",        as: :new_review
+  post "/reviews/new",            to: "reviews#create"
+
+  # Categories Routes
+  get "/categories",              to: "categories#index",   as: :categories
+  get "/categories/new",          to: "categories#new",     as: :new_category
+  post "/categories/new",         to: "categories#create"
+
+  root "home#index"
+
+  #############################################################################
+  # Kristina's Routes for Testing!!  Ignore these!                            #
+  #############################################################################
+  get "/clear", to: "orders#clear"
+  get "/testing-order", to: "orders#set_order_session"
+  #############################################################################
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
