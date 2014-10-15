@@ -1,0 +1,25 @@
+<div>
+<h2>All Products</h2>
+<div>
+<% @products.each do |product| %>
+    <div>
+        <a href="#"><%= product.name %></a>
+        <a href="#"><%= product.price %></a>
+
+        <ul>
+          <li>Description: <%= product.description %></li>
+          <li>Stock: <%= product.stock %> remaining</li>
+        </ul>
+
+      <tr>
+        <td><%= link_to "Destroy", "/products/destroy/#{product.id}" %></td>
+        <td><%= link_to "Edit", "/products/#{product.id}/edit" %></td>
+      </tr>
+
+    </div>
+
+  <% end %>
+</div>
+
+<%= link_to "New Product", "/products/new" %>
+</div>

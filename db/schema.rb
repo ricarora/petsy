@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141015000252) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "orders", force: true do |t|
@@ -43,6 +44,13 @@ ActiveRecord::Schema.define(version: 20141015000252) do
     t.string   "address"
     t.string   "city"
     t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_categories", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
