@@ -1,0 +1,10 @@
+<h1>Add a Category</h1>
+
+<%= form_for @category, url: {action: "create"} do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit %>
+
+<% end %>
