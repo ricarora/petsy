@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
-  post   "/orderitems/new",       to: "orderitems#new",     as: :orderitems_new
+  post   "/orderitems/new",       to: "orderitems#create",     as: :orderitems_new
   put    "/orders/:id",           to: "orderitems#update",  as: :update_order
   get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
 
