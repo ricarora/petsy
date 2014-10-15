@@ -1,0 +1,7 @@
+<h2>Categories:</h2>
+
+<% @categories.each do |category| %>
+  Category: <%= category.name.upcase %><br/>
+<% end %>
+
+<%= link_to "Add Category", new_category_path %>
