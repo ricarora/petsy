@@ -1,11 +1,11 @@
 class OrderitemsController < ApplicationController
   def create #add product to cart
-    if find_order #if an order has already been created...
-      assemble_orderitem(@order)
+    if find_cart #if a cart has already been created...
+      assemble_orderitem(@cart)
     else
-      @order = Order.create(status: "Pending") #creates order with pending status
-      session[:order_id] = @order.id #saves @order.id to session
-      assemble_orderitem(@order)
+      @cart = Cart.create
+      session[:cart_id] = @cart.id #saves @cart.id to session
+      assemble_orderitem(@cart)
     end
   end
 
@@ -31,25 +31,25 @@ class OrderitemsController < ApplicationController
 
   private
 
+  def find_cart
+    @cart = Cart.find_by(id: session[:cart_id])
+  end
+
   def find_orderitem
     Orderitem.find_by(id: params[:id])
   end
 
-  def find_order
-    @order = Order.find_by(id: session[:order_id])
-  end
-
-  def assemble_orderitem(order)
+  def assemble_orderitem(cart)
     product_id = params[:product_id]
     product = Product.find(product_id)
 
-    if catch_for_duplicates(order, product)
-      redirect_to cart_path, notice: "Something went wrong!" and return
+    if catch_for_duplicates(cart, product)
+      redirect_to cart_path, notice: "Something went wrong!" and return ## potentially replaceable with validation??
     else
       product_price = product.price
-      @item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, order_id: order.id)
-      if @item.save
-        update_order_total
+      item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, cart_id: cart.id)
+      if item.save
+        update_cart_total
         redirect_to cart_path
       else
         redirect_to :back, notice: "Something went wrong. :( Try again?"
@@ -57,16 +57,16 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  def update_order_total
-    find_order
-    total = @order.orderitems.inject(0) { |sum, item| sum + item.totalprice }
-    @order.total_price = total
-    @order.save
+  def update_cart_total
+    find_cart
+    total = @cart.orderitems.inject(0) { |sum, item| sum + item.totalprice }
+    @cart.total = total
+    @cart.save
   end
 
-  def catch_for_duplicates(order, product)
+  def catch_for_duplicates(cart, product)
     duplicate = false
-    order.orderitems.each { |item| duplicate = true if item.product_id == product.id }
+    cart.orderitems.each { |item| duplicate = true if item.product_id == product.id }
     return duplicate
   end
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # Cart Routes
   get    "/cart",                 to: "carts#edit",        as: :cart
-  delete "/cart",                 to: "carts#destroy",     as: :delete_order
+  delete "/cart",                 to: "carts#destroy",     as: :delete_cart
 
   # Orders Routes
   # get    "/orders",               to: "orders#index" #currently redirected... a-okay?
@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
-  post   "/orderitems/new",       to: "orderitems#create",     as: :orderitems_new
-  put    "/orders/:id",           to: "orderitems#update",  as: :update_order
+  post   "/orderitems/new",       to: "orderitems#create",  as: :orderitems_new
+  put    "/orders/:id",           to: "orderitems#update",  as: :update_cart
   get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
 
   # Reviews Routes

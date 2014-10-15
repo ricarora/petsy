@@ -7,7 +7,7 @@
 <!-- cart form -->
 <% else %>
 
-  <%= form_tag(update_order_path(@order.id), method: "put") do %>
+  <%= form_tag(update_cart_path(@cart.id), method: "put") do %>
     <table>
       <tr>
         <td>Product</td>
@@ -19,7 +19,7 @@
         <tr>
           <td><%= item.product.name %></td>
           <td><%= item.product.price %></td>
-          <td><%= number_field_tag("order[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
+          <td><%= number_field_tag("cart[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
           <td><%= item.totalprice %></td>
           <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
         </tr>
@@ -28,14 +28,14 @@
         <td></td>
         <td></td>
         <td><strong>Total</strong></td>
-        <td><strong><%= @order.total_price %></strong></td>
+        <td><strong><%= @cart.total %></strong></td>
       </tr>
     </table>
   <%= submit_tag("Update") %>
   <% end %>
 
   <!-- clear cart button -->
-  <%= form_tag(delete_order_path(@order.id), method: "delete") do %>
+  <%= form_tag(delete_cart_path(@cart.id), method: "delete") do %>
     <%= submit_tag("Clear Cart") %>
   <% end %>
 

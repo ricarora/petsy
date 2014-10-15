@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   private
 
   def find_cart
-    @cart = Order.find_by(id: session[:order_id])
+    @cart = Cart.find_by(id: session[:cart_id])
   end
 
   def find_items
