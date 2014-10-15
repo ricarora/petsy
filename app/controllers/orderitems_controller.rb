@@ -23,6 +23,7 @@ class OrderitemsController < ApplicationController
   def destroy
     if @orderitem = find_orderitem
       @orderitem.destroy
+      update_order_total
     end
     redirect_to cart_path
   end
@@ -40,13 +41,19 @@ class OrderitemsController < ApplicationController
 
   def assemble_orderitem(order)
     product_id = params[:product_id]
-    product_price = Product.find(product_id).price
-    @item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, order_id: order.id)
-    if @item.save
-      update_order_total
-      redirect_to cart_path
+    product = Product.find(product_id)
+
+    if catch_for_duplicates(order, product)
+      redirect_to cart_path, notice: "Something went wrong!" and return
     else
-      redirect_to :back, notice: "Something went wrong. :( Try again?"
+      product_price = product.price
+      @item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, order_id: order.id)
+      if @item.save
+        update_order_total
+        redirect_to cart_path
+      else
+        redirect_to :back, notice: "Something went wrong. :( Try again?"
+      end
     end
   end
 
@@ -55,5 +62,11 @@ class OrderitemsController < ApplicationController
     total = @order.orderitems.inject(0) { |sum, item| sum + item.totalprice }
     @order.total_price = total
     @order.save
+  end
+
+  def catch_for_duplicates(order, product)
+    duplicate = false
+    order.orderitems.each { |item| duplicate = true if item.product_id == product.id }
+    return duplicate
   end
 end
