@@ -1,22 +1,17 @@
 Rails.application.routes.draw do
 
   # Orders Routes
-  get    "/orders",               to: "orders#index" #currently redirected... correct?
+  get    "/orders",               to: "orders#index" #currently redirected... a-okay?
+  get    "/cart",                 to: "orders#edit",        as: :cart
+  post   "/orders/new",           to: "orders#create"
 
-  get    "/cart",                 to: "orders#edit",        as: :edit_order
-
-  post   "/orders/new",           to: "orders#create" #needed?
-
-  put    "/orders/:id",           to: "orderitems#update",      as: :order_update
   delete "/orders/:id",           to: "orders#destroy"
-
   get    "/checkout",             to: "orders#checkout",    as: :checkout
   get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
-  get    "/clear",                to: "orders#clear"
-
   # Orderitem Routes
-
+  post   "/orderitems/new",       to: "orderitems#new",     as: :orderitems_new
+  put    "/orders/:id",           to: "orderitems#update",  as: :order_update
   get    "/orderitem/:id/delete", to: "orderitems#destroy",  as: :delete_orderitem
 
   root "home#index"
