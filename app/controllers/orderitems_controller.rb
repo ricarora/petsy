@@ -44,16 +44,40 @@ class OrderitemsController < ApplicationController
     product = Product.find(product_id)
 
     if catch_for_duplicates(cart, product)
-      redirect_to cart_path, notice: "Something went wrong!" and return ## potentially replaceable with validation??
+      duplicate_add(product)
     else
-      product_price = product.price
-      item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, cart_id: cart.id)
-      if item.save
-        update_cart_total
-        redirect_to cart_path
-      else
-        redirect_to :back, notice: "Something went wrong. :( Try again?"
-      end
+      unique_add(product, cart)
+    end
+  end
+
+  def catch_for_duplicates(cart, product)
+    duplicate = false
+    cart.orderitems.each { |item| duplicate = true if item.product_id == product.id }
+    return duplicate
+  end
+
+  def duplicate_add(product)
+    item = Orderitem.find_by(product_id: product.id)
+
+    ## not sure why this isn't updating the price....??
+    item.qty += 1
+    item.totalprice = item.qty * item.product.price
+
+    if item.save
+      update_cart_total
+      redirect_to cart_path
+    else
+      redirect_to :back, notice: "Something went wrong. :( Try again?"
+    end
+  end
+
+  def unique_add(product, cart)
+    item = Orderitem.new(product_id: product.id, qty: 1, totalprice: product.price, cart_id: cart.id)
+    if item.save
+      update_cart_total
+      redirect_to cart_path
+    else
+      redirect_to :back, notice: "Something went wrong. :( Try again?"
     end
   end
 
@@ -62,11 +86,5 @@ class OrderitemsController < ApplicationController
     total = @cart.orderitems.inject(0) { |sum, item| sum + item.totalprice }
     @cart.total = total
     @cart.save
-  end
-
-  def catch_for_duplicates(cart, product)
-    duplicate = false
-    cart.orderitems.each { |item| duplicate = true if item.product_id == product.id }
-    return duplicate
   end
 end
