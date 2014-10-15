@@ -1,5 +1,7 @@
 <h2>Order Confirmation</h2>
 
+<p><strong>Order Status:</strong> <%= @order.status.upcase %></p>
+
 <table>
   <tr>
     <td>Product</td>
@@ -15,4 +17,10 @@
       <td><%= item.totalprice %></td>
     </tr>
   <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><strong>Total</strong></td>
+    <td><strong><%= @order.total_price %></strong></td>
+  </tr>
 </table>

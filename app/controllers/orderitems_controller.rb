@@ -16,6 +16,7 @@ class OrderitemsController < ApplicationController
       orderitem.update(totalprice: (orderitem.qty * orderitem.product.price))
     end
 
+    update_order_total
     redirect_to cart_path, notice: "Cart updated!"
   end
 
@@ -23,7 +24,7 @@ class OrderitemsController < ApplicationController
     if @orderitem = find_orderitem
       @orderitem.destroy
     end
-    redirect_to(cart_path)
+    redirect_to cart_path
   end
 
 
@@ -42,9 +43,17 @@ class OrderitemsController < ApplicationController
     product_price = Product.find(product_id).price
     @item = Orderitem.new(product_id: product_id, qty: 1, totalprice: product_price, order_id: order.id)
     if @item.save
+      update_order_total
       redirect_to cart_path
     else
       redirect_to :back, notice: "Something went wrong. :( Try again?"
     end
+  end
+
+  def update_order_total
+    find_order
+    total = @order.orderitems.inject(0) { |sum, item| sum + item.totalprice }
+    @order.total_price = total
+    @order.save
   end
 end

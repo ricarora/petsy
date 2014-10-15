@@ -14,7 +14,6 @@
         <td>Price</td>
         <td>Quantity</td>
         <td>Subtotal</td>
-        <td>Remove</td>
       </tr>
       <% @line_items.each do |item| %>
         <tr>
@@ -25,6 +24,12 @@
           <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
         </tr>
       <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total</strong></td>
+        <td><strong><%= @order.total_price %></strong></td>
+      </tr>
     </table>
   <%= submit_tag("Update") %>
   <% end %>

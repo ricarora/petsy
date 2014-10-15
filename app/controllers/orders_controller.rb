@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def edit #view cart
     if find_order #this returns @order
-      @line_items = @order.orderitems #this finds the associated orderitems
+      @line_items = @order.orderitems.sort_by { |a| a.created_at } #this finds the associated orderitems
       empty_cart_catch(@line_items) #if no orderitems, empty cart message displays
     else
       empty_cart #this displays if there are no associated orderitems
@@ -21,12 +21,11 @@ class OrdersController < ApplicationController
   # end
 
   def show # individual order
-    if find_order
+    if find_order && @order.status != "Pending" #only display if not pending
       @line_items = @order.orderitems
     else
       redirect_to(cart_path)
     end
-    #display order, not editable with all orderitems
   end
 
   def destroy #clear cart
