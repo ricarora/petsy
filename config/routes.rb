@@ -10,13 +10,15 @@ Rails.application.routes.draw do
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
 
+  # Cart Routes
+  get    "/cart",                 to: "carts#edit",        as: :cart
+  delete "/cart",                 to: "carts#destroy",     as: :delete_order
+
   # Orders Routes
-  get    "/orders",               to: "orders#index" #currently redirected... a-okay?
-  get    "/cart",                 to: "orders#edit",        as: :cart
-  delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
+  # get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   # get    "/checkout",             to: "orders#checkout",    as: :checkout
   # put    "/checkout",             to: "orders#order_finalize",     as: :order_finalize
-  get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
   post   "/orderitems/new",       to: "orderitems#create",     as: :orderitems_new
