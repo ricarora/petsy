@@ -38,7 +38,10 @@ class OrderitemsController < ApplicationController
   end
 
   def assemble_orderitem(order)
-    @item = Orderitem.new(params[:product_id])#params.require(:purchase).permit(:product_id)) # assumes add to cart is a post request to /orderitems/new with purchase[product_id]
+    productid = params[:product_id]
+    product = Product.find(productid)
+    product_price = product.price
+    @item = Orderitem.new(product_id: params[:product_id], qty: 1, totalprice: product_price) # assumes add to cart is a post request to /orderitems/new with purchase[product_id]
     @item.order_id = order.id
     if @item.save
       redirect_to cart_path

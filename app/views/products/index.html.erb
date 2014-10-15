@@ -1,25 +1,26 @@
-<div>
+
 <h2>All Products</h2>
-<div>
+
 <% @products.each do |product| %>
-    <div>
+    <div class = "product-box">
         <a href="#"><%= product.name %></a>
-        <a href="#"><%= product.price %></a>
+        <a href="#">$<%= product.price %></a>
+    </div>
 
-        <ul>
-          <li>Description: <%= product.description %></li>
-          <li>Stock: <%= product.stock %> remaining</li>
-        </ul>
-
-      <tr>
+      <tr class = "destroy-edit">
         <td><%= link_to "Destroy", "/products/destroy/#{product.id}" %></td>
         <td><%= link_to "Edit", "/products/#{product.id}/edit" %></td>
       </tr>
 
-    </div>
+      <div class = "product-popup">
+        <p>Description: <%= product.description %></p>
+        <p>Stock: <%= product.stock %> remaining</p>
 
-  <% end %>
-</div>
+        <%= form_tag(orderitems_new_path, method: "post") do %>
+          <%= hidden_field_tag :product_id, product.id %>
+          <%= submit_tag "Add to Cart" %>
+        <% end %>
+      </div>
 
-<%= link_to "New Product", "/products/new" %>
-</div>
+
+<% end %>
