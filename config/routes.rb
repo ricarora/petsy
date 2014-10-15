@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/products/destroy/:id",  to: "products#destroy"
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
+  get "/products/:id/newcategory", to: "products#newcategory"
 
   # Orders Routes
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
