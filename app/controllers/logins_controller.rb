@@ -1,10 +1,22 @@
 class LoginsController < ApplicationController
 
+  def new
+    render :new
+  end
+
+  def current_user
+    User.find_by(username: params[:user][:username])
+  end
+
 # Create a login, aka "log the user in"
   def create
-    if user = User.authenticate(params[:username], params[:password])
+    # raise params.inspect
+    if current_user && current_user.authenticate(params[:user][:password])
     # Save the user ID in the session so it can be used in subsequent requests
-      session[:current_user_id] = user.id
+      session[:current_user_id] = current_user.id
+      redirect_to "/users/test"
+    else
+      render :new
     end
   end
 

@@ -56,7 +56,12 @@ Rails.application.routes.draw do
 
   get "/users", to: "users#new"
   post "/users", to: "users#create"
+  get "/logins", to: "logins#create"
+  post "/sessions", to: "logins#create"
+  delete "/sessions", to: "logins#destroy"
+  get "/users/test", to: "users#test"
 
-  root "logins#create"
+
+  root "logins#new"
 
 end

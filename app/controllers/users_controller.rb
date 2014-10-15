@@ -22,5 +22,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :storename, :email, :username, :password, :image_url)
   end
 
+  def test
 
+  end
 end
