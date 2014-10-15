@@ -1,0 +1,36 @@
+<form class="new_entry" action="/users/" method="post">
+
+  <h2>Create Merchant Profile</h2>
+
+  <div>
+    <label for="name">Name(required)</label>
+    <input type="string" name="user[name]"  value = "<%= @user.name %>"  />
+ </div>
+ <div>
+   <label for="storename">Name of your Store</label>
+   <input type="string" name="user[storename]" value = "<%= @user.storename %>" />
+ </div>
+ <div>
+   <label for="email">Email</label>
+   <input type="string" name="user[email]" value = "<%= @user.email %>"/>
+</div>
+<div>
+  <label for="username">Username(required):</label>
+  <input type="string" name="user[username]"  value = "<%= @user.username %>"  />
+</div>
+<div>
+  <label for="password">Password(required):</label>
+  <input type="password" name="user[password]"  value = "<%= @user.password %>"  />
+</div>
+<div>
+  <label for="password">Confirm Password:</label>
+  <input type="password" name="user[password_confirmation]"  value = "<%= @user.password_confirmation %>"  />
+</div>
+<div>
+  <label for="image-url">Upload Image URL:</label>
+  <input type="string" name="user[image_url]"  value = "<%= @user.image_url %>"  />
+</div>
+<br>
+
+   <input type = "submit" value="Sign Up" class = "submit">
+ </form>
