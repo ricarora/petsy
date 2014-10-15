@@ -1,0 +1,11 @@
+<h2>Edit '<%= @product.name %>'</h2>
+
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  Name <input type="text" name="product[name]" value="<%= @product.name %>" />
+  Price <input type="text" name="product[price]" value="<%= @product.price %>" />
+  Description <input type="text" name="product[description]" value="<%= @product.description %>" />
+  Image URL <input type="text" name="product[image_url]" value="<%= @product.image_url %>" />
+  Stock <input type="text" name="product[stock]" value="<%= @product.stock %>" />
+  <input type="submit"/>
+</form>

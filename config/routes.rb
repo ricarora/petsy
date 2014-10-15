@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+#Product Routes
+  # resources :products
+  # get "/products/:id",  to: "products#show"
+  get  "/products",     to: "products#index"
+  post "/products/new", to: "products#create"
+  get  "/products/new", to: "products#new"
+  get "/products/destroy/:id",  to: "products#destroy"
+  get "/products/:id/edit", to: "products#edit"
+  put "/products/:id", to: "products#update"
+
   # Orders Routes
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   get    "/cart",                 to: "orders#edit",        as: :cart
@@ -31,6 +41,7 @@ Rails.application.routes.draw do
   get "/clear", to: "orders#clear"
   get "/testing-order", to: "orders#set_order_session"
   #############################################################################
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
