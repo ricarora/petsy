@@ -33,6 +33,16 @@ Rails.application.routes.draw do
   get "/categories/new",          to: "categories#new",     as: :new_category
   post "/categories/new",         to: "categories#create"
 
+  # Users Routes
+  get "/users", to: "users#new"
+  post "/users", to: "users#create"
+  get "/logins", to: "logins#create"
+  post "/sessions", to: "logins#create"
+  delete "/sessions", to: "logins#destroy"
+  get "/users/test", to: "users#test"
+  get "/logins/new", to: "logins#new"
+
+
   root "home#index"
 
   #############################################################################
@@ -97,4 +107,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+
 end
