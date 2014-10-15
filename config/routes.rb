@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   get    "/cart",                 to: "orders#edit",        as: :cart
   post   "/orders/new",           to: "orders#create"
-
   delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
-  get    "/checkout",             to: "orders#checkout",    as: :checkout
-  get    "/order-confirmation",   to: "orders#show",        as: :show_order
+
+  # get    "/checkout",             to: "orders#checkout",    as: :checkout
+  # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
   post   "/orderitems/new",       to: "orderitems#new",     as: :orderitems_new
@@ -16,8 +16,12 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  #############################################################################
+  # Kristina's Routes for Testing!!                                           #
+  #############################################################################
   get "/clear", to: "orders#clear"
   get "/testing-order", to: "orders#set_order_session"
+  #############################################################################
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

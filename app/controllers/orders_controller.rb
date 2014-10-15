@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 
 
   #############################################################################
-  # Methods for Testing!!                                                     #
+  # Kristina's Methods for Testing!!                                          #
   #############################################################################
   def clear #just for testing...
     reset_session
