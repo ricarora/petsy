@@ -7,7 +7,7 @@
 <!-- otherwise display cart table -->
 <% else %>
 
-  <%= form_tag(order_update_path(@order.id), method: "put") do %>
+  <%= form_tag(update_order_path(@order.id), method: "put") do %>
     <table>
       <tr>
         <td>Product</td>
@@ -27,6 +27,9 @@
       <% end %>
     </table>
   <%= submit_tag("Update") %>
+  <% end %>
+  <%= form_tag(delete_order_path(@order.id), method: "delete") do %>
+    <%= submit_tag("Clear Cart") %>
   <% end %>
 
 <% end %>

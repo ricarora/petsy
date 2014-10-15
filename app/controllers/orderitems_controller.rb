@@ -1,11 +1,4 @@
 class OrderitemsController < ApplicationController
-  def destroy
-    if @orderitem = find_orderitem
-      @orderitem.destroy
-    end
-    redirect_to(cart_path)
-  end
-
   def create #add product to cart
     if find_order #if an order has already been created...
       assemble_orderitem(@order)
@@ -24,6 +17,13 @@ class OrderitemsController < ApplicationController
     end
 
     redirect_to cart_path, notice: "Cart updated!"
+  end
+
+  def destroy
+    if @orderitem = find_orderitem
+      @orderitem.destroy
+    end
+    redirect_to(cart_path)
   end
 
 

@@ -32,10 +32,13 @@ class OrdersController < ApplicationController
   # def show #final individual order
   #   #display order, not editable with all orderitems
   # end
-  #
-  # def destroy #clear cart
-  #
-  # end
+
+  def destroy #clear cart
+    if @order = find_order
+      @order.destroy
+    end
+    redirect_to(cart_path)
+  end
 
 
   private
