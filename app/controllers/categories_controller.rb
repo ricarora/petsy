@@ -18,6 +18,7 @@ class CategoriesController < ApplicationController
   end
 
   def delete
+  
   end
 
   private

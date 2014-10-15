@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get "/categories", to: "categories#index"
   get "/categories/new", to: "categories#new"
   post "/categories/new", to: "categories#create"
-  
+  get "/categories/delete", to: "categories#delete"
+  post "/categories/delete", to: "categories#delete"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
