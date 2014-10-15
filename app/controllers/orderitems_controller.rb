@@ -10,13 +10,13 @@ class OrderitemsController < ApplicationController
   end
 
   def update #update products in cart
-    params[:order].each do |key, value|
+    params[:cart].each do |key, value|
       orderitem = Orderitem.find(key)
       orderitem.qty = (value["qty"])
       orderitem.update(totalprice: (orderitem.qty * orderitem.product.price))
     end
 
-    update_order_total
+    update_cart_total
     redirect_to cart_path, notice: "Cart updated!"
   end
 
