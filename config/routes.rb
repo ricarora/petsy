@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   # Orders Routes
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   get    "/cart",                 to: "orders#edit",        as: :cart
-  post   "/orders/new",           to: "orders#create"
   delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
-
   # get    "/checkout",             to: "orders#checkout",    as: :checkout
   # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 

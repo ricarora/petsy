@@ -7,11 +7,6 @@ class OrdersController < ApplicationController
     redirect_to(root_path)
   end
 
-  def create #create an order
-    @order = Order.create(status: "Pending") #creates order with pending status
-    session[:order_id] = @order.id #saves @order.id to session
-  end
-
   def edit #view cart
     if find_order #this returns @order
       @line_items = @order.orderitems #this finds the associated orderitems
