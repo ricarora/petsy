@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
   # get    "/checkout",             to: "orders#checkout",    as: :checkout
   # put    "/checkout",             to: "orders#order_finalize",     as: :order_finalize
-  # get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
   post   "/orderitems/new",       to: "orderitems#new",     as: :orderitems_new

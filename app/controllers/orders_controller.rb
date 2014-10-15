@@ -19,13 +19,18 @@ class OrdersController < ApplicationController
   # def checkout #this will put Order to update
   #
   # end
-  #
-  # def show #final individual order
-  #   #display order, not editable with all orderitems
-  # end
+
+  def show # individual order
+    if find_order
+      @line_items = @order.orderitems
+    else
+      redirect_to(cart_path)
+    end
+    #display order, not editable with all orderitems
+  end
 
   def destroy #clear cart
-    if @order = find_order
+    if find_order
       @order.destroy
     end
     redirect_to(cart_path)
@@ -51,6 +56,10 @@ class OrdersController < ApplicationController
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
+  end
+
+  def find_items
+    @line_items = @order.orderitems
   end
 
   def empty_cart

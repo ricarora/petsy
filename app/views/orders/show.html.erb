@@ -1,1 +1,18 @@
 <h2>Order Confirmation</h2>
+
+<table>
+  <tr>
+    <td>Product</td>
+    <td>Price</td>
+    <td>Quantity</td>
+    <td>Subtotal</td>
+  </tr>
+  <% @line_items.each do |item| %>
+    <tr>
+      <td><%= item.product.name %></td>
+      <td><%= item.product.price %></td>
+      <td><%= item.id %></td>
+      <td><%= item.totalprice %></td>
+    </tr>
+  <% end %>
+</table>
