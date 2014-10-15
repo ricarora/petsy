@@ -10,10 +10,11 @@ class CartsController < ApplicationController
   end
 
   def destroy #clear cart
-    if find_order
-      @order.destroy
+    if find_cart
+      @cart.destroy
+      session[:cart_id] = nil
     end
-    redirect_to(cart_path)
+    redirect_to cart_path
   end
 
 
