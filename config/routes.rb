@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get "/reviews", to: "reviews#index", as: :reviews
   get "/reviews/new", to: "reviews#new", as: :new_review
   post "/reviews/new", to: "reviews#create"
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
   get "/categories/new", to: "categories#new", as: :new_category
   post "/categories/new", to: "categories#create"
 
-
+  root "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
