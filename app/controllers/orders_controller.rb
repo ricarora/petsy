@@ -4,7 +4,11 @@ class OrdersController < ApplicationController
     redirect_to(root_path)
   end
 
-  # def checkout #this will put Order to update
+  # def checkout #this needs to take the cart and turn it into an order, saved as pending
+  #
+  # end
+
+  # def finalize #this is posted to and needs to change the order status to paid
   #
   # end
 
@@ -17,19 +21,14 @@ class OrdersController < ApplicationController
   end
 
 
-  #############################################################################
-  # Kristina's Methods for Testing!!                                          #
-  #############################################################################
+###############################################################################
+### Kristina's Method for Testing!!                                           #
+###############################################################################
   def clear #just for testing...
     reset_session
     redirect_to root_path
   end
-
-  def set_order_session #just for testing...
-    session[:order_id] = Order.all.last.id
-    redirect_to root_path
-  end
-  #############################################################################
+###############################################################################
 
 
   private
@@ -37,19 +36,4 @@ class OrdersController < ApplicationController
   def find_order
     @order = Order.find_by(id: session[:order_id])
   end
-
-  def find_items
-    @line_items = @order.orderitems
-  end
-
-  def empty_cart
-    @empty_cart = "Your cart is empty!"
-  end
-
-  def empty_cart_catch(line_items)
-    if line_items.size < 1
-      empty_cart
-    end
-  end
-
 end

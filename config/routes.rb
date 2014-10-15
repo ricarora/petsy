@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   delete "/cart",                 to: "carts#destroy",     as: :delete_cart
 
   # Orders Routes
-  # get    "/orders",               to: "orders#index" #currently redirected... a-okay?
+  get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   # get    "/checkout",             to: "orders#checkout",    as: :checkout
-  # put    "/checkout",             to: "orders#order_finalize",     as: :order_finalize
+  # post   "/checkout",             to: "orders#finalize",    as: :order_finalize
   # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
@@ -47,12 +47,11 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  #############################################################################
-  # Kristina's Routes for Testing!!  Ignore these!                            #
-  #############################################################################
+###############################################################################
+### Kristina's Route for Testing!!  Ignore these!                             #
+###############################################################################
   get "/clear", to: "orders#clear"
-  get "/testing-order", to: "orders#set_order_session"
-  #############################################################################
+###############################################################################
 
 
   # The priority is based upon order of creation: first created -> highest priority.

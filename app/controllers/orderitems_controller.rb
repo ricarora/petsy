@@ -15,7 +15,6 @@ class OrderitemsController < ApplicationController
       orderitem.qty = (value["qty"])
       orderitem.update(totalprice: (orderitem.qty * orderitem.product.price))
     end
-
     update_cart_total
     redirect_to cart_path, notice: "Cart updated!"
   end
