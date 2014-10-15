@@ -1,21 +1,22 @@
-<div>
-<h1>Add a New Product</h1>
-<form action="" method="post" accept-charset="utf-8">
-  <label for="name">Product Name:</label>
-  <input type="text" name="product[name]" value="" id="name">
+<h1>Add a Product</h1>
 
-  <label for="price">Price:</label>
-  <input type="text" name="product[price]" value="" id="price">
+<%= form_for @product, url: {action: "create"} do |f| %>
 
-  <label for="descrition">Description:</label>
-  <input type="text" name="product[descrition]" value="" id="description">
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name %>
 
-  <label for="image_url">Image url:</label>
-  <input type="text" name="product[image_url]" value="" id="image_url">
+    <%= f.label :price, "Price:" %>
+    <%= f.text_field :price %>
 
-  <label for="stock">Number in stock:</label>
-  <input type="text" name="product[stock]" value="" id="stock">
-  
-  <p><input type="submit" class = "submit-button" value="Submit"></p>
-</form>
-</div>
+    <%= f.label :description, "Description:" %>
+    <%= f.text_field :description %>
+
+    <%= f.label :image_url, "Image URL:" %>
+    <%= f.text_field :image_url %>
+
+    <%= f.label :stock, "Quantity:" %>
+    <%= f.text_field :stock %>
+
+    <%= f.submit %>
+
+<% end %>
