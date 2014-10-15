@@ -4,6 +4,6 @@
   <%= category.name.upcase %><br/>
 <% end %>
 
-  <% if true %>
+  <% if session[:current_user_id] %>
 <%= link_to "Add Category", new_category_path %>
   <% end %>

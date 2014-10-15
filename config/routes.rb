@@ -34,8 +34,12 @@ Rails.application.routes.draw do
   get "/categories/new",          to: "categories#new",     as: :new_category
   post "/categories/new",         to: "categories#create"
 
+  # Product Categories Routes
+  get "/product_categories",      to: "product_categories#index"
+  post "/product_categories/:id", to: "products_categories#create"
+
   # Users Routes
-  get "/users", to: "users#new"
+  get "/users/new", to: "users#new"
   post "/users", to: "users#create"
   get "/logins", to: "logins#create"
   post "/sessions", to: "logins#create"
