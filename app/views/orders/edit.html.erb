@@ -1,10 +1,10 @@
 <h2>Cart</h2>
 
-<!-- display empty cart message if no items in cart-->
+<!-- empty cart message if no items in cart-->
 <% if @empty_cart %>
   <p><%= @empty_cart %></p>
 
-<!-- otherwise display cart table -->
+<!-- cart form -->
 <% else %>
 
   <%= form_tag(update_order_path(@order.id), method: "put") do %>
@@ -28,8 +28,12 @@
     </table>
   <%= submit_tag("Update") %>
   <% end %>
+
+  <!-- clear cart button -->
   <%= form_tag(delete_order_path(@order.id), method: "delete") do %>
     <%= submit_tag("Clear Cart") %>
   <% end %>
+
+  <!-- checkout button -->
 
 <% end %>
