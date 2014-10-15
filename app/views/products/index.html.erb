@@ -10,6 +10,7 @@
       <tr class = "destroy-edit">
         <td><%= link_to "Destroy", "/products/destroy/#{product.id}" %></td>
         <td><%= link_to "Edit", "/products/#{product.id}/edit" %></td>
+        <td><%= link_to "Add Category", "/products/#{product.id}/newcategory" %></td>
       </tr>
 
       <div class = "product-popup">

@@ -1,0 +1,7 @@
+<%= form_tag(productitems_new_path, method: "post") do %>
+  <% @categories.each do |category| %>
+    <%= check_box_tag(:category) %>
+    <%= label_tag(:category) %>
+  <% end %>
+
+<% end %>
