@@ -13,16 +13,12 @@ class OrdersController < ApplicationController
   end
 
   def edit #view cart
-    find_order ? find_order : create #this returns @order, finding or creating the order
-    @line_items = @order.orderitems #this finds the associated orderitems
-
-    if @line_items.size < 1 #this displays if there are no associated orderitems
-      @empty_cart = "Your cart is empty!"
+    if find_order #this returns @order
+      @line_items = @order.orderitems #this finds the associated orderitems
+      empty_cart_catch(@line_items) #if no orderitems, empty cart message displays
+    else
+      empty_cart #this displays if there are no associated orderitems
     end
-  end
-
-  def clear
-    reset_session #just for testing...
   end
 
   # def checkout #this will put Order to update
@@ -41,10 +37,35 @@ class OrdersController < ApplicationController
   end
 
 
+  #############################################################################
+  # Methods for Testing!!                                                     #
+  #############################################################################
+  def clear #just for testing...
+    reset_session
+    redirect_to root_path
+  end
+
+  def set_order_session #just for testing...
+    session[:order_id] = Order.all.last.id
+    redirect_to root_path
+  end
+  #############################################################################
+
+
   private
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
+  end
+
+  def empty_cart
+    @empty_cart = "Your cart is empty!"
+  end
+
+  def empty_cart_catch(line_items)
+    if line_items.size < 1
+      empty_cart
+    end
   end
 
 end
