@@ -23,7 +23,7 @@ class OrderitemsController < ApplicationController
   def destroy
     if @orderitem = find_orderitem
       @orderitem.destroy
-      update_order_total
+      update_cart_total
     end
     redirect_to cart_path
   end
