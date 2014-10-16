@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
 
   def edit
     find_order
+    redirect_to cart_path, alert: "Please click 'Checkout' to proceed!" if @order == nil
   end
 
   def update # finish and pay
