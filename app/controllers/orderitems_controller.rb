@@ -29,7 +29,7 @@ class OrderitemsController < ApplicationController
       @orderitem.destroy
       update_cart_total
     end
-    redirect_to cart_path
+    redirect_to cart_path, notice: "Product removed!"
   end
 
 
@@ -73,7 +73,7 @@ class OrderitemsController < ApplicationController
 
     if item.save
       update_cart_total
-      redirect_to cart_path
+      redirect_to cart_path, notice: "Product updated!"
     else
       error_save_message
     end
@@ -83,7 +83,7 @@ class OrderitemsController < ApplicationController
     item = Orderitem.new(product_id: product.id, qty: 1, totalprice: product.price, cart_id: cart.id)
     if item.save
       update_cart_total
-      redirect_to cart_path
+      redirect_to cart_path, notice: "Producted added to cart!"
     else
       error_save_message
     end
