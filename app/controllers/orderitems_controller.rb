@@ -25,7 +25,7 @@ class OrderitemsController < ApplicationController
   end
 
   def destroy
-    if @orderitem = find_orderitem
+    if find_orderitem
       @orderitem.destroy
       update_cart_total
     end
@@ -45,7 +45,7 @@ class OrderitemsController < ApplicationController
   end
 
   def find_orderitem
-    Orderitem.find_by(id: params[:id])
+    @orderitem = Orderitem.find_by(id: params[:id])
   end
 
   def assemble_orderitem(cart)
