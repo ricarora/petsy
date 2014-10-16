@@ -5,6 +5,7 @@ class OrderitemsController < ApplicationController
     else
       @cart = Cart.create
       session[:cart_id] = @cart.id #saves @cart.id to session
+      session[:order_id] = nil #clears out old order_id
       assemble_orderitem(@cart)
     end
   end
