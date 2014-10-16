@@ -1,50 +1,38 @@
 class OrdersController < ApplicationController
 
-  ## Debug toggle. Set to false to hide debug helpers
-  DEBUG = true
-
   def index #view all orders; don't want people to see this
     redirect_to(root_path)
   end
 
-  def edit #view cart
-    if find_order #this returns @order
-      @line_items = @order.orderitems #this finds the associated orderitems
-      empty_cart_catch(@line_items) #if no orderitems, empty cart message displays
+  def create
+    if find_cart
+      @items = @cart.orderitems
+      @order = Order.new(total_price: @cart.total, status: "pending")
+      save_order
     else
-      empty_cart #this displays if there are no associated orderitems
+      error_save_message
     end
   end
 
-  # def checkout #this will put Order to update
-  #
-  # end
-  #
-  # def show #final individual order
-  #   #display order, not editable with all orderitems
-  # end
+  def edit
+    find_order
+  end
 
-  def destroy #clear cart
-    if @order = find_order
-      @order.destroy
+  def update
+    find_order
+    @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order.update(status: "paid", orderdate: DateTime.now)
+    update_product_stocks
+    redirect_to show_order_path
+  end
+
+  def show # individual order
+    if find_order && @order.status != "pending"
+      @line_items = @order.orderitems
+    else
+      redirect_to cart_path
     end
-    redirect_to(cart_path)
   end
-
-
-  #############################################################################
-  # Kristina's Methods for Testing!!                                          #
-  #############################################################################
-  def clear #just for testing...
-    reset_session
-    redirect_to root_path
-  end
-
-  def set_order_session #just for testing...
-    session[:order_id] = Order.all.last.id
-    redirect_to root_path
-  end
-  #############################################################################
 
 
   private
@@ -53,14 +41,40 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: session[:order_id])
   end
 
-  def empty_cart
-    @empty_cart = "Your cart is empty!"
+  def find_cart
+    @cart = Cart.find_by(id: session[:cart_id])
   end
 
-  def empty_cart_catch(line_items)
-    if line_items.size < 1
-      empty_cart
+  def save_order
+    if @order.save
+      add_orderitems_to_order
+      sessions_switch
+      redirect_to edit_order_path
+    else
+      error_save_message
     end
   end
 
+  def sessions_switch
+    session[:order_id] = @order.id
+    session[:cart_id] = nil
+  end
+
+  def add_orderitems_to_order
+    @items.each do |item|
+      item.update(cart_id: nil, order_id: @order.id)
+    end
+  end
+
+  def update_product_stocks
+    @order.orderitems.each do |item|
+      product = Product.find(item.product_id)
+      current_stock = product.stock
+      product.update(stock: (current_stock - item.qty))
+    end
+  end
+
+  def error_save_message
+    redirect_to cart_path, notice: "Something went wrong! :("
+  end
 end

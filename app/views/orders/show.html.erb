@@ -1,1 +1,27 @@
 <h2>Order Confirmation</h2>
+
+<p><strong>Order Status:</strong> <%= @order.status.upcase %></p>
+<p><strong>Date Placed:</strong> <%= @order.orderdate %></p>
+
+<table>
+  <tr>
+    <td>Product</td>
+    <td>Price</td>
+    <td>Quantity</td>
+    <td>Subtotal</td>
+  </tr>
+  <% @line_items.each do |item| %>
+    <tr>
+      <td><%= item.product.name %></td>
+      <td><%= item.product.price %></td>
+      <td><%= item.qty %></td>
+      <td><%= item.totalprice %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><strong>Total</strong></td>
+    <td><strong><%= @order.total_price %></strong></td>
+  </tr>
+</table>
