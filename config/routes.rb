@@ -17,8 +17,9 @@ Rails.application.routes.draw do
 
   # Orders Routes
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
-  # get    "/checkout",             to: "orders#checkout",    as: :checkout
-  # post   "/checkout",             to: "orders#finalize",    as: :order_finalize
+  post   "/orders/new",           to: "orders#create",      as: :new_order
+  get    "/checkout",             to: "orders#edit",        as: :checkout
+  # post   "/checkout",             to: "orders#update",    as: :order_finalize
   # get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
