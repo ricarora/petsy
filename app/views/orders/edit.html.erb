@@ -1,3 +1,70 @@
 <h2>Checkout</h2>
-<%= @order.inspect %>
-<%= @order.orderitems.inspect %>
+
+<div class="cart-summary">
+  <table>
+    <tr>
+      <td>Product</td>
+      <td>Price</td>
+      <td>Quantity</td>
+      <td>Subtotal</td>
+    </tr>
+    <% @order.orderitems.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.product.price %></td>
+        <td><%= item.id %></td>
+        <td><%= item.totalprice %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td><strong><%= @order.total_price %></strong></td>
+    </tr>
+  </table>
+</div>
+
+<div class="checkout-form">
+  <%= form_for :checkout do |f| %>
+    <table>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Name:") %></td>
+        <td><%= f.text_field :name_on_card %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Credit Card Number:") %></td>
+        <td><%= f.text_field :card_number %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Expiration Date:") %></td>
+        <td><%= f.date_field :card_exp %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Security Code:") %></td>
+        <td><%= f.text_field :security_code %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Address:") %></td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "City:") %></td>
+        <td><%= f.text_field :city %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "State:") %></td>
+        <td><%= f.text_field :state %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Zip:") %></td>
+        <td><%= f.text_field :zip %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Email:") %></td>
+        <td><%= f.email_field :email %></td>
+      </tr>
+    </table>
+    <%= f.submit "Confirm Order" %>
+  <% end %>
+</div>

@@ -8,14 +8,7 @@ class OrdersController < ApplicationController
     if find_cart
       @items = @cart.orderitems
       @order = Order.new(total_price: @cart.total, status: :pending)
-
-      if @order.save
-        add_orderitems_to_order
-        sessions_switch
-        redirect_to checkout_path
-      else
-        error_save_message
-      end
+      save_order
     else
       error_save_message
     end
@@ -56,6 +49,16 @@ class OrdersController < ApplicationController
 
   def find_cart
     @cart = Cart.find_by(id: session[:cart_id])
+  end
+
+  def save_order
+    if @order.save
+      add_orderitems_to_order
+      sessions_switch
+      redirect_to checkout_path
+    else
+      error_save_message
+    end
   end
 
   def sessions_switch
