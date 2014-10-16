@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
 
-  def index #view all orders; don't want people to see this
+  def index # view all orders; don't want people to see this
     redirect_to(root_path)
   end
 
-  def create
+  def create # checkout
     if find_cart
       @items = @cart.orderitems
       @order = Order.new(total_price: @cart.total, status: "pending")
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     find_order
   end
 
-  def update
+  def update # finish and pay
     find_order
     @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.update(status: "paid", orderdate: DateTime.now)

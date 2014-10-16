@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <td>Product</td>
+    <td>Price</td>
+    <td>Quantity</td>
+    <td>Subtotal</td>
+  </tr>
+  <% obj.orderitems.each do |item| %>
+    <tr>
+      <td><%= link_to item.product.name, show_product_path(item.product.id) %></td>
+      <td><%= item.product.price %></td>
+      <td><%= item.qty %></td>
+      <td><%= item.totalprice %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><strong>Total</strong></td>
+    <td><strong><%= @order.total_price %></strong></td>
+  </tr>
+</table>
