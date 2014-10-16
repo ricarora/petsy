@@ -15,11 +15,4 @@ class ProductCategoriesController < ApplicationController
 
   private
 
-  def category_params
-    params.require(:category).permit(:id)
-  end
-
-  def product_params
-    params.require(:product).permit(:id)
-  end
 end
