@@ -4,34 +4,25 @@ class OrdersController < ApplicationController
     redirect_to(root_path)
   end
 
-  def create # checkout
+  def new # checkout page
+    find_cart
+    if @cart == nil
+      error_save_message
+    end
+  end
+
+  def create # create order when paid
     if find_cart
-      @items = @cart.orderitems
-      @order = Order.new(total_price: @cart.total_price, status: "pending")
       save_order
+      redirect_to show_order_path
     else
       error_save_message
     end
   end
 
-  def edit
-    find_order
-    redirect_to cart_path, alert: "Please click 'Checkout' to proceed!" if @order == nil
-  end
-
-  def update # finish and pay
-    find_order
-    @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
-    @order.update(status: "paid", orderdate: DateTime.now)
-    update_product_stocks
-    session[:cart_id] = nil #clears cart on @order.update
-    redirect_to show_order_path
-  end
-
   def show # individual order
-    if find_order && @order.status != "pending"
-      @line_items = @order.orderitems
-    else
+    find_order
+    if @order == nil
       redirect_to cart_path
     end
   end
@@ -48,17 +39,26 @@ class OrdersController < ApplicationController
   end
 
   def save_order
+    setup_order
     if @order.save
       add_orderitems_to_order
+      update_product_stocks
       session[:order_id] = @order.id
-      redirect_to edit_order_path
+      session[:cart_id] = nil #clears cart on @order.update
     else
       error_save_message
     end
   end
 
+  def setup_order
+    @order = Order.new(params.require(:new_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order.total_price = @cart.total_price
+    @order.status = "pending"
+    @order.orderdate = DateTime.now
+  end
+
   def add_orderitems_to_order
-    @items.each do |item|
+    @cart.orderitems.each do |item|
       item.update(order_id: @order.id)
     end
   end
@@ -72,6 +72,6 @@ class OrdersController < ApplicationController
   end
 
   def error_save_message
-    redirect_to cart_path, alert: "Something went wrong! :("
+    redirect_to cart_path, alert: "Something went wrong, try again! :("
   end
 end
