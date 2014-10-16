@@ -4,8 +4,6 @@
   <%= render "shared/orderitems_table", obj: @cart, cart: false %>
 </div>
 
-<%= session.inspect %>
-
 <div class="checkout-form">
   <%= form_for :new_order do |f| %>
     <table>

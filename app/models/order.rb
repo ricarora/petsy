@@ -5,11 +5,11 @@ class Order < ActiveRecord::Base
   ## why won't this work in console?
   # validates :orderitems, presence: true
 
-  # this re-validates orderitems when order is created (verifying that they belong to an order)
-  validates_associated :orderitems
+  # validates the credit card form
+  validates :name_on_card, :card_number, :security_code, :zip, :email, :address, :city, :state, :card_exp, presence: true
 
-  ## trying to validate the credit card form
-  # validates :name_on_card, :card_number, :security_code, :zip, :email, :address, :city, :state, :card_exp, presence: true, unless: :pending?
+  # re-validates orderitems when order is placed (verifying that they belong to an order)
+  validates_associated :orderitems
 
   def pending?
     status == "paid"

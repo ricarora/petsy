@@ -7,16 +7,15 @@ class OrdersController < ApplicationController
   def new # checkout page
     find_cart
     if @cart == nil
-      error_save_message
+      error_message
     end
   end
 
   def create # create order when paid
     if find_cart
       save_order
-      redirect_to show_order_path
     else
-      error_save_message
+      error_message
     end
   end
 
@@ -41,11 +40,10 @@ class OrdersController < ApplicationController
   def save_order
     setup_order
     if @order.save
-      add_orderitems_to_order
-      update_product_stocks
-      cleanse_sessions
+      post_order_save_tidying
+      redirect_to show_order_path
     else
-      error_save_message
+      render :new
     end
   end
 
@@ -54,6 +52,12 @@ class OrdersController < ApplicationController
     @order.total_price = @cart.total_price
     @order.status = "pending"
     @order.orderdate = DateTime.now
+  end
+
+  def post_order_save_tidying
+    add_orderitems_to_order
+    update_product_stocks
+    cleanse_sessions
   end
 
   def add_orderitems_to_order
@@ -75,7 +79,7 @@ class OrdersController < ApplicationController
     session[:cart_id] = nil
   end
 
-  def error_save_message
+  def error_message
     redirect_to cart_path, alert: "Something went wrong, try again! :("
   end
 end
