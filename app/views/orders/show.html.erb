@@ -1,6 +1,7 @@
 <h2>Order Confirmation</h2>
 
 <p><strong>Order Status:</strong> <%= @order.status.upcase %></p>
+<p><strong>Date Placed:</strong> <%= @order.orderdate %></p>
 
 <table>
   <tr>
@@ -13,7 +14,7 @@
     <tr>
       <td><%= item.product.name %></td>
       <td><%= item.product.price %></td>
-      <td><%= item.id %></td>
+      <td><%= item.qty %></td>
       <td><%= item.totalprice %></td>
     </tr>
   <% end %>

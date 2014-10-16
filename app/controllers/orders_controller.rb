@@ -4,36 +4,77 @@ class OrdersController < ApplicationController
     redirect_to(root_path)
   end
 
-  # def checkout #this needs to take the cart and turn it into an order, saved as pending
-  #
-  # end
-
-  # def finalize #this is posted to and needs to change the order status to paid
-  #
-  # end
-
-  def show # individual order
-    if find_order && @order.status != "Pending" #only display if not pending
-      @line_items = @order.orderitems
+  def create
+    if find_cart
+      @items = @cart.orderitems
+      @order = Order.new(total_price: @cart.total, status: "pending")
+      save_order
     else
-      redirect_to(cart_path)
+      error_save_message
     end
   end
 
-
-###############################################################################
-### Kristina's Method for Testing!!                                           #
-###############################################################################
-  def clear #just for testing...
-    reset_session
-    redirect_to root_path
+  def edit
+    find_order
   end
-###############################################################################
+
+  def update
+    find_order
+    @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order.update(status: "paid", orderdate: DateTime.now)
+    update_product_stocks
+    redirect_to show_order_path
+  end
+
+  def show # individual order
+    if find_order && @order.status != "pending"
+      @line_items = @order.orderitems
+    else
+      redirect_to cart_path
+    end
+  end
 
 
   private
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
+  end
+
+  def find_cart
+    @cart = Cart.find_by(id: session[:cart_id])
+  end
+
+  def save_order
+    if @order.save
+      add_orderitems_to_order
+      sessions_switch
+      redirect_to edit_order_path
+    else
+      error_save_message
+    end
+  end
+
+  def sessions_switch
+    session[:order_id] = @order.id
+    session[:cart_id] = nil
+  end
+
+  def add_orderitems_to_order
+    @items.each do |item|
+      item.update(cart_id: nil, order_id: @order.id)
+    end
+  end
+
+  def update_product_stocks
+    @order.orderitems.each do |item|
+      product = Product.find(item.product_id)
+      current_stock = product.stock
+      product.update(stock: (current_stock - item.qty))
+    end
+  end
+
+  def error_save_message
+    redirect_to cart_path, notice: "Something went wrong! :("
   end
 end

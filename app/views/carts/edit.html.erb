@@ -40,5 +40,10 @@
   <% end %>
 
   <!-- checkout button -->
+  <%= form_tag(new_order_path, method: "post") do %>
+    <%= submit_tag("Checkout") %>
+  <% end %>
+
+  <!-- checkout button -->
 
 <% end %>
