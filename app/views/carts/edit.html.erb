@@ -8,30 +8,8 @@
 <% else %>
 
   <%= form_tag(update_cart_path(@cart.id), method: "put") do %>
-    <table>
-      <tr>
-        <td>Product</td>
-        <td>Price</td>
-        <td>Quantity</td>
-        <td>Subtotal</td>
-      </tr>
-      <% @line_items.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.product.price %></td>
-          <td><%= number_field_tag("cart[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
-          <td><%= item.totalprice %></td>
-          <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <td><strong>Total</strong></td>
-        <td><strong><%= @cart.total %></strong></td>
-      </tr>
-    </table>
-  <%= submit_tag("Update") %>
+    <%= render "shared/orderitems_table", obj: @cart, cart: true %>
+    <%= submit_tag("Update") %>
   <% end %>
 
   <!-- clear cart button -->

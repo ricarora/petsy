@@ -3,4 +3,4 @@
 <p><strong>Order Status:</strong> <%= @order.status.upcase %></p>
 <p><strong>Date Placed:</strong> <%= @order.orderdate %></p>
 
-<%= render "shared/orderitems_table", obj: @order %>
+<%= render "shared/orderitems_table", obj: @order, cart: false %>
