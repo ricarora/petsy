@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 #Product Routes
   # resources :products
-  # get "/products/:id",  to: "products#show"
+  get "/products/:id",  to: "products#show", as: :show_product
   get  "/products",     to: "products#index"
   post "/products/new", to: "products#create"
   get  "/products/new", to: "products#new"
@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   delete "/sessions", to: "logins#destroy"
   get "/users/test", to: "users#test"
   get "/logins/new", to: "logins#new"
+  get "/users/edit", to: "users#edit", as: :edit_user
+  put "/users/:id", to: "users#update"
 
 
   root "home#index"

@@ -1,12 +1,16 @@
 class OrderitemsController < ApplicationController
   def create #add product to cart
-    if find_cart #if a cart has already been created...
-      assemble_orderitem(@cart)
+    if product_in_stock?
+      if find_cart #if a cart has already been created...
+        assemble_orderitem(@cart)
+      else
+        @cart = Cart.create
+        session[:cart_id] = @cart.id #saves @cart.id to session
+        session[:order_id] = nil #clears out old order_id
+        assemble_orderitem(@cart)
+      end
     else
-      @cart = Cart.create
-      session[:cart_id] = @cart.id #saves @cart.id to session
-      session[:order_id] = nil #clears out old order_id
-      assemble_orderitem(@cart)
+      redirect_to cart_path, alert: "Sorry, product is out of stock."
     end
   end
 
@@ -14,29 +18,34 @@ class OrderitemsController < ApplicationController
     params[:cart].each do |key, value|
       orderitem = Orderitem.find(key)
       orderitem.qty = (value["qty"])
-      orderitem.update(totalprice: (orderitem.qty * orderitem.product.price))
+      orderitem.update(total_price: (orderitem.qty * orderitem.product.price))
     end
     update_cart_total
     redirect_to cart_path, notice: "Cart updated!"
   end
 
   def destroy
-    if @orderitem = find_orderitem
+    if find_orderitem
       @orderitem.destroy
       update_cart_total
     end
-    redirect_to cart_path
+    redirect_to cart_path, notice: "Product removed!"
   end
 
 
   private
+
+  def product_in_stock?
+    @product = Product.find_by(id: params[:product_id])
+    @product.stock > 0 ? true : false
+  end
 
   def find_cart
     @cart = Cart.find_by(id: session[:cart_id])
   end
 
   def find_orderitem
-    Orderitem.find_by(id: params[:id])
+    @orderitem = Orderitem.find_by(id: params[:id])
   end
 
   def assemble_orderitem(cart)
@@ -60,21 +69,21 @@ class OrderitemsController < ApplicationController
     item = Orderitem.where("product_id = #{product.id} AND cart_id = #{cart.id}").first
 
     item.qty += 1 if (item.qty < item.product.stock)
-    item.totalprice = (item.qty * item.product.price)
+    item.total_price = (item.qty * item.product.price)
 
     if item.save
       update_cart_total
-      redirect_to cart_path
+      redirect_to cart_path, notice: "Product updated!"
     else
       error_save_message
     end
   end
 
   def unique_add(product, cart)
-    item = Orderitem.new(product_id: product.id, qty: 1, totalprice: product.price, cart_id: cart.id)
+    item = Orderitem.new(product_id: product.id, qty: 1, total_price: product.price, cart_id: cart.id)
     if item.save
       update_cart_total
-      redirect_to cart_path
+      redirect_to cart_path, notice: "Producted added to cart!"
     else
       error_save_message
     end
@@ -82,12 +91,12 @@ class OrderitemsController < ApplicationController
 
   def update_cart_total
     find_cart
-    total = @cart.orderitems.inject(0) { |sum, item| sum + item.totalprice }
-    @cart.total = total
+    total = @cart.orderitems.inject(0) { |sum, item| sum + item.total_price }
+    @cart.total_price = total
     @cart.save
   end
 
   def error_save_message
-    redirect_to cart_path, notice: "Something went wrong. :( Try again?"
+    redirect_to cart_path, alert: "Something went wrong. :( Try again?"
   end
 end

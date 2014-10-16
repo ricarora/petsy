@@ -22,7 +22,7 @@ end
 (1..100).each do
   product = {
     name: Faker::Name.name,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Lorem.paragraph, #http://lorempixel.com/400/200/animals/Dummy-Text/
     price: Faker::Commerce.price,
     image_url: Faker::Avatar.image,
     vendor_id: Faker::Number.digit
