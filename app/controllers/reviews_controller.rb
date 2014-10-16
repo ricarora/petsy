@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @reviews = Review.where(product_id: params[:id])
   end
 
   def new
@@ -11,9 +11,10 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.product_id = params[:id]
     author?
     if @review.save
-      redirect_to reviews_path
+      redirect_to product_reviews_path
     else
       render:new
     end
@@ -32,12 +33,12 @@ class ReviewsController < ApplicationController
       total += review.rating
     end
 
-    total/@reviews.count
+    return total/@reviews.count
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :title, :comment, :author)
+    params.require(:review).permit(:rating, :title, :comment, :author, :id)
   end
 end

@@ -1,5 +1,7 @@
 <h2>Reviews:</h2>
 
+Average Rating: <%= Review.average_rating %>
+
 <% @reviews.each do |review| %>
   Date: <%= review.created_at.to_datetime.strftime("%D") %><br/>
   Rating: <%= review.rating %><br/>
