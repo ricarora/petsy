@@ -26,16 +26,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def average_rating
-    total = 0
-
-    @reviews.each do |review|
-      total += review.rating
-    end
-
-    return total/@reviews.count
-  end
-
   private
 
   def review_params

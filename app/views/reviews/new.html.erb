@@ -1,5 +1,7 @@
 <h1>Add a Review</h1>
 
+<%= render "shared/error_messages", obj: @review %>
+
 <%= form_for @review, url: {action: "create"} do |f| %>
 
     <%= f.label :rating %>
