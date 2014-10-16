@@ -18,7 +18,7 @@ class OrderitemsController < ApplicationController
     params[:cart].each do |key, value|
       orderitem = Orderitem.find(key)
       orderitem.qty = (value["qty"])
-      orderitem.update(totalprice: (orderitem.qty * orderitem.product.price))
+      orderitem.update(total_price: (orderitem.qty * orderitem.product.price))
     end
     update_cart_total
     redirect_to cart_path, notice: "Cart updated!"
@@ -80,7 +80,7 @@ class OrderitemsController < ApplicationController
   end
 
   def unique_add(product, cart)
-    item = Orderitem.new(product_id: product.id, qty: 1, totalprice: product.price, cart_id: cart.id)
+    item = Orderitem.new(product_id: product.id, qty: 1, total_price: product.price, cart_id: cart.id)
     if item.save
       update_cart_total
       redirect_to cart_path, notice: "Producted added to cart!"
@@ -92,7 +92,7 @@ class OrderitemsController < ApplicationController
   def update_cart_total
     find_cart
     total = @cart.orderitems.inject(0) { |sum, item| sum + item.total_price }
-    @cart.total = total
+    @cart.total_price = total
     @cart.save
   end
 
