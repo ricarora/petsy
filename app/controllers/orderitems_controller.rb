@@ -10,7 +10,7 @@ class OrderitemsController < ApplicationController
         assemble_orderitem(@cart)
       end
     else
-      redirect_to cart_path, notice: "Sorry, product is out of stock."
+      redirect_to cart_path, alert: "Sorry, product is out of stock."
     end
   end
 
@@ -97,6 +97,6 @@ class OrderitemsController < ApplicationController
   end
 
   def error_save_message
-    redirect_to cart_path, notice: "Something went wrong. :( Try again?"
+    redirect_to cart_path, alert: "Something went wrong. :( Try again?"
   end
 end

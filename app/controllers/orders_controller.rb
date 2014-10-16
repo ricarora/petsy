@@ -71,6 +71,6 @@ class OrdersController < ApplicationController
   end
 
   def error_save_message
-    redirect_to cart_path, notice: "Something went wrong! :("
+    redirect_to cart_path, alert: "Something went wrong! :("
   end
 end
