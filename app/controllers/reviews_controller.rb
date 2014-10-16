@@ -13,6 +13,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.product_id = params[:id]
     author?
+    title?
     if @review.save
       redirect_to product_reviews_path
     else
@@ -23,6 +24,12 @@ class ReviewsController < ApplicationController
   def author?
     if @review.author.empty?
       @review.author = nil
+    end
+  end
+
+  def title?
+    if @review.title.empty?
+      @review.title = nil
     end
   end
 

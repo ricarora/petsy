@@ -1,27 +1,17 @@
 <h1>Add a Review</h1>
 
-<%= render "shared/error_messages", obj: @review %>
+
 
 <%= form_for @review, url: {action: "create"} do |f| %>
 
     <%= f.label :rating %> (Required)<br/>
-    <%= f.select(:rating, @levels.map {|value| [value, value]}) %><br/><br/>
-    <!-- <%= f.radio_button :rating, "1" %>
-    <%= f.label :rating, "1", :value => 1 %>
-    <%= f.radio_button :rating, "2" %>
-    <%= f.label :rating, "2", :value => 2 %>
-    <%= f.radio_button :rating, "3" %>
-    <%= f.label :rating, "3", :value => 3 %>
-    <%= f.radio_button :rating, "4" %>
-    <%= f.label :rating, "4", :value => 4 %>
-    <%= f.radio_button :rating, "5" %>
-    <%= f.label :rating, "5", :value => 5 %> -->
+    <%= f.select(:rating, @levels.map {|value| [value, value]}) %><br/><br/><%= render "shared/error_messages", obj: @review, col: :rating %>
 
     <%= f.label :title %><br/>
     <%= f.text_field :title %><br/><br/>
 
     <%= f.label :comment %> (Required)<br/>
-    <%= f.text_area :comment %><br/><br/>
+    <%= f.text_area :comment %><br/><br/> <%= render "shared/error_messages", obj: @review, col: :comment %>
 
     <%= f.label :author %><br/>
     <%= f.text_field :author %><br/><br/>

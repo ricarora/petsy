@@ -6,9 +6,11 @@ All Reviews:<br/>
 <% @reviews.each do |review| %>
   Date: <%= review.created_at.to_datetime.strftime("%D") %><br/>
   Rating: <%= review.rating %><br/>
+    <% if review.title != nil %>
   Title: <%= review.title %><br/>
+    <% end %>
   Comment: <%= review.comment %><br/>
     <% if review.author != nil %>
   Author: <%= review.author %><br/>
-    <% end %>
+    <% end %><br/><br/>
 <% end %>
