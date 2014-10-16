@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   delete "/sessions", to: "logins#destroy"
   get "/users/test", to: "users#test"
   get "/logins/new", to: "logins#new"
+  get "/users/edit", to: "users#edit", as: :edit_user
+  put "/users/:id", to: "users#update"
 
 
   root "home#index"

@@ -8,10 +8,24 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find(session[:current_user_id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to "/users/test"
+    else
+      render :edit
+    end
+  end
+
   def create
     # raise params.inspect
     @user = User.new(user_params)
     if @user.save
+      flash[:notice] = 'The User is successfully saved!'
       redirect_to root_path
     else
       render :new

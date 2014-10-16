@@ -1,0 +1,29 @@
+<form class="new_entry" action="/vendors/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+
+  <h2>Edit Merchant Profile</h2>
+
+  <div>
+    <p><label for="name">Name(required)</label>
+    <input type="string" name="user[name]"  value = "<%= @user.name %>"  />
+    <%= render "shared/error_messages", obj: @user, col: :name %></p>
+ </div>
+ <div>
+   <p><label for="storename">Name of your Store</label>
+   <input type="string" name="user[storename]" value = "<%= @user.storename %>" />
+ </p>
+ </div>
+ <div>
+   <p><label for="email">Email</label>
+   <input type="string" name="user[email]" value = "<%= @user.email %>"/>
+   <%= render "shared/error_messages", obj: @user, col: :email %></p>
+</div>
+<div>
+  <p><label for="image-url">Upload Image URL:</label>
+  <input type="string" name="user[image_url]"  value = "<%= @user.image_url %>"  />
+</p>
+</div>
+<br>
+
+   <input type = "submit" value="Edit" class = "submit">
+ </form>

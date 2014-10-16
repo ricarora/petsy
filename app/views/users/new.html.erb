@@ -5,10 +5,7 @@
   <div>
     <p><label for="name">Name(required)</label>
     <input type="string" name="user[name]"  value = "<%= @user.name %>"  />
-    <% @user.errors[:name].each do |error| %>
-      <%= error %>
-      <% break %>
-    <% end %></p>
+    <%= render "shared/error_messages", obj: @user, col: :name %></p>
  </div>
  <div>
    <p><label for="storename">Name of your Store</label>
@@ -18,34 +15,22 @@
  <div>
    <p><label for="email">Email</label>
    <input type="string" name="user[email]" value = "<%= @user.email %>"/>
-   <% @user.errors[:email].each do |error| %>
-     <%= error %>
-     <% break %>
-   <% end %></p>
+   <%= render "shared/error_messages", obj: @user, col: :email %></p>
 </div>
 <div>
   <p><label for="username">Username(required):</label>
   <input type="string" name="user[username]"  value = "<%= @user.username %>"  />
-  <% @user.errors[:username].each do |error| %>
-    <%= error %>
-    <% break %>
-  <% end %></p>
+  <%= render "shared/error_messages", obj: @user, col: :username %></p>
 </div>
 <div>
   <p><label for="password">Password(required):</label>
   <input type="password" name="user[password]"  value = "<%= @user.password %>"  />
-  <% @user.errors[:password].each do |error| %>
-    <%= error %>
-    <% break %>
-  <% end %></p>
+  <%= render "shared/error_messages", obj: @user, col: :password %></p>
 </div>
 <div>
   <p><label for="password">Confirm Password:</label>
   <input type="password" name="user[password_confirmation]"  value = "<%= @user.password_confirmation %>"  />
-  <% @user.errors[:password_confirmation].each do |error| %>
-    <%= error %>
-    <% break %>
-  <% end %></p>
+  <%= render "shared/error_messages", obj: @user, col: :password_confirmation %></p>
 </div>
 <div>
   <p><label for="image-url">Upload Image URL:</label>
