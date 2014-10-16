@@ -4,5 +4,21 @@ class Review < ActiveRecord::Base
 
   validates :comment, presence: true
 
-  belongs_to :products
+  validate do |review|
+    UserValidator.new(review).validate
+  end
+
+  belongs_to :product
+end
+
+class UserValidator
+  def initialize(review)
+   @review = review
+  end
+
+  def validate
+    if @review.user_id == @review.product.user_id
+      @review.errors[:user_id] << "You cannot review your own product."
+    end
+  end
 end

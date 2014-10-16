@@ -6,14 +6,14 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-    @levels = [1,2,3,4,5]
   end
 
   def create
     @review = Review.new(review_params)
     @review.product_id = params[:id]
-    author?
-    title?
+    @review.user_id = session[:current_user_id]
+    author
+    title
     if @review.save
       redirect_to product_reviews_path
     else
@@ -21,13 +21,13 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def author?
+  def author
     if @review.author.empty?
       @review.author = nil
     end
   end
 
-  def title?
+  def title
     if @review.title.empty?
       @review.title = nil
     end
