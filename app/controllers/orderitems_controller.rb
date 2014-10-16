@@ -1,12 +1,16 @@
 class OrderitemsController < ApplicationController
   def create #add product to cart
-    if find_cart #if a cart has already been created...
-      assemble_orderitem(@cart)
+    if product_in_stock?
+      if find_cart #if a cart has already been created...
+        assemble_orderitem(@cart)
+      else
+        @cart = Cart.create
+        session[:cart_id] = @cart.id #saves @cart.id to session
+        session[:order_id] = nil #clears out old order_id
+        assemble_orderitem(@cart)
+      end
     else
-      @cart = Cart.create
-      session[:cart_id] = @cart.id #saves @cart.id to session
-      session[:order_id] = nil #clears out old order_id
-      assemble_orderitem(@cart)
+      redirect_to cart_path, notice: "Sorry, product is out of stock."
     end
   end
 
@@ -30,6 +34,11 @@ class OrderitemsController < ApplicationController
 
 
   private
+
+  def product_in_stock?
+    @product = Product.find_by(id: params[:product_id])
+    @product.stock > 0 ? true : false
+  end
 
   def find_cart
     @cart = Cart.find_by(id: session[:cart_id])
