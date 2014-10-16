@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def show # individual order
-    if find_order # && @order.status != "pending"
+    if find_order && @order.status != "pending"
       @line_items = @order.orderitems
     else
       redirect_to cart_path
