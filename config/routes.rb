@@ -28,9 +28,9 @@ Rails.application.routes.draw do
   get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
 
   # Reviews Routes
-  get "/reviews",                 to: "reviews#index",      as: :reviews
-  get "/reviews/new",             to: "reviews#new",        as: :new_review
-  post "/reviews/new",            to: "reviews#create"
+  get "/products/:id/reviews/",             to: "reviews#index",      as: :product_reviews
+  get "/products/:id/reviews/new",          to: "reviews#new",        as: :new_product_review
+  post "/products/:id/reviews/new",         to: "reviews#create"
 
   # Categories Routes
   get "/categories",              to: "categories#index",   as: :categories
