@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
 
-  def index #view all orders; don't want people to see this
+  def index # view all orders; don't want people to see this
     redirect_to(root_path)
   end
 
-  def create
+  def create # checkout
     if find_cart
       @items = @cart.orderitems
-      @order = Order.new(total_price: @cart.total, status: "pending")
+      @order = Order.new(total_price: @cart.total_price, status: "pending")
       save_order
     else
       error_save_message
@@ -18,11 +18,12 @@ class OrdersController < ApplicationController
     find_order
   end
 
-  def update
+  def update # finish and pay
     find_order
     @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.update(status: "paid", orderdate: DateTime.now)
     update_product_stocks
+    session[:cart_id] = nil #clears cart on @order.update
     redirect_to show_order_path
   end
 
@@ -48,21 +49,16 @@ class OrdersController < ApplicationController
   def save_order
     if @order.save
       add_orderitems_to_order
-      sessions_switch
+      session[:order_id] = @order.id
       redirect_to edit_order_path
     else
       error_save_message
     end
   end
 
-  def sessions_switch
-    session[:order_id] = @order.id
-    session[:cart_id] = nil
-  end
-
   def add_orderitems_to_order
     @items.each do |item|
-      item.update(cart_id: nil, order_id: @order.id)
+      item.update(order_id: @order.id)
     end
   end
 
@@ -75,6 +71,6 @@ class OrdersController < ApplicationController
   end
 
   def error_save_message
-    redirect_to cart_path, notice: "Something went wrong! :("
+    redirect_to cart_path, alert: "Something went wrong! :("
   end
 end

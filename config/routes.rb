@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 #Product Routes
   # resources :products
-  # get "/products/:id",  to: "products#show"
+  get "/products/:id",  to: "products#show", as: :show_product
   get  "/products",     to: "products#index"
   post "/products/new", to: "products#create"
   get  "/products/new", to: "products#new"

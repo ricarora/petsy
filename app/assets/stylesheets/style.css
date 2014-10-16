@@ -1,0 +1,14 @@
+/* --- Styles for flash messages ("cart updated", etc.) --- */
+.flash {
+  padding: 1em;
+  text-align: center;
+  color: white;
+}
+
+.alert {
+  background-color: red;
+}
+
+.notice {
+  background-color: green;
+}

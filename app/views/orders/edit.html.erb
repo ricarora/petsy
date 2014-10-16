@@ -1,28 +1,7 @@
 <h2>Checkout</h2>
 
 <div class="cart-summary">
-  <table>
-    <tr>
-      <td>Product</td>
-      <td>Price</td>
-      <td>Quantity</td>
-      <td>Subtotal</td>
-    </tr>
-    <% @order.orderitems.each do |item| %>
-      <tr>
-        <td><%= item.product.name %></td>
-        <td><%= item.product.price %></td>
-        <td><%= item.qty %></td>
-        <td><%= item.totalprice %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td></td>
-      <td></td>
-      <td><strong>Total</strong></td>
-      <td><strong><%= @order.total_price %></strong></td>
-    </tr>
-  </table>
+  <%= render "shared/orderitems_table", obj: @order, cart: false %>
 </div>
 
 <div class="checkout-form">
