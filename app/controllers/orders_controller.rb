@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   def update
     find_order
     @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
-    @order.update(status: "paid")
+    @order.update(status: "paid", orderdate: DateTime.now)
     update_product_stocks
     redirect_to show_order_path
   end
