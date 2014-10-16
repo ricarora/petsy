@@ -43,8 +43,7 @@ class OrdersController < ApplicationController
     if @order.save
       add_orderitems_to_order
       update_product_stocks
-      session[:order_id] = @order.id
-      session[:cart_id] = nil #clears cart on @order.update
+      cleanse_sessions
     else
       error_save_message
     end
@@ -69,6 +68,11 @@ class OrdersController < ApplicationController
       current_stock = product.stock
       product.update(stock: (current_stock - item.qty))
     end
+  end
+
+  def cleanse_sessions
+    session[:order_id] = @order.id
+    session[:cart_id] = nil
   end
 
   def error_save_message
