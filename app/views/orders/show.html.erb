@@ -12,7 +12,7 @@
   </tr>
   <% @line_items.each do |item| %>
     <tr>
-      <td><%= item.product.name %></td>
+      <td><%= link_to item.product.name, show_product_path(item.product.id) %></td>
       <td><%= item.product.price %></td>
       <td><%= item.qty %></td>
       <td><%= item.totalprice %></td>
