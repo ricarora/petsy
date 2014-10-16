@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     @order.update(params.require(:edit_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.update(status: "paid", orderdate: DateTime.now)
     update_product_stocks
+    session[:cart_id] = nil #clears cart on @order.update
     redirect_to show_order_path
   end
 
@@ -48,21 +49,16 @@ class OrdersController < ApplicationController
   def save_order
     if @order.save
       add_orderitems_to_order
-      sessions_switch
+      session[:order_id] = @order.id
       redirect_to edit_order_path
     else
       error_save_message
     end
   end
 
-  def sessions_switch
-    session[:order_id] = @order.id
-    session[:cart_id] = nil
-  end
-
   def add_orderitems_to_order
     @items.each do |item|
-      item.update(cart_id: nil, order_id: @order.id)
+      item.update(order_id: @order.id)
     end
   end
 
