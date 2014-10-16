@@ -17,9 +17,8 @@ Rails.application.routes.draw do
 
   # Orders Routes
   get    "/orders",               to: "orders#index"
-  post   "/orders/new",           to: "orders#create",      as: :new_order
-  get    "/checkout",             to: "orders#edit",        as: :edit_order
-  post   "/checkout",             to: "orders#update"
+  get    "/checkout",             to: "orders#new",         as: :new_order
+  post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes

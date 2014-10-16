@@ -83,7 +83,7 @@ class OrderitemsController < ApplicationController
     item = Orderitem.new(product_id: product.id, qty: 1, total_price: product.price, cart_id: cart.id)
     if item.save
       update_cart_total
-      redirect_to cart_path, notice: "Producted added to cart!"
+      redirect_to cart_path, notice: "Product added to cart!"
     else
       error_save_message
     end

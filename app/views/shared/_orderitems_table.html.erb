@@ -10,9 +10,9 @@
     <% obj.orderitems.each do |item| %>
       <tr>
         <td><%= item.product.name %></td>
-        <td><%= item.product.price %></td>
+        <td><%= format_money(item.product.price) %></td>
         <td><%= number_field_tag("cart[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
-        <td><%= item.total_price %></td>
+        <td><%= format_money(item.total_price) %></td>
         <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
       </tr>
     <% end %>
@@ -21,9 +21,9 @@
     <% obj.orderitems.each do |item| %>
       <tr>
         <td><%= link_to item.product.name, show_product_path(item.product.id) %></td>
-        <td><%= item.product.price %></td>
+        <td><%= format_money(item.product.price) %></td>
         <td><%= item.qty %></td>
-        <td><%= item.total_price %></td>
+        <td><%= format_money(item.total_price) %></td>
       </tr>
     <% end %>
   <% end %>
@@ -32,6 +32,6 @@
     <td></td>
     <td></td>
     <td><strong>Total</strong></td>
-    <td><strong><%= obj.total_price %></strong></td>
+    <td><strong><%= format_money(obj.total_price) %></strong></td>
   </tr>
 </table>

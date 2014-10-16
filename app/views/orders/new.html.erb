@@ -1,11 +1,11 @@
 <h2>Checkout</h2>
 
 <div class="cart-summary">
-  <%= render "shared/orderitems_table", obj: @order, cart: false %>
+  <%= render "shared/orderitems_table", obj: @cart, cart: false %>
 </div>
 
 <div class="checkout-form">
-  <%= form_for :edit_order do |f| %>
+  <%= form_for :new_order do |f| %>
     <table>
       <tr>
         <td><%= label_tag(:name_on_card, "Name:") %></td>
