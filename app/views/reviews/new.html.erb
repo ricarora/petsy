@@ -4,8 +4,8 @@
 
 <%= form_for @review, url: {action: "create"} do |f| %>
 
-    <%= f.label :rating %>
-    <%= f.select(:rating, @levels.map {|value| [value, value]}) %>
+    <%= f.label :rating %> (Required)<br/>
+    <%= f.select(:rating, @levels.map {|value| [value, value]}) %><br/><br/>
     <!-- <%= f.radio_button :rating, "1" %>
     <%= f.label :rating, "1", :value => 1 %>
     <%= f.radio_button :rating, "2" %>
@@ -17,14 +17,14 @@
     <%= f.radio_button :rating, "5" %>
     <%= f.label :rating, "5", :value => 5 %> -->
 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %><br/><br/>
 
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
+    <%= f.label :comment %> (Required)<br/>
+    <%= f.text_area :comment %><br/><br/>
 
-    <%= f.label :author %>
-    <%= f.text_field :author %>
+    <%= f.label :author %><br/>
+    <%= f.text_field :author %><br/><br/>
 
     <%= f.submit %>
 
