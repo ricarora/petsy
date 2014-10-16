@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def create # checkout
     if find_cart
       @items = @cart.orderitems
-      @order = Order.new(total_price: @cart.total, status: "pending")
+      @order = Order.new(total_price: @cart.total_price, status: "pending")
       save_order
     else
       error_save_message

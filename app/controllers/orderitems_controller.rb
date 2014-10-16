@@ -69,7 +69,7 @@ class OrderitemsController < ApplicationController
     item = Orderitem.where("product_id = #{product.id} AND cart_id = #{cart.id}").first
 
     item.qty += 1 if (item.qty < item.product.stock)
-    item.totalprice = (item.qty * item.product.price)
+    item.total_price = (item.qty * item.product.price)
 
     if item.save
       update_cart_total
@@ -91,7 +91,7 @@ class OrderitemsController < ApplicationController
 
   def update_cart_total
     find_cart
-    total = @cart.orderitems.inject(0) { |sum, item| sum + item.totalprice }
+    total = @cart.orderitems.inject(0) { |sum, item| sum + item.total_price }
     @cart.total = total
     @cart.save
   end
