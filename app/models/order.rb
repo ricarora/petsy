@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 #   include ActiveModel::Validations
 #   validates_with MyValidator
 
-  #this will validate orderitems when order is created (and verify that they belong to an order)
+  #this re-validates orderitems when order is created (verifying that they belong to an order)
   validates_associated :orderitems
 end
 
