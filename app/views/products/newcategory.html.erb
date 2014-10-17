@@ -1,7 +1,8 @@
-<%= form_tag(productitems_new_path, method: "post") do %>
-  <% @categories.each do |category| %>
-    <%= check_box_tag(:category) %>
-    <%= label_tag(:category) %>
-  <% end %>
+<%= form_tag("/products/#{@product.id}/newcategory", method: "post") do %>
 
+  <% @categories.each do |category| %>
+    <%= check_box_tag("category[]", category.id) %>
+    <%= label_tag(category.name) %>
+  <% end %>
+<%= submit_tag("Submit") %>
 <% end %>

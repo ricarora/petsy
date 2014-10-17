@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
   get "/products/:id/newcategory", to: "products#newcategory"
-
+  post "/products/:id/newcategory", to: "product_categories#create"
   # Orders Routes
   get    "/orders",               to: "orders#index" #currently redirected... a-okay?
   get    "/cart",                 to: "orders#edit",        as: :cart
@@ -35,8 +35,8 @@ Rails.application.routes.draw do
   post "/categories/new",         to: "categories#create"
 
   # Product Categories Routes
-  get "/product_categories",      to: "product_categories#index"
-  post "/product_categories/:id", to: "products_categories#create"
+  get "/product_categories",      to: "product_categories#index", as: :productitems_new
+  # post "/product_categories/:id", to: "product_categories#create"
 
   # Users Routes
   get "/users/new", to: "users#new"
