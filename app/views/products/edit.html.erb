@@ -7,5 +7,7 @@
   Description <input type="text" name="product[description]" value="<%= @product.description %>" />
   Image URL <input type="text" name="product[image_url]" value="<%= @product.image_url %>" />
   Stock <input type="text" name="product[stock]" value="<%= @product.stock %>" />
+  <%= check_box_tag("is_retired", true) %>
+  <%= label_tag(:retire) %>
   <input type="submit"/>
 </form>
