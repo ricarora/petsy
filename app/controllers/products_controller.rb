@@ -18,9 +18,9 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  # def show
-  #   @product = Product.find(params[:id])
-  # end
+  def show
+    @product = Product.find(params[:id])
+  end
 
   def update
     @product = Product.find(params[:id])
@@ -32,7 +32,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock))
+    params.inspect
+    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active))
     if @product.save
       redirect_to "/products"
     else

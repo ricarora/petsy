@@ -17,6 +17,10 @@
     <%= f.label :stock, "Quantity:" %>
     <%= f.text_field :stock %>
 
+    <%= f.check_box( "product", "is_retired", {}, "true", "false") %>
+    <%= f.label(:retired) %>
+
+    <%= hidden_field_tag :user_id, session[:current_user_id] %>
 
     <%= f.submit %>
 
