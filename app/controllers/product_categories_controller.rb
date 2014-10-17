@@ -5,14 +5,23 @@ class ProductCategoriesController < ApplicationController
   end
 
   def create
-    @productcategory = ProductCategory.new(params.require(:product).permit(:id))
-    if @productcategory.save
-      redirect_to root_path
-    else
-      render:root_path
+    @product = Product.find(params[:id])
+    params[:category].each do |id|
+     @productcategory = ProductCategory.new
+     @productcategory.category_id = id
+     @productcategory.product_id = @product.id
+    # @productcategory.category_id = @product.params.require(:product).permit(:category_id)
+        unless @productcategory.save
+          render:root_path
+        end
     end
+    redirect_to "/products"
   end
 
   private
+
+  def productcategory_params
+    params.require(:product).permit(:product_id, :category_id)
+  end
 
 end
