@@ -59,6 +59,7 @@ class OrdersController < ApplicationController
     add_orderitems_to_order
     update_product_stocks
     cleanse_sessions
+    @order.update!(status: "paid")
   end
 
   def add_orderitems_to_order
