@@ -55,7 +55,10 @@ Rails.application.routes.draw do
   get "/logins/new", to: "logins#new"
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
+  get "/users/profile", to: "users#profile"
   put "/users/:id", to: "users#update"
+  get "/users/:id/user_category", to: "users#user_category"
+
 
 
   root "home#index"

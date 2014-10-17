@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     end
   end
 
-
   private
 
   def find_order

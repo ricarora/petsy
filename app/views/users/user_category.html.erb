@@ -1,0 +1,20 @@
+<%= @user.storename %>!<br/>
+
+<br/><br/>
+<% @user_products.each do |product| %>
+<div class = "product-box">
+    <a href="#"><%= product.name %></a>
+    <a href="#">$<%= product.price %></a>
+</div>
+
+  <div class = "product-popup">
+    <p><%= image_tag (product.image_url) %>
+    <p>Description: <%= product.description %></p>
+    <p>Stock: <%= product.stock %> remaining</p>
+
+    <%= form_tag(orderitems_new_path, method: "post") do %>
+      <%= hidden_field_tag :product_id, product.id %>
+      <%= submit_tag "Add to Cart" %>
+    <% end %>
+  </div>
+<% end %>
