@@ -2,7 +2,12 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @orderitem = Orderitem.new
+    @productcategories = ProductCategory.all
+  end
+
+  def newcategory
     @categories = Category.all
+    @product = Product.find(params[:id])
   end
 
   def new
