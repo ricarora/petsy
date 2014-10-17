@@ -2,7 +2,9 @@ class Order < ActiveRecord::Base
   has_many :orderitems
   has_many :products, through: :orderitems
 
-  ## why won't this work in console?
+  # # See line 58 of orders_controller: orders need to be associated with an orderitem to save
+  # # but orderitems can't be associated to the order without an order id
+  # # which isn't created until an order is saved. How can you validate that...?
   # validates :orderitems, presence: true
 
   # validates the credit card form
