@@ -1,0 +1,49 @@
+<h2>Checkout</h2>
+
+<div class="cart-summary">
+  <%= render "shared/orderitems_table", obj: @cart, cart: false %>
+</div>
+
+<div class="checkout-form">
+  <%= form_for :new_order do |f| %>
+    <table>
+      <tr>
+        <td><%= label_tag(:name_on_card, "Name:") %></td>
+        <td><%= f.text_field :name_on_card %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:card_number, "Credit Card Number:") %></td>
+        <td><%= f.text_field :card_number %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:card_exp, "Expiration Date:") %></td>
+        <td><%= f.date_field :card_exp %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:security_code, "Security Code:") %></td>
+        <td><%= f.text_field :security_code %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:address, "Address:") %></td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:city, "City:") %></td>
+        <td><%= f.text_field :city %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:state, "State:") %></td>
+        <td><%= f.text_field :state %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:zip, "Zip:") %></td>
+        <td><%= f.text_field :zip %></td>
+      </tr>
+      <tr>
+        <td><%= label_tag(:email, "Email:") %></td>
+        <td><%= f.email_field :email %></td>
+      </tr>
+    </table>
+    <%= f.submit "Confirm Order" %>
+  <% end %>
+</div>

@@ -23,4 +23,5 @@ class ProductCategoriesController < ApplicationController
   def productcategory_params
     params.require(:product).permit(:product_id, :category_id)
   end
+
 end

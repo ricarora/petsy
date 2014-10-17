@@ -2,32 +2,38 @@ Rails.application.routes.draw do
 
 #Product Routes
   # resources :products
-  # get "/products/:id",  to: "products#show"
+  get "/products/:id",  to: "products#show", as: :show_product
   get  "/products",     to: "products#index"
-  post "/products/new", to: "products#create"
   get  "/products/new", to: "products#new"
+  post "/products/new", to: "products#create"
   get "/products/destroy/:id",  to: "products#destroy"
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
   get "/products/:id/newcategory", to: "products#newcategory"
+
   post "/products/:id/newcategory", to: "product_categories#create"
+
+
+  # Cart Routes
+  get    "/cart",                 to: "carts#edit",        as: :cart
+  delete "/cart",                 to: "carts#destroy",     as: :delete_cart
+
+
   # Orders Routes
-  get    "/orders",               to: "orders#index" #currently redirected... a-okay?
-  get    "/cart",                 to: "orders#edit",        as: :cart
-  delete "/orders/:id",           to: "orders#destroy",     as: :delete_order
-  # get    "/checkout",             to: "orders#checkout",    as: :checkout
-  # put    "/checkout",             to: "orders#order_finalize",     as: :order_finalize
-  # get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  get    "/orders",               to: "orders#index"
+  get    "/checkout",             to: "orders#new",         as: :new_order
+  post   "/checkout",             to: "orders#create"
+  get    "/order-confirmation",   to: "orders#show",        as: :show_order
 
   # Orderitem Routes
-  post   "/orderitems/new",       to: "orderitems#create",     as: :orderitems_new
-  put    "/orders/:id",           to: "orderitems#update",  as: :update_order
+  post   "/orderitems/new",       to: "orderitems#create",  as: :orderitems_new
+  put    "/orders/:id",           to: "orderitems#update",  as: :update_cart
   get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
 
   # Reviews Routes
-  get "/reviews",                 to: "reviews#index",      as: :reviews
-  get "/reviews/new",             to: "reviews#new",        as: :new_review
-  post "/reviews/new",            to: "reviews#create"
+  get "/products/:id/reviews/",             to: "reviews#index",      as: :product_reviews
+  get "/products/:id/reviews/new",          to: "reviews#new",        as: :new_product_review
+  post "/products/:id/reviews/new",         to: "reviews#create"
 
   # Categories Routes
   get "/categories",              to: "categories#index",   as: :categories
@@ -46,17 +52,12 @@ Rails.application.routes.draw do
   delete "/sessions", to: "logins#destroy"
   get "/users/test", to: "users#test"
   get "/logins/new", to: "logins#new"
+  get "/logins/destroy", to: "logins#destroy"
+  get "/users/edit", to: "users#edit", as: :edit_user
+  put "/users/:id", to: "users#update"
 
 
   root "home#index"
-
-  #############################################################################
-  # Kristina's Routes for Testing!!  Ignore these!                            #
-  #############################################################################
-  get "/clear", to: "orders#clear"
-  get "/testing-order", to: "orders#set_order_session"
-  #############################################################################
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

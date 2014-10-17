@@ -1,20 +1,20 @@
 <form class="new_entry" action="/sessions" method="post">
 
-  <h1>Petsy</h1>
+  <h1>Welcome to Petsy!</h1>
 
 <h2>Please sign in below:</h2>
 <div>
-  <label for="user_username">Username:</label>
-  <input type="string" name="user[username]"   />
+  <p><label for="user_username">Username:</label>
+  <input type="string" name="user[username]"   /></p>
 </div>
 <div>
-  <label for="user_password">Password:</label>
-  <input type="password" name="user[password]"    />
+  <p><label for="user_password">Password:</label>
+  <input type="password" name="user[password]"    /></p>
 </div>
 <br>
 <input type = "submit" value="Sign In" class = "submit">
 <br>
-<%= link_to "Create Profile", "/users/new" %> /
+<%= link_to "SignUp", "/users/new" %> /
 <!-- <%= link_to "Sign in as a Guest", "#", style: "color:#ffffff;font-size:1.75em"%> -->
 <%= link_to "Guest Access", "/products/index" %>
 

@@ -1,43 +1,41 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @reviews = Review.where(product_id: params[:id])
   end
 
   def new
     @review = Review.new
-    @levels = [1,2,3,4,5]
   end
 
   def create
     @review = Review.new(review_params)
-    author?
+    @review.product_id = params[:id]
+    @review.user_id = session[:current_user_id]
+    author
+    title
     if @review.save
-      redirect_to reviews_path
+      redirect_to product_reviews_path
     else
       render:new
     end
   end
 
-  def author?
+  def author
     if @review.author.empty?
       @review.author = nil
     end
   end
 
-  def average_rating
-    total = 0
-
-    @reviews.each do |review|
-      total += review.rating
+  def title
+    if @review.title.empty?
+      @review.title = nil
     end
-
-    total/@reviews.count
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :title, :comment, :author)
+    params.require(:review).permit(:rating, :title, :comment, :author, :id)
   end
 end

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015000252) do
+ActiveRecord::Schema.define(version: 20141016230459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: true do |t|
+    t.integer  "total_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -24,11 +30,12 @@ ActiveRecord::Schema.define(version: 20141015000252) do
 
   create_table "orderitems", force: true do |t|
     t.integer  "qty"
-    t.integer  "totalprice"
+    t.integer  "total_price"
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id"
+    t.integer  "cart_id"
   end
 
   create_table "orders", force: true do |t|
@@ -37,7 +44,6 @@ ActiveRecord::Schema.define(version: 20141015000252) do
     t.datetime "orderdate"
     t.string   "name_on_card"
     t.integer  "card_number"
-    t.datetime "card_exp"
     t.integer  "security_code"
     t.integer  "zip"
     t.string   "email"
@@ -46,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141015000252) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "card_exp"
   end
 
   create_table "product_categories", force: true do |t|
@@ -74,6 +81,7 @@ ActiveRecord::Schema.define(version: 20141015000252) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
