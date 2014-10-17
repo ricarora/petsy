@@ -1,6 +1,5 @@
 class Orderitem < ActiveRecord::Base
-  belongs_to :order
-  # has_one :order, inverse_of: :orderitem # the internet suggested this one to fix the issue
+  belongs_to :order, inverse_of: :orderitem
   belongs_to :product
   belongs_to :cart
 

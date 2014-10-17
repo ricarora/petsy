@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  has_many :orderitems, inverse_of: :order # inverse_of is needed to validate the association (rails doc says)
+  has_many :orderitems, inverse_of: :order
   has_many :products, through: :orderitems
 
   # validates that orderitems are attached to order (on order.update(status: "paid"))
@@ -16,3 +16,8 @@ class Order < ActiveRecord::Base
     status == "paid"
   end
 end
+
+
+## Kate's ideas:
+# 1. a custom validation that checks to see if any orderitems have matching order_id
+# 2. a new column that keeps track of number of associated orderitems and validates its presence
