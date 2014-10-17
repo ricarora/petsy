@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #Product Routes
   # resources :products
   get "/products/:id",  to: "products#show", as: :show_product
-  get  "/products",     to: "products#index"
+  get  "/products",     to: "products#index", as: :products
   get  "/products/new", to: "products#new"
   post "/products/new", to: "products#create"
   get "/products/destroy/:id",  to: "products#destroy"
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get "/categories",              to: "categories#index",   as: :categories
   get "/categories/new",          to: "categories#new",     as: :new_category
   post "/categories/new",         to: "categories#create"
+  get "/categories/:id/products", to: "categories#products", as: :category_products
 
   # Product Categories Routes
   get "/product_categories",      to: "product_categories#index", as: :productitems_new

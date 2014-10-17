@@ -1,0 +1,10 @@
+<h2><%= @category.name %></h2>
+
+<% @category_products.flatten.each do |item| %>
+  <%= item.name %><br/>
+  <%= item.description %><br/>
+  <%= image_tag (item.image_url) %><br/>
+  <%= item.price %><br/>
+  <%= User.find(item.vendor_id).name %>
+  <br/><br/>
+<% end %>

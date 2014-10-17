@@ -10,18 +10,10 @@ class ProductCategoriesController < ApplicationController
      @productcategory = ProductCategory.new
      @productcategory.category_id = id
      @productcategory.product_id = @product.id
-    # @productcategory.category_id = @product.params.require(:product).permit(:category_id)
         unless @productcategory.save
           render:root_path
         end
     end
-    redirect_to "/products"
+    redirect_to products_path
   end
-
-  private
-
-  def productcategory_params
-    params.require(:product).permit(:product_id, :category_id)
-  end
-
 end

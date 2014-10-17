@@ -1,7 +1,8 @@
 <h2>Categories:</h2>
 
 <% @categories.each do |category| %>
-  <%= category.name.upcase %><br/>
+  <%= category.name.upcase %>
+  <%= link_to "Select", "categories/#{category.id}/products" %><br/>
 <% end %>
 
   <% if session[:current_user_id] %>
