@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
   put "/users/:id", to: "users#update"
+  get "/users/orderfulfillment", to: "users#orderfulfillment"
 
 
   root "home#index"

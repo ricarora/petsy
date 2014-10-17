@@ -1,0 +1,8 @@
+<table>
+  <th><td>Product Name</td><td>Quantity</td><td>Price</td><td>Total Price</td>
+  </th>
+  <% @orderfulfillment.each do |each_order| %>
+  <tr><td><%= each_order.product.name  %></td><td><%= each_order.qty %></td><td><%= each_order.product.price %></td><td><%= each_order.total_price %></td>
+  </tr>
+  <% end %>
+</table>
