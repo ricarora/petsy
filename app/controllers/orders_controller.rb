@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
   def new # checkout page
     find_cart
+    @order = Order.new
     if @cart == nil
       error_message
     end
@@ -48,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def setup_order
-    @order = Order.new(params.require(:new_order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.total_price = @cart.total_price
     @order.status = "pending"
     @order.orderdate = DateTime.now
@@ -58,6 +59,7 @@ class OrdersController < ApplicationController
     add_orderitems_to_order
     update_product_stocks
     cleanse_sessions
+    @order.update!(status: "paid")
   end
 
   def add_orderitems_to_order
