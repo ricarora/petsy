@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/products/:id/edit", to: "products#edit"
   put "/products/:id", to: "products#update"
   get "/products/:id/newcategory", to: "products#newcategory"
+  get "/products/:id",  to: "products#show", as: :show_product
+  # get "/products/:id", to: "products#show",               as: :product
 
   post "/products/:id/newcategory", to: "product_categories#create"
 
