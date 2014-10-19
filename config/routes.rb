@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 #Product Routes
   # resources :products
-  get "/products/:id",  to: "products#show", as: :show_product
   get  "/products",     to: "products#index", as: :products
   get  "/products/new", to: "products#new"
   post "/products/new", to: "products#create"
@@ -11,7 +10,6 @@ Rails.application.routes.draw do
   put "/products/:id", to: "products#update"
   get "/products/:id/newcategory", to: "products#newcategory"
   get "/products/:id",  to: "products#show", as: :show_product
-  # get "/products/:id", to: "products#show",               as: :product
 
   post "/products/:id/newcategory", to: "product_categories#create"
 

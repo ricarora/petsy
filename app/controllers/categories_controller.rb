@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
 
   def products
     @category = Category.find(params[:id])
-    @by_category_id = ProductCategory.where(category_id: (params[:id])).pluck
+    @by_category_id = ProductCategory.where(:category_id => [params[:id]]).pluck
     @category_products = []
 
     @by_category_id.collect do |join_item|
