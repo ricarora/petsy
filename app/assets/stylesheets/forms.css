@@ -1,13 +1,14 @@
+/* --- Styling for Forms --- */
+
 .form-wrapper {
   width: 40%;
   margin: 0 auto;
   padding: 25px;
-/*   background-color: red;
- */  background: rgba(245, 245, 245, 0.8);
+  background: rgba(245, 245, 245, 0.8);
 }
 
 .form-field {
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .form-field label {
@@ -30,4 +31,21 @@
   margin: 0;
   border-radius: 20px;
   margin-left: 115px;
+}
+
+
+/* --- Forms Media Queries --- */
+
+@media (max-width: 755px) {
+
+  .form-field label {
+    text-align: center;
+    width: 100%;
+  }
+
+  .form-field input[type=text] {
+    width: 100%;
+  }
+
+
 }
