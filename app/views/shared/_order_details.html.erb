@@ -12,6 +12,7 @@
     <th>Quantity</th>
     <th>Price</th>
     <th>Subtotal</th>
+    <th>Status</th>
   </tr>
   <% obj.orderitems.each do |order_item|  %>
     <tr>
@@ -19,6 +20,7 @@
       <td><%= order_item.qty %></td>
       <td><%= format_money(order_item.product.price) %></td>
       <td><%= format_money(order_item.total_price) %></td>
+      <td><%= order_item.status %></td>
     </tr>
   <% end %>
 </table>
