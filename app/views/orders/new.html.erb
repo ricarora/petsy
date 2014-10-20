@@ -59,8 +59,7 @@
           <%= label_tag(:email, "Email:") %>
 
           <% if @user %>
-            <%= @user.email %>
-            <%= f.hidden_field :email, value: @user.email %>
+            <%= f.text_field :email, value: @user.email, disabled: true %>
           <% else %>
             <%= f.email_field :email %>
           <% end %>
