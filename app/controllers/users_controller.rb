@@ -32,6 +32,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_category
+    @user = User.find(params[:id])
+    @user_products = Product.where(vendor_id: params[:id])
+  end
+
+  def profile
+    @user = User.find(session[:current_user_id])
+    @user_products = Product.where(vendor_id: (session[:current_user_id]))
+  end
+
   def user_params
     params.require(:user).permit(:name, :storename, :email, :username, :password, :image_url)
   end

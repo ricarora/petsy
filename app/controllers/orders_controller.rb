@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
     redirect_to user_orderfulfillment_path
   end
 
+
   private
 
   def find_order

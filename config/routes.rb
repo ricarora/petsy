@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #Product Routes
   # resources :products
 
-  get  "/products",     to: "products#index",              as: :products_index
+  get  "/products",     to: "products#index",              as: :products
   get  "/products/new", to: "products#new"
   post "/products/new", to: "products#create"
   get "/products/destroy/:id",  to: "products#destroy"
@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get "/products/:id/newcategory", to: "products#newcategory"
   put "/products/:id", to: "products#update"
   get "/products/:id",  to: "products#show", as: :show_product
-  # get "/products/:id", to: "products#show",               as: :product
 
   post "/products/:id/newcategory", to: "product_categories#create"
 
@@ -43,6 +42,7 @@ Rails.application.routes.draw do
   get "/categories",              to: "categories#index",   as: :categories
   get "/categories/new",          to: "categories#new",     as: :new_category
   post "/categories/new",         to: "categories#create"
+  get "/categories/:id/products", to: "categories#products", as: :category_products
 
   # Product Categories Routes
   get "/product_categories",      to: "product_categories#index", as: :productitems_new
@@ -58,9 +58,13 @@ Rails.application.routes.draw do
   get "/logins/new", to: "logins#new"
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
+  get "/users/profile", to: "users#profile"
   get "/users/orderfulfillment", to: "users#orderfulfillment", as: :user_orderfulfillment
   post "/users/orderfulfillment", to: "users#orderfulfillment"
+
   put "/users/:id", to: "users#update"
+  get "/users/:id/user_category", to: "users#user_category"
+
 
 
   root "home#index"
