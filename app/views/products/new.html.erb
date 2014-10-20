@@ -17,8 +17,8 @@
     <%= f.label :stock, "Quantity:" %>
     <%= f.text_field :stock %>
 
-    <%= f.check_box("is_retired", {}, "true", "false") %>
-    <%= f.label(:retired) %>
+    <%= f.check_box :is_retired, {}, true, false %>
+    <%= f.label :is_retired, "Retire" %>
 
     <%= hidden_field_tag :user_id, session[:current_user_id] %>
 
