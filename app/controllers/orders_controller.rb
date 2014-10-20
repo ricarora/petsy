@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  before_action :find_user_email, only: [:create]
 
   def index # view all orders; don't want people to see this
     if find_user_session
@@ -19,10 +18,14 @@ class OrdersController < ApplicationController
   end
 
   def create # create order when paid
-    if find_cart
-      save_order
+    if find_user_email
+      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
     else
-      error_message
+      if find_cart
+        save_order
+      else
+        error_message
+      end
     end
   end
 
@@ -59,11 +62,7 @@ class OrdersController < ApplicationController
   end
 
   def find_user_email
-    @user_form = User.find_by(email: params[:order][:email])
-    find_user_session
-    if @user_form.id && !@user
-      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
-    end
+    @user = User.find_by(email: params[:order][:email])
   end
 
   def find_order
