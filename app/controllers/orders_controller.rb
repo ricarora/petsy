@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    redirect_to(root_path)
+    if find_user_session
+      @myorders = Order.where(email: @user.email)
+    else
+      redirect_to new_login_path, alert: "Please log in to view your orders."
+    end
   end
 
   def new # checkout page
+    find_user_session
     find_cart
     @order = Order.new
     if @cart == nil
@@ -13,14 +18,25 @@ class OrdersController < ApplicationController
   end
 
   def create # create order when paid
-    if find_cart
-      save_order
+    if find_user_email
+      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
     else
-      error_message
+      if find_cart
+        save_order
+      else
+        error_message
+      end
     end
   end
 
   def show # individual order
+    find_order_dashboard
+    if @order == nil
+      redirect_to orders_path
+    end
+  end
+
+  def confirmation # order confirmation show
     find_order
     if @order == nil
       redirect_to cart_path
@@ -46,8 +62,24 @@ class OrdersController < ApplicationController
 
   private
 
+  def find_user_session
+    @user = User.find_by(id: session[:current_user_id])
+  end
+
+  def find_user_email
+    @user = User.find_by(email: params[:order][:email])
+  end
+
   def find_order
     @order = Order.find_by(id: session[:order_id])
+  end
+
+  def find_order_dashboard
+    @order = Order.find_by(id: params[:id])
+    find_user_session
+    if @order && @order.email != @user.email
+      @order = nil
+    end
   end
 
   def find_cart
@@ -58,8 +90,9 @@ class OrdersController < ApplicationController
     setup_order
     if @order.save
       post_order_save_tidying
-      redirect_to show_order_path
+      redirect_to order_confirmation_path
     else
+      find_user_session
       render :new
     end
   end

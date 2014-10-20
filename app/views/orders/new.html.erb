@@ -49,7 +49,14 @@
       </tr>
       <tr>
         <td><%= label_tag(:email, "Email:") %></td>
-        <td><%= f.email_field :email %></td>
+
+        <% if @user %>
+          <td><%= @user.email %></td>
+          <%= f.hidden_field :email, value: @user.email %>
+        <% else %>
+          <td><%= f.email_field :email %></td>
+        <% end %>
+
         <td><%= render "shared/error_messages", obj: @order, col: :email %></td>
       </tr>
     </table>
