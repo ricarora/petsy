@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    if find_user
+    if find_user_session
       @myorders = Order.where(email: @user.email)
     else
       redirect_to new_login_path, alert: "Please log in to view your orders."
@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def new # checkout page
+    find_user_session
     find_cart
     @order = Order.new
     if @cart == nil
@@ -52,8 +53,12 @@ class OrdersController < ApplicationController
 
   private
 
-  def find_user
+  def find_user_session
     @user = User.find_by(id: session[:current_user_id])
+  end
+
+  def find_user_email
+    @user = User.find_by(email: params[:order[:email]])
   end
 
   def find_order
@@ -62,7 +67,7 @@ class OrdersController < ApplicationController
 
   def find_order_dashboard
     @order = Order.find_by(id: params[:id])
-    find_user
+    find_user_session
     if @order && @order.email != @user.email
       @order = nil
     end
@@ -78,15 +83,20 @@ class OrdersController < ApplicationController
       post_order_save_tidying
       redirect_to order_confirmation_path
     else
+      find_user_session
       render :new
     end
   end
 
   def setup_order
-    @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
-    @order.total_price = @cart.total_price
-    @order.status = "pending"
-    @order.orderdate = DateTime.now
+    # if find_user_email
+    #   redirect_to new_login_path, alert: "Please log in to continue"
+    # else
+      @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+      @order.total_price = @cart.total_price
+      @order.status = "pending"
+      @order.orderdate = DateTime.now
+    # end
   end
 
   def post_order_save_tidying
