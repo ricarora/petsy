@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get    "/checkout",             to: "orders#new",         as: :new_order
   post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  put    "/orders/cancel",        to: "orders#cancel",       as: :cancel_order
+  put    "/orders/ship",        to: "orders#ship",       as: :ship_order
 
   # Orderitem Routes
   post   "/orderitems/new",       to: "orderitems#create",  as: :orderitems_new
@@ -57,6 +59,9 @@ Rails.application.routes.draw do
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
   get "/users/profile", to: "users#profile"
+  get "/users/orderfulfillment", to: "users#orderfulfillment", as: :user_orderfulfillment
+  post "/users/orderfulfillment", to: "users#orderfulfillment"
+
   put "/users/:id", to: "users#update"
   get "/users/:id/user_category", to: "users#user_category"
 
