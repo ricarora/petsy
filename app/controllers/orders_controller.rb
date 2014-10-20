@@ -27,6 +27,16 @@ class OrdersController < ApplicationController
     end
   end
 
+  def cancel
+    Orderitem.find(params[:format]).order.status = "Cancel"
+    redirect_to user_orderfulfillment_path
+  end
+
+  def ship
+    raise params.inspect
+    params[:order].status = "Ship"
+    redirect_to user_orderfulfillment_path
+  end
 
   private
 

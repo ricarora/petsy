@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :storename, :email, :username, :password, :image_url)
   end
 
-  def test
-
+  def orderfulfillment
+    userproducts = User.find(session[:current_user_id]).products
+    @orderfulfillment = userproducts.collect {|userproduct| Orderitem.all.where( product_id: userproduct.id) }.flatten
   end
 end
