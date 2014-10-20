@@ -1,17 +1,3 @@
-/* --- Styling for Cart Table --- */
-.cart-summary {
-  margin-bottom: 15px;
-}
-
-.cart-summary table {
-  margin: 0 auto;
-}
-
-.cart-summary td {
-  padding: 5px;
-}
-
-
 /* --- Styling for Forms --- */
 
 .form-wrapper {
@@ -54,6 +40,27 @@
   color: red;
   font-size: 14px;
   text-align: center;
+}
+
+
+/* --- Styling for Cart --- */
+.cart-wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.cart-wrapper
+
+.cart-summary {
+  margin-bottom: 15px;
+}
+
+.cart-summary table {
+  margin: 0 auto;
+}
+
+.cart-summary td {
+  padding: 5px;
 }
 
 
