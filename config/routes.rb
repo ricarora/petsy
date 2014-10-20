@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   post "/sessions", to: "logins#create"
   delete "/sessions", to: "logins#destroy"
   get "/users/test", to: "users#test"
-  get "/logins/new", to: "logins#new"
+  get "/logins/new", to: "logins#new", as: :new_login
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
   get "/users/profile", to: "users#profile"

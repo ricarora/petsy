@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    if user = User.find(session[:current_user_id])
+    if user = User.find_by(id: session[:current_user_id])
       @myorders = Order.where(email: user.email)
     else
-      redirect_to(root_path)
+      redirect_to new_login_path, alert: "Please log in to view your orders."
     end
   end
 
