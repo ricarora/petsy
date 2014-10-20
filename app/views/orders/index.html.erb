@@ -1,0 +1,29 @@
+<h2>My Purchases</h2>
+
+<% @myorders.each do |each_order| %>
+  <div class="order-details">
+    <p>Order ID: <%= each_order.id %></p>
+    <p>Order Status: <%= each_order.status %></p>
+  </div>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+    </tr>
+    <% each_order.orderitems.each do |order_item|  %>
+      <tr>
+        <td><%= order_item.product.name %></td>
+        <td><%= order_item.qty %></td>
+        <td><%= format_money(order_item.product.price) %></td>
+        <td><%= format_money(order_item.total_price) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="order-totals">
+    <p>Order Total: <%= format_money(each_order.total_price) %></p>
+    <%= button_to("Cancel", cancel_order_path(each_order.id), method: :put) %>
+  </div>
+  <%= "<hr>" if each_order.id != @myorders.last.id %>
+<% end %>

@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    redirect_to(root_path)
+    if user = User.find(session[:current_user_id])
+      @myorders = Order.where(email: user.email)
+    else
+      redirect_to(root_path)
+    end
   end
 
   def new # checkout page
@@ -20,7 +24,11 @@ class OrdersController < ApplicationController
     end
   end
 
-  def confirmation # individual order
+  def show # individual order
+    #
+  end
+
+  def confirmation # order confirmation show
     find_order
     if @order == nil
       redirect_to cart_path
