@@ -64,11 +64,15 @@
   }
 
   .checkbox label, .checkbox input {
+    width: 0;
     float: left;
   }
 
+  .checkbox input {
+    margin: 10% 10% 0 0;
+  }
+
   .checkbox label {
-    width: 0;
     margin-left: 10px;
   }
 
