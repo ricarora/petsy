@@ -1,10 +1,8 @@
 <h1>Add a Category</h1>
 
 <%= form_for @category, url: {action: "create"} do |f| %>
-
-    <%= f.label :name, "Name:" %>
-    <%= f.text_field :name %>
-
+    <%= f.label :name, "Name:" %><%= f.text_field :name %><%= render "shared/error_messages", obj: @category, col: :name %>
+    <br/>
     <%= f.submit %>
 
 <% end %>

@@ -17,7 +17,7 @@ class UserValidator
   end
 
   def validate
-    if @review.user_id == @review.product.user_id
+    if session.user_id == @review.product.user_id
       @review.errors[:user_id] << "You cannot review your own product."
     end
   end
