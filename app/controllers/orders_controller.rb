@@ -113,7 +113,7 @@ class OrdersController < ApplicationController
 
   def add_orderitems_to_order
     @cart.orderitems.each do |item|
-      item.update(order_id: @order.id)
+      item.update(order_id: @order.id, status: "pending")
     end
   end
 
