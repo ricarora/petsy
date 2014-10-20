@@ -11,13 +11,13 @@ class Review < ActiveRecord::Base
   belongs_to :product
 end
 
-class UserValidator
+class UserValidator < ActiveModel::Validator
   def initialize(review)
    @review = review
   end
 
   def validate
-    if session.user_id == @review.product.user_id
+    if @review.user_id == @review.product.user_id
       @review.errors[:user_id] << "You cannot review your own product."
     end
   end
