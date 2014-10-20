@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #Product Routes
   # resources :products
 
-  get  "/products",     to: "products#index",              as: :products
+  get  "/products",     to: "products#index",              as: :products_index
   get  "/products/new", to: "products#new"
   post "/products/new", to: "products#create"
   get "/products/destroy/:id",  to: "products#destroy"
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # Orders Routes
   get    "/orders",               to: "orders#index",       as: :orders
   get    "/checkout",             to: "orders#new",         as: :new_order
+  get    "/orders/info",          to: "orders#info",        as: :order_info
   post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#confirmation",        as: :order_confirmation
   get    "/orders/:id",           to: "orders#show",         as: :show_order
