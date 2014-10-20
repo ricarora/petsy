@@ -68,9 +68,10 @@ ActiveRecord::Schema.define(version: 20141017222410) do
     t.integer  "price"
     t.string   "image_url"
     t.integer  "stock"
-    t.integer  "vendor_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_retired"
   end
 
   create_table "reviews", force: true do |t|
