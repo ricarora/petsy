@@ -1,8 +1,21 @@
 <table>
-  <th><td>Product Name</td><td>Quantity</td><td>Price</td><td>Total Price</td>
-  </th>
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Price</th>
+    <th>Order Status</th>
+    <th>Cancel Order</th>
+    <th>Update Order</th></tr>
+
   <% @orderfulfillment.each do |each_order| %>
-  <tr><td><%= each_order.product.name  %></td><td><%= each_order.qty %></td><td><%= each_order.product.price %></td><td><%= each_order.total_price %></td>
-  </tr>
+    <tr><td><%= each_order.product.name  %></td>
+      <td><%= each_order.qty %></td>
+      <td><%= format_money(each_order.product.price) %></td>
+      <td><%= format_money(each_order.total_price) %></td>
+      <td><%= each_order.order.status %></td>
+      <td><%= button_to("Cancel", cancel_order_path(each_order.id), method: :put) %></td>
+      <td><%= button_to("Ship", ship_order_path(each_order.id), method: :put) %></td>
+      </tr>
   <% end %>
 </table>
