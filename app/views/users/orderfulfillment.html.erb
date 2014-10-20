@@ -17,6 +17,7 @@
       <td><%= each_order.order.status %></td>
       <td><%= button_to("Cancel", cancel_order_path(each_order.id), method: :put) %></td>
       <td><%= button_to("Ship", ship_order_path(each_order.id), method: :put) %></td>
+      <td><%= link_to "Buyer's Details", order_info_path(each_order.id), method: :get %></td>
       </tr>
   <% end %>
 </table>

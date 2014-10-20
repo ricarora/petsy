@@ -28,8 +28,8 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-     orditm = Orderitem.find(params[:format])
-     orditm.order.update(status: "Cancel")
+    orditm = Orderitem.find(params[:format])
+    orditm.order.update(status: "Cancel")
     redirect_to user_orderfulfillment_path
   end
 
@@ -37,6 +37,10 @@ class OrdersController < ApplicationController
     orditm = Orderitem.find(params[:format])
     orditm.order.update(status: "Ship")
     redirect_to user_orderfulfillment_path
+  end
+
+  def info
+    @buyer = Orderitem.find(params[:format]).order
   end
 
 
