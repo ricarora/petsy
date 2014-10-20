@@ -4,16 +4,18 @@
     <th>Quantity</th>
     <th>Price</th>
     <th>Total Price</th>
+    <th>Order Date</th>
     <th>Order Status</th>
     <th>Cancel Order</th>
     <th>Update Order</th>
     <th>Buyer's Information</th></tr>
-
+    
   <% @orderfulfillment.each do |each_order| %>
-    <tr><td><%= each_order.product.name  %></td>
+    <tr><td><%= link_to each_order.product.name, "/products/#{each_order.product.id}" %></td>
       <td><%= each_order.qty %></td>
       <td><%= format_money(each_order.product.price) %></td>
       <td><%= format_money(each_order.total_price) %></td>
+      <td><%= each_order.order.orderdate.strftime("%m/%d/%Y")  %></td>
       <td><%= each_order.order.status %></td>
       <td><%= button_to("Cancel", cancel_order_path(each_order.id), method: :put) %></td>
       <td><%= button_to("Ship", ship_order_path(each_order.id), method: :put) %></td>
