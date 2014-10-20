@@ -1,25 +1,22 @@
-<div class = "sub-body">
-  <h2 class = "page-title">Cart</h2>
-  <div class="form-wrapper">
+<h2 class = "page-title">Cart</h2>
+<div class="form-wrapper">
 
-  <!-- empty cart message if no items in cart-->
-    <% if @empty_cart %>
-      <p><%= @empty_cart %></p>
+<!-- empty cart message if no items in cart-->
+  <% if @empty_cart %>
+    <p><%= @empty_cart %></p>
 
-    <!-- cart form -->
-    <% else %>
-      <%= form_tag(update_cart_path(@cart.id), method: "put") do %>
-        <%= render "shared/orderitems_table", obj: @cart, cart: true %>
-        <%= submit_tag("Update") %>
-      <% end %>
-
-      <!-- clear cart button -->
-      <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>
-
-      <!-- checkout button -->
-      <%= link_to("Checkout", new_order_path) %>
-
+  <!-- cart form -->
+  <% else %>
+    <%= form_tag(update_cart_path(@cart.id), method: "put") do %>
+      <%= render "shared/orderitems_table", obj: @cart, cart: true %>
+      <%= submit_tag("Update") %>
     <% end %>
-  </div>
 
+    <!-- clear cart button -->
+    <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>
+
+    <!-- checkout button -->
+    <%= link_to("Checkout", new_order_path) %>
+
+  <% end %>
 </div>
