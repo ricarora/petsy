@@ -1,15 +1,15 @@
 class ProductCategoriesController < ApplicationController
 
   def index
-    @productcategories = ProductCategory.all
+    @productcategories = Productcategory.all
   end
 
   def create
     @product = Product.find(params[:id])
     params[:category].each do |id|
-     @productcategory = ProductCategory.new
+     @productcategory = Productcategory.new
      @productcategory.category_id = id
-     @productcategory.product = @product
+     @productcategory.product_id = @product.id
       unless @productcategory.save
         render:root_path
       end

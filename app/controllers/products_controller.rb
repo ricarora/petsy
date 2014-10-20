@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    @orderitem = Orderitem.new
-    @productcategories = ProductCategory.all
   end
 
   def newcategory
@@ -44,6 +42,16 @@ class ProductsController < ApplicationController
     @product = Product.all.find(params[:id])
     @product.destroy
     redirect_to "/products"
+  end
+
+  def lookup
+    #srch = params[:params][:search]
+    srch = params[:search]
+    if srch
+      @products = Product.all.where('lower(name) LIKE ?', "%#{srch.downcase}%")
+    else
+      @markets = index
+    end
   end
 
 end

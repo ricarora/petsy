@@ -21,11 +21,12 @@ Rails.application.routes.draw do
 
 
   # Orders Routes
-  get    "/orders",               to: "orders#index"
+  get    "/orders",               to: "orders#index",       as: :orders
   get    "/checkout",             to: "orders#new",         as: :new_order
   get    "/orders/info",          to: "orders#info",        as: :order_info
   post   "/checkout",             to: "orders#create"
-  get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  get    "/order-confirmation",   to: "orders#confirmation",        as: :order_confirmation
+  get    "/orders/:id",           to: "orders#show",         as: :show_order
   put    "/orders/cancel",        to: "orders#cancel",       as: :cancel_order
   put    "/orders/ship",        to: "orders#ship",       as: :ship_order
 
@@ -56,7 +57,7 @@ Rails.application.routes.draw do
   post "/sessions", to: "logins#create"
   delete "/sessions", to: "logins#destroy"
   get "/users/test", to: "users#test"
-  get "/logins/new", to: "logins#new"
+  get "/logins/new", to: "logins#new", as: :new_login
   get "/logins/destroy", to: "logins#destroy"
   get "/users/edit", to: "users#edit", as: :edit_user
   get "/users/profile", to: "users#profile"
