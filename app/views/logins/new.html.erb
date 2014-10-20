@@ -1,19 +1,25 @@
 <h2 class = "page-title">Welcome to Petsy!</h2>
 
   <div class="form-wrapper">
+
     <h2>Please sign in below:</h2>
+
     <form class="new_entry" action="/sessions" method="post">
+
       <div class="form-field">
         <label for="user_username">Username:</label>
         <input type="string" name="user[username]" />
       </div>
+
       <div class="form-field">
         <label for="user_password">Password:</label>
         <input type="password" name="user[password]" />
       </div>
+
       <div class="form-field">
         <input type = "submit" value="Sign In" class = "submit">
       </div>
+      
     </form>
     <%= link_to "SignUp", "/users/new" %> /
     <%= link_to "Guest Access", "/products/index" %>
