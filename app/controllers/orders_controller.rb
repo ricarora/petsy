@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def create # create order when paid
     if find_user_email
-      redirect_to new_login_path, alert: "Please log in to continue"
+      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
     else
       if find_cart
         save_order
