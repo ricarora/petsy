@@ -25,7 +25,10 @@ class OrdersController < ApplicationController
   end
 
   def show # individual order
-    #
+    find_order_record
+    if !@order
+      redirect_to orders_path
+    end
   end
 
   def confirmation # order confirmation show
@@ -51,6 +54,10 @@ class OrdersController < ApplicationController
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
+  end
+
+  def find_order_record
+    @order = Order.find_by(id: params[:id])
   end
 
   def find_cart

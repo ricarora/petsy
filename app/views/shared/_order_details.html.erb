@@ -1,0 +1,24 @@
+<div class="order-details">
+  <p> <%= link_to "Order ID: #{obj.id}", show_order_path(obj.id) %></p>
+  <p>Order Status: <%= obj.status %></p>
+</div>
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Subtotal</th>
+  </tr>
+  <% obj.orderitems.each do |order_item|  %>
+    <tr>
+      <td><%= order_item.product.name %></td>
+      <td><%= order_item.qty %></td>
+      <td><%= format_money(order_item.product.price) %></td>
+      <td><%= format_money(order_item.total_price) %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="order-totals">
+  <p>Order Total: <%= format_money(obj.total_price) %></p>
+  <%= button_to("Cancel", cancel_order_path(obj.id), method: :put) %>
+</div>
