@@ -1,3 +1,17 @@
+/* --- Styling for Cart Table --- */
+.cart-summary {
+  margin-bottom: 15px;
+}
+
+.cart-summary table {
+  margin: 0 auto;
+}
+
+.cart-summary td {
+  padding: 5px;
+}
+
+
 /* --- Styling for Forms --- */
 
 .form-wrapper {
