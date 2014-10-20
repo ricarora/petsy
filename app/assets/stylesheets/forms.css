@@ -1,0 +1,33 @@
+.form-wrapper {
+  width: 40%;
+  margin: 0 auto;
+  padding: 25px;
+/*   background-color: red;
+ */  background: rgba(245, 245, 245, 0.8);
+}
+
+.form-field {
+  padding-bottom: 10px;
+}
+
+.form-field label {
+  float: left;
+  text-align: right;
+  margin-right: 15px;
+  width: 100px;
+}
+.form-field input {
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+}
+
+.form-wrapper input[type=submit] {
+  color: white;
+  background: green;
+  border: none;
+  font-family: 'Oswald';
+  margin: 0;
+  border-radius: 20px;
+  margin-left: 115px;
+}
