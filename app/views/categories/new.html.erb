@@ -1,10 +1,15 @@
-<h1>Add a Category</h1>
+<h2 class = "page-title">Add a Category</h2>
 
-<%= form_for @category, url: {action: "create"} do |f| %>
+<div class="form-wrapper">
+  <%= form_for @category, url: {action: "create"} do |f| %>
+    <div class="form-field">
+      <%= f.label :name, "Name:" %>
+      <%= f.text_field :name %>
+    </div>
 
-    <%= f.label :name, "Name:" %>
-    <%= f.text_field :name %>
+    <div class="form-field">
+      <%= f.submit %>
+    </div>
 
-    <%= f.submit %>
-
-<% end %>
+  <% end %>
+</div>
