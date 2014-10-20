@@ -9,6 +9,12 @@
   Stock <input type="text" name="product[stock]" value="<%= @product.stock %>" />
   <%= check_box_tag("is_retired", true) %>
   <%= label_tag(:retire) %>
+
+  <% @product.product_categories.categories.each do |category| %>
+    <%= check_box_tag("category[]", category.id) %>
+    <%= label_tag(category.name) %>
+  <% end %>
+
   <input type="submit"/>
 </form>
 <!-- MAKE ME A RAILS FORM AND MAKE ME WORK! -->
