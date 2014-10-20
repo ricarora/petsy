@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def total_revenue
-    
+    orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }
   end
 
 end
