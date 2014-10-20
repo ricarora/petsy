@@ -25,7 +25,8 @@ end
     description: Faker::Lorem.paragraph, #http://lorempixel.com/400/200/animals/Dummy-Text/
     price: Faker::Commerce.price,
     image_url: Faker::Avatar.image,
-    vendor_id: Faker::Number.digit
+    user_id: Faker::Number.digit,
+    stock: rand(1..50),
   }
 
   Product.create(product)
@@ -57,7 +58,7 @@ end
     category_id: rand(1..10)
   }
 
-  Productcategory.create(product_category)
+  Product_categories.create(product_category)
 end
 
 (1..10).each do
