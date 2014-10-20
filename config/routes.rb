@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 #Product Routes
   # resources :products
 
-  get  "/products",     to: "products#index",              as: :products
+  get  "/products",     to: "products#index",              as: :products_index
   get  "/products/new", to: "products#new"
   post "/products/new", to: "products#create"
   get "/products/destroy/:id",  to: "products#destroy"
