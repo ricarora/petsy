@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get    "/orders",               to: "orders#index"
   get    "/checkout",             to: "orders#new",         as: :new_order
   post   "/checkout",             to: "orders#create"
-  get    "/order-confirmation",   to: "orders#show",        as: :show_order
+  get    "/order-confirmation",   to: "orders#confirmation",        as: :order_confirmation
   put    "/orders/cancel",        to: "orders#cancel",       as: :cancel_order
   put    "/orders/ship",        to: "orders#ship",       as: :ship_order
 

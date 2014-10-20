@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show # individual order
+  def confirmation # individual order
     find_order
     if @order == nil
       redirect_to cart_path
@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
     setup_order
     if @order.save
       post_order_save_tidying
-      redirect_to show_order_path
+      redirect_to order_confirmation_path
     else
       render :new
     end
