@@ -1,5 +1,9 @@
 <div class="order-details">
-  <p> <%= link_to "Order ID: #{obj.id}", show_order_path(obj.id) %></p>
+  <% if index %>
+    <p> <%= link_to "Order ID: #{obj.id}", show_order_path(obj.id) %></p>
+  <% else %>
+    <p>Order ID: <%= obj.id %></p>
+  <% end %>
   <p>Order Status: <%= obj.status %></p>
 </div>
 <table>
