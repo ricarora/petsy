@@ -18,10 +18,14 @@ class OrdersController < ApplicationController
   end
 
   def create # create order when paid
-    if find_cart
-      save_order
+    if find_user_email
+      redirect_to new_login_path, alert: "Please log in to continue"
     else
-      error_message
+      if find_cart
+        save_order
+      else
+        error_message
+      end
     end
   end
 
@@ -58,7 +62,7 @@ class OrdersController < ApplicationController
   end
 
   def find_user_email
-    @user = User.find_by(email: params[:order[:email]])
+    @user = User.find_by(email: params[:order][:email])
   end
 
   def find_order
@@ -89,14 +93,10 @@ class OrdersController < ApplicationController
   end
 
   def setup_order
-    # if find_user_email
-    #   redirect_to new_login_path, alert: "Please log in to continue"
-    # else
-      @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
-      @order.total_price = @cart.total_price
-      @order.status = "pending"
-      @order.orderdate = DateTime.now
-    # end
+    @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order.total_price = @cart.total_price
+    @order.status = "pending"
+    @order.orderdate = DateTime.now
   end
 
   def post_order_save_tidying
