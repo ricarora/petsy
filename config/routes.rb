@@ -27,13 +27,14 @@ Rails.application.routes.draw do
   post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#confirmation",        as: :order_confirmation
   get    "/orders/:id",           to: "orders#show",         as: :show_order
-  put    "/orders/cancel",        to: "orders#cancel",       as: :cancel_order
-  put    "/orders/ship",        to: "orders#ship",       as: :ship_order
+
 
   # Orderitem Routes
   post   "/orderitems/new",       to: "orderitems#create",  as: :orderitems_new
   put    "/orders/:id",           to: "orderitems#update",  as: :update_cart
   get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
+  put    "/orderitem/cancel",        to: "orderitems#cancel",       as: :cancel_orderitem
+  put    "/orderitem/ship",        to: "orderitems#ship",       as: :ship_orderitem
 
   # Reviews Routes
   get "/products/:id/reviews/",             to: "reviews#index",      as: :product_reviews
