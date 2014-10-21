@@ -11,7 +11,7 @@ class Review < ActiveRecord::Base
   belongs_to :product
 end
 
-class UserValidator
+class UserValidator < ActiveModel::Validator
   def initialize(review)
    @review = review
   end
