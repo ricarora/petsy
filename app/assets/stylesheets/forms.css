@@ -1,0 +1,105 @@
+/* --- Styling for Forms --- */
+
+.form-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  padding: 25px;
+  background: rgba(245, 245, 245, 0.8);
+}
+
+.form-field {
+  padding: 10px;
+}
+
+.form-field label {
+  float: left;
+  text-align: right;
+  margin-right: 15px;
+  width: 150px;
+}
+
+.form-field input,
+.form-field textarea {
+  border-radius: 10px;
+  border: none;
+  font-size: 0.75em;
+  width: 50%;
+  padding: 5px;
+}
+
+.form-wrapper input[type=submit] {
+  color: white;
+  background: green;
+  border: none;
+  font-family: 'Oswald';
+  margin: 0;
+  border-radius: 20px;
+  margin-left: 125px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* --- Styling for Cart --- */
+.cart-wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.cart-wrapper
+
+.cart-summary {
+  margin-bottom: 15px;
+}
+
+.cart-summary table {
+  margin: 0 auto;
+}
+
+.cart-summary td {
+  padding: 5px;
+}
+
+
+/* --- Forms Media Queries --- */
+
+@media (max-width: 755px) {
+
+  .form-field label {
+    text-align: center;
+  }
+
+  .form-field label,
+  .form-field input,
+  .form-wrapper input[type=submit] {
+    width: 100%;
+  }
+
+  .checkbox {
+    height: 40px;
+    width: 25%;
+    margin: 0 auto;
+  }
+
+  .checkbox label, .checkbox input {
+    width: 0;
+    float: left;
+  }
+
+  .checkbox input {
+    margin: 10% 10% 0 0;
+  }
+
+  .checkbox label {
+    margin-left: 10px;
+  }
+
+  .form-wrapper input[type=submit] {
+    margin: 0 auto;
+  }
+
+}

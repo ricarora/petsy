@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 #Product Routes
-  # resources :products
-
   get  "/products",                 to: "products#index",              as: :products
   get  "/products/new",             to: "products#new",                as: :new_product
   post "/products/new",             to: "products#create"
@@ -21,17 +19,21 @@ Rails.application.routes.draw do
 
 
   # Orders Routes
-  get    "/orders",                 to: "orders#index"
-  get    "/checkout",               to: "orders#new",                  as: :new_order
-  post   "/checkout",               to: "orders#create"
-  get    "/order-confirmation",     to: "orders#show",                 as: :show_order
-  put    "/orders/cancel",          to: "orders#cancel",               as: :cancel_order
-  put    "/orders/ship",            to: "orders#ship",                 as: :ship_order
+  get    "/orders",               to: "orders#index",                  as: :orders
+  get    "/checkout",             to: "orders#new",                    as: :new_order
+  get    "/orders/info",          to: "orders#info",                   as: :order_info
+  post   "/checkout",             to: "orders#create"
+  get    "/order-confirmation",   to: "orders#confirmation",           as: :order_confirmation
+  get    "/orders/:id",           to: "orders#show",                   as: :show_order
+
 
   # Orderitem Routes
   post   "/orderitems/new",         to: "orderitems#create",           as: :orderitems_new
   put    "/orders/:id",             to: "orderitems#update",           as: :update_cart
   get    "/orderitem/:id/delete",   to: "orderitems#destroy",          as: :delete_orderitem
+  put    "/orderitem/cancel",       to: "orderitems#cancel",           as: :cancel_orderitem
+  put    "/orderitem/ship",         to: "orderitems#ship",             as: :ship_orderitem
+
 
   # Reviews Routes
   get "/products/:id/reviews/",     to: "reviews#index",               as: :product_reviews
@@ -55,7 +57,7 @@ Rails.application.routes.draw do
   post "/sessions",                 to: "logins#create"
   delete "/sessions",               to: "logins#destroy"
   get "/users/test",                to: "users#test"
-  get "/logins/new",                to: "logins#new"
+  get "/logins/new",                to: "logins#new",                  as: :new_login
   get "/logins/destroy",            to: "logins#destroy"
   get "/users/edit",                to: "users#edit",                  as: :edit_user
   get "/users/profile",             to: "users#profile",               as: :user_profile
@@ -65,7 +67,7 @@ Rails.application.routes.draw do
   get "/users/:id/user_category",   to: "users#user_category"
 
   root "home#index"
-  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

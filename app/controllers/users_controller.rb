@@ -47,7 +47,22 @@ class UsersController < ApplicationController
   end
 
   def orderfulfillment
-    userproducts = User.find(session[:current_user_id]).products
-    @orderfulfillment = userproducts.collect {|userproduct| Orderitem.all.where( product_id: userproduct.id) }.flatten
+    if params[:sort]
+      @orderfulfillment = ordfull.sort_by {|ord| ord.status}
+    else
+      @orderfulfillment = ordfull
+    end
   end
+
+  def total_revenue
+    orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }
+  end
+
+  private
+
+  def ordfull
+    userproducts = User.find(session[:current_user_id]).products
+    @orderfulfillment = userproducts.collect {|userproduct| Orderitem.all.where( product_id: userproduct.id) }.flatten.sort
+  end
+
 end

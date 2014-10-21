@@ -1,8 +1,15 @@
-<h1>Add a Category</h1>
+<h2 class = "page-title">Add a Category</h2>
 
-<%= form_for @category, url: {action: "create"} do |f| %>
-    <%= f.label :name, "Name:" %><%= f.text_field :name %><%= render "shared/error_messages", obj: @category, col: :name %>
-    <br/>
-    <%= f.submit %>
+<div class="form-wrapper">
+  <%= form_for @category, url: {action: "create"} do |f| %>
+    <div class="form-field">
+      <%= f.label :name, "Name:" %>
+      <%= f.text_field :name %>
+    </div>
 
-<% end %>
+    <div class="form-field">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>

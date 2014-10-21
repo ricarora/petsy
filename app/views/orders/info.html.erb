@@ -1,0 +1,12 @@
+<h3>Buyer's Information</h3>
+
+<table>
+  <tr><th>Name:</th><td><%= @buyer.name_on_card %></td></tr>
+  <tr><th>Address:</th><td><%= @buyer.address %></td></tr>
+  <tr><th>City:</th><td><%= @buyer.city %></td></tr>
+  <tr><th>State:</th><td><%= @buyer.state %></td></tr>
+  <tr><th>Zip:</th><td><%= @buyer.zip %></td></tr>
+  <tr><th>Email:</th><td><%= @buyer.email %></td></tr>
+  <tr><th>Last-four digit of Credit Card:</th><td><%= @buyer.card_number[-4..-1] %></td></tr>
+  <tr><th>Expiration date on Credit Card:</th><td><%= @buyer.card_exp.mon %> / <%= @buyer.card_exp.year %></td></tr>
+</table>

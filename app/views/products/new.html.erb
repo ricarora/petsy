@@ -1,27 +1,40 @@
-<h1>Add a Product</h1>
+<h2 class = "page-title">Add a Product</h2>
 
-<%= form_for @product, url: {action: "create"} do |f| %>
+<div class="form-wrapper">
+  <%= form_for @product, url: {action: "create"} do |f| %>
+    <div class="form-field">
+      <%= f.label :name, "Name:" %>
+      <%= f.text_field :name %>
+    </div>
 
-    <%= f.label :name, "Name:" %>
-    <%= f.text_field :name %>
+    <div class="form-field">
+      <%= f.label :price, "Price:" %>
+      <%= f.text_field :price %>
+    </div>
 
-    <%= f.label :price, "Price:" %>
-    <%= f.text_field :price %>
+    <div class="form-field">
+      <%= f.label :description, "Description:" %>
+      <%= f.text_field :description %>
+    </div>
 
-    <%= f.label :description, "Description:" %>
-    <%= f.text_field :description %>
+    <div class="form-field">
+      <%= f.label :image_url, "Image URL:" %>
+      <%= f.text_field :image_url %>
+    </div>
 
-    <%= f.label :image_url, "Image URL:" %>
-    <%= f.text_field :image_url %>
+    <div class="form-field">
+      <%= f.label :stock, "Quantity:" %>
+      <%= f.text_field :stock %>
+    </div>
 
-    <%= f.label :stock, "Quantity:" %>
-    <%= f.text_field :stock %>
-
-    <%= f.check_box :is_retired, {}, true, false %>
-    <%= f.label :is_retired, "Retire" %>
+    <div class="form-field checkbox">
+      <%= f.check_box :is_retired, {}, true, false %>
+      <%= f.label :is_retired, "Retire" %>
+    </div>
 
     <%= hidden_field_tag :user_id, session[:current_user_id] %>
 
     <%= f.submit %>
 
-<% end %>
+  <% end %>
+</div>

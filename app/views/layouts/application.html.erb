@@ -2,34 +2,34 @@
 <html>
 <head>
   <title>Petsy</title>
-  <h1>Our Very Own <strong>Petsy</strong>!</h1>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <nav id="main_nav_bar">
 
-    <ul>
-      <li><%= link_to "Home", "/", style: "color:#ffffff"%></li>
-      <li><%= link_to "New Product", "/products/new" , style: "color:#ffffff"%></li>
-      <li><%= link_to "Cart", "/cart" , style: "color:#ffffff"%></li>
-      <li><%= link_to "Orders", "/orders" , style: "color:#ffffff"%></li>
-      <li><%= link_to "Checkout", "/checkout" , style: "color:#ffffff"%></li>
-      <li><%= link_to "Categories", "/categories" , style: "color:#ffffff"%></li>
-      <li><%= link_to "Add Category", "/categories/new" , style: "color:#ffffff"%></li>
-      <% if session[:current_user_id] %>
-        <li><%= link_to "Logoff", "/logins/destroy" , style: "color:#ffffff"%></li>
-      <% else %>
-        <li><%= link_to "Login", "/logins/new" , style: "color:#ffffff"%></li>
-      <% end %>
-    </ul>
+<header id = "layout-nav">
+  <h1 id = "main-logo">Petsy</h1>
 
-  </nav>
+    <div id="search">
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil, :class => "button" %>
+    </div>
+  <div id = "floating-stuff">
+    <div id ="browse-div">
+      <a href="" id = "browse">Browse</a>
+    </div>
+
+  <%= image_tag "cart4.png", :id => "cart-image" %>
+</div>
+</header>
 
 <%= render "shared/flash_messages" %>
 
-<%= yield %>
+<div class = "sub-body">
+  <%= yield %>
+</div>
 
 </body>
 </html>
