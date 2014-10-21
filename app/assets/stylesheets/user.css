@@ -1,0 +1,23 @@
+.profile-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  padding: 25px;
+  background: rgba(245, 245, 245, 0.8);
+}
+
+.profile-row {
+  text-align: center;
+}
+
+.profile-row h4, .profile-row p {
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.profile-row a {
+  padding: 0 5%;
+}
+
+.user-links {
+  margin-top: 3%;
+}
