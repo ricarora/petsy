@@ -59,7 +59,7 @@ end
     category_id: rand(1..10)
   }
 
-  Productcategories.create(productcategory)
+  Productcategory.create(productcategory)
 end
 
 (1..10).each do
@@ -82,7 +82,7 @@ end
 (1..70).each do
   orderitem = {
     qty: rand(1..10),
-    totalprice: Faker::Commerce.price,
+    total_price: Faker::Commerce.price,
     product_id: rand(1..100),
     order_id: rand(1..10),
     # cart_id: rand(1..25),
