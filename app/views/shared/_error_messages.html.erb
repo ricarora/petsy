@@ -1,3 +1,3 @@
 <% if obj.errors[col].any? %>
-  <strong><%= col.to_s.capitalize %></strong> <%= obj.errors[col].first %>  
+  <div class="error-message"><strong><%= col.to_s.capitalize %></strong> <%= obj.errors[col].first %></div>
 <% end %>
