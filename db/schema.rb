@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20141021212406) do
     t.integer  "user_id"
   end
 
-  create_table "product_categories", force: true do |t|
+  create_table "productcategories", force: true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
     t.datetime "created_at"

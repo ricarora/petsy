@@ -48,8 +48,7 @@ body {
 #cart-image {
   width: 50px;
   height: auto;
-  padding: 0;
-  padding-left: 5px;
+  padding: 0 15px 0 5px;
   margin-top: 5px;
   color: white;
   -webkit-mask-image: white;
@@ -85,7 +84,7 @@ body {
   font-size: 1.5em;
 }
 
-#browse-div {
+#browse-div, #log-div {
   height: 40px;
   background: green;
   padding: 0;
@@ -214,3 +213,85 @@ body {
   font-size: 1em;
   margin: 0 10px 15px 10px;
 }
+
+
+#sub-nav {
+  background: green;
+  box-shadow: 2px 2px 2px lightgrey;
+  display: none;
+}
+
+.sub-nav-link {
+  color: white;
+  text-decoration: none;
+  margin: 0 12.5% 0 12.5%;
+  font-size: 1.2em;
+
+}
+
+#browse-dropdown {
+  /*position: absolute;*/
+  float: right;
+  margin-right: 69px;
+  vertical-align: top;
+  margin-top: 0px;
+  background: rgba(245,245,245,.7);
+  padding: 0;
+  box-shadow: 1px 1px 5px lightgrey;
+
+}
+
+#browse-dropdown ul {
+  list-style: none;
+  text-align: right;
+  padding: 0px 2px 0px 2px;
+  margin: 1px;
+}
+
+#browse-dropdown ul li {
+  padding: 2px 10px 2px 10px;
+}
+
+#browse-dropdown ul li:hover {
+  color: green;
+}
+
+.overlay {
+  position:fixed;
+  display:none;
+  background-color: rgba(0, 0, 0, 0.7); /* 0.7 = 70% opacity */
+
+    /* stretch to screen edges */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+ /*h1 {
+   display: block;
+   text-align: center;
+ }
+
+#main_nav_bar  {
+  display: block;
+  height: auto;
+  width: auto;
+  background-color: rgb(28, 36, 188);
+  font-style: bolder;
+  font-size: 1.2em;
+}
+
+  #main_nav_bar ul {
+    color: #ffffff;
+    text-align: center;
+
+    }
+
+  #main_nav_bar li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+    margin-left: 10px;
+    color: #ffffff;
+    text-align: justify;
+    }*/

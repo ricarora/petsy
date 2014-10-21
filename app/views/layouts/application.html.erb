@@ -9,27 +9,53 @@
 </head>
 <body>
 
-<header id = "layout-nav">
-  <h1 id = "main-logo">Petsy</h1>
+  <header id = "layout-nav">
+    <h1 id = "main-logo">Petsy</h1>
 
     <div id="search">
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil, :class => "button" %>
     </div>
-  <div id = "floating-stuff">
-    <div id ="browse-div">
-      <a href="" id = "browse">Browse</a>
+    <div id = "floating-stuff">
+      <div id ="browse-div">
+        <a href="" id = "browse">Browse</a>
+      </div>
+
+      <%= image_tag "cart4.png", :id => "cart-image" %>
+
+      <% if session[:current_user_id] %>
+        <div id ="log-div">
+          <%= link_to "Logoff", logoff_path, {id: "browse"} %>
+        </div>
+      <% else %>
+        <div id ="log-div">
+          <%= link_to "Login", new_login_path, {id: "browse"} %>
+        </div>
+      <% end %>
+
+
     </div>
+  </header>
 
-  <%= image_tag "cart4.png", :id => "cart-image" %>
+<div id = sub-nav>
+  <a  href= "" class = "sub-nav-link">Products</a>
+  <a  href= "" class = "sub-nav-link">Catagories</a>
+  <a  href= "" class = "sub-nav-link">Sales</a>
 </div>
-</header>
 
+<div id = "browse-dropdown">
+  <ul>
+    <li>Cats</li>
+    <li>Dogs</li>
+    <li>Reptiles</li>
+    <li>Fish</li>
+    <li>Small Mammals</li>
+  </ul>
+</div>
 <%= render "shared/flash_messages" %>
 
 <div class = "sub-body">
   <%= yield %>
 </div>
-
 </body>
 </html>
