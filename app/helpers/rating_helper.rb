@@ -2,10 +2,10 @@ module RatingHelper
   def average_rating
     total = 0
 
-    @reviews.each do |review|
+    @product.reviews.each do |review|
       total += review.rating
     end
 
-    total/@reviews.count
+    total/@product.reviews.count
   end
 end

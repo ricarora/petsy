@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   put "/products/:id",              to: "products#update"
   get "/products/:id",              to: "products#show",               as: :show_product
 
-  post "/products/:id/newcategory", to: "product_categories#create"
+  post "/products/:id/newcategory", to: "productcategories#create"
 
 
   # Cart Routes
@@ -47,8 +47,8 @@ Rails.application.routes.draw do
   get "/categories/:id/products",   to: "categories#products",         as: :category_products
 
   # Product Categories Routes
-  get "/product_categories",        to: "product_categories#index",    as: :productitems_new
-  # post "/product_categories/:id", to: "product_categories#create"
+  # get "/productcategories",        to: "productcategories#index",    as: :productitems_new
+  # post "/productcategories/:id",   to: "productcategories#create"
 
   # Users Routes
   get "/users/new",                 to: "users#new",                   as: :new_user
