@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
     if srch
       @products = Product.all.where('lower(name) LIKE ?', "%#{srch.downcase}%")
     else
-      @markets = index
+      @products = index
     end
   end
 
