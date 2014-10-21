@@ -46,19 +46,20 @@ end
     comment: Faker::Lorem.sentence,
     rating: rand(1..5),
     author: Faker::Name.name,
-    product_id: rand(1..100)
+    product_id: rand(1..100),
+    user_id: rand(1..10)
   }
 
   Review.create(review)
 end
 
 (1..25).each do
-  product_category = {
+  productcategory = {
     product_id: rand(1..100),
     category_id: rand(1..10)
   }
 
-  Product_categories.create(product_category)
+  Productcategories.create(productcategory)
 end
 
 (1..10).each do
