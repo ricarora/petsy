@@ -8,8 +8,37 @@
   <!-- cart form -->
   <% else %>
     <div class="cart-wrapper">
+      <%= form_for @cart do |f| %>
+        <div class="cart-summary">
+          <table>
+            <tr>
+              <td>Product</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Subtotal</td>
+            </tr>
 
-      <%= render "shared/orderitems_table", obj: @cart, cart: true %>
+              <% @cart.orderitems.each do |item| %>
+                <tr>
+                  <td><%= item.product.name %></td>
+                  <td><%= format_money(item.product.price) %></td>
+                  <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
+                  <td><%= format_money(item.total_price) %></td>
+                  <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
+                </tr>
+              <% end %>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td><strong>Total</strong></td>
+              <td><strong><%= format_money(@cart.total_price) %></strong></td>
+            </tr>
+          </table>
+        </div>
+        
+        <%= f.submit "Update" %>
+      <% end %>
 
       <!-- clear cart button -->
       <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>

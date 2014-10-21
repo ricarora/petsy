@@ -1,7 +1,7 @@
 <h2 class = "page-title">Checkout</h2>
 <div class="form-wrapper">
 
-  <%= render "shared/orderitems_table", obj: @cart, cart: false %>
+  <%= render "shared/orderitems_table", obj: @cart %>
 
   <div class="checkout-form">
     <%= form_for @order, url: {action: "create"} do |f| %>
