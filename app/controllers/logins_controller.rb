@@ -14,7 +14,7 @@ class LoginsController < ApplicationController
     if current_user && current_user.authenticate(params[:user][:password])
     # Save the user ID in the session so it can be used in subsequent requests
       session[:current_user_id] = current_user.id
-      redirect_to root_path
+      redirect_to user_profile_path
     else
       render :new
     end

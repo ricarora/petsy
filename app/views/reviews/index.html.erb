@@ -10,7 +10,7 @@ All Reviews:<br/>
   Title: <%= review.title %><br/>
     <% end %>
   Comment: <%= review.comment %><br/>
-    <% if review.author != nil %>
+    <% if review.author == nil %>
   Author: <%= review.author %><br/>
     <% end %><br/><br/>
 <% end %>

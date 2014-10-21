@@ -48,8 +48,7 @@ body {
 #cart-image {
   width: 50px;
   height: auto;
-  padding: 0;
-  padding-left: 5px;
+  padding: 0 15px 0 5px;
   margin-top: 5px;
   color: white;
   -webkit-mask-image: white;
@@ -85,7 +84,7 @@ body {
   font-size: 1.5em;
 }
 
-#browse-div {
+#browse-div, #log-div {
   height: 40px;
   background: green;
   padding: 0;
