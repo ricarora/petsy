@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @categories = Category.all
     @product = Product.new
   end
 

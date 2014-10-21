@@ -18,5 +18,13 @@
 
   <div class = "review-add">
   <%=link_to "Write a review", new_product_review_path %>
+  <%= average_rating %>
+  <% @product.reviews.each do |review| %>
+  <p><%= review.rating %></p>
+  <p><%= review.title %></p>
+  <p><%= review.author %></p>
+  <p><%= review.created_at.to_datetime.strftime("%D") %></p>
+  <p><%= review.comment %></p>
+  <% end %>
   </div>
 </div>
