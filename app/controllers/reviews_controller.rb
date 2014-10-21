@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
 
   def author
     if @review.author.empty?
-      @review.author = "anonymous"
+      @review.author = "Anonymous"
     end
   end
 

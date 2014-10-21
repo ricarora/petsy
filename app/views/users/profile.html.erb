@@ -1,26 +1,29 @@
-Welcome, <%= @user.storename %>!<br/>
+<h2 class= "page-title" >Welcome, <%= @user.name.capitalize %>!</h2>
 
-<br/><br/>
-<% @user_products.each do |product| %>
-<div class = "product-box">
-    <a href="#"><%= product.name %></a>
-    <a href="#">$<%= product.price %></a>
-</div>
-
-  <tr class = "destroy-edit">
-    <td><%= link_to "Destroy", "/products/destroy/#{product.id}" %></td>
-    <td><%= link_to "Edit", "/products/#{product.id}/edit" %></td>
-    <td><%= link_to "Add Category", "/products/#{product.id}/newcategory" %></td>
+<%= link_to "Edit Profile", edit_user_path %>
+<table>
+  <tr>
+    <th>
+      Username:
+    </th>
+    <td>
+      <%= @user.username %>
+    </td>
   </tr>
-
-  <div class = "product-popup">
-    <p><%= image_tag (product.image_url) %>
-    <p>Description: <%= product.description %></p>
-    <p>Stock: <%= product.stock %> remaining</p>
-
-    <%= form_tag(orderitems_new_path, method: "post") do %>
-      <%= hidden_field_tag :product_id, product.id %>
-      <%= submit_tag "Add to Cart" %>
-    <% end %>
-  </div>
-<% end %>
+  <tr>
+    <th>
+      Email:
+    </th>
+    <td>
+      <%= @user.email %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Storename:
+    </th>
+    <td>
+      <%= @user.storename %>
+    </td>
+  </tr>
+</table>
