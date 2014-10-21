@@ -11,7 +11,13 @@ class OrdersController < ApplicationController
   def new # checkout page
     find_user_session
     find_cart
-    @order = Order.new
+
+    if @user
+      @order = @user.orders.new
+    else
+      @order = Order.new
+    end
+
     if @cart == nil
       error_message
     end
