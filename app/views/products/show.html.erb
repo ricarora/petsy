@@ -17,6 +17,12 @@
 </div>
 
   <div class = "review-add">
-  <%=link_to "Write a review", new_product_review_path %>
+  <%=link_to "Write a review", new_product_review_path %><br/>
+
+  <% @product.reviews.each do |review| %>
+    <%= review.rating %><br/>
+    <%= review.title %><br/>
+    <%= review.comment %><br/>
+  <% end %>
   </div>
 </div>
