@@ -32,6 +32,23 @@ class OrderitemsController < ApplicationController
     redirect_to cart_path, notice: "Product removed!"
   end
 
+  def cancel
+    orditm = Orderitem.find(params[:format])
+    orditm.update(status: "Cancel")
+    redirect_to user_orderfulfillment_path
+  end
+
+  def ship
+    orditm = Orderitem.find(params[:format])
+    orditm.update(status: "Ship")
+    redirect_to user_orderfulfillment_path
+  end
+
+  # def sort_by_status
+  #   orditm = Orderitem.find(params[:format])
+  #   orditm.sort_by {|ord| ord.status}.reverse
+  #   redirect_to user_orderfulfillment_path
+  # end
 
   private
 

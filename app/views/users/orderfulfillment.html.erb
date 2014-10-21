@@ -1,7 +1,18 @@
-<tr><th>Total Revenue: </th>
+<table><tr><th>Total Revenue: </th>
   <td><%= format_money(@orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td></tr>
-
-
+<tr><th>Shipped items=> </th><th>Total Revenue: </th>
+  <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Ship"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
+  <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Ship"}.count %></td>
+  </tr>
+<tr><th>Pending items=> </th><th>Total Revenue: </th>
+  <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Pending"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
+  <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Pending"}.count %></td>
+</tr>
+<tr><th>Cancelled items=> </th><th>Total Revenue: </th>
+  <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Cancel"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
+  <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Cancel"}.count %></td>
+</tr>
+</table>
 <table>
   <tr>
     <th>Product Name</th>
@@ -9,7 +20,7 @@
     <th>Price</th>
     <th>Total Price</th>
     <th>Order Date</th>
-    <th>Order Status</th>
+    <th><%= link_to "Order Status", :sort => "status" %></th>
     <th>Cancel Order</th>
     <th>Update Order</th>
     <th>Buyer's Information</th></tr>
@@ -20,9 +31,9 @@
       <td><%= format_money(each_order.product.price) %></td>
       <td><%= format_money(each_order.total_price) %></td>
       <td><%= each_order.order.orderdate.strftime("%m/%d/%Y")  %></td>
-      <td><%= each_order.order.status %></td>
-      <td><%= button_to("Cancel", cancel_order_path(each_order.id), method: :put) %></td>
-      <td><%= button_to("Ship", ship_order_path(each_order.id), method: :put) %></td>
+      <td><%= each_order.status %></td>
+      <td><%= button_to("Cancel", cancel_orderitem_path(each_order.id), method: :put) %></td>
+      <td><%= button_to("Ship", ship_orderitem_path(each_order.id), method: :put) %></td>
       <td><%= link_to "Buyer's Details", order_info_path(each_order.id), method: :get %></td>
       </tr>
   <% end %>
