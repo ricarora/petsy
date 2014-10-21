@@ -1,3 +1,15 @@
+/* ------------------------------------------------------
+|  STYLES CHEATSHEET                                    |
+|  font:             'Oswald', sans-serif;              |
+|  background color:  white;                            |
+|  accent white:      whitesmoke;                       |
+|  accent green:      green;                            |
+|  links color:       black;                            |
+|  links hover:       dimgrey;                          |
+| -----------------------------------------------------*/
+
+
+/* --- Main Layout & Nav Styling --- */
 body {
    display: block;
    width: 100%;
@@ -7,10 +19,12 @@ body {
    margin: 0;
    padding: 0;
    font-family: 'Oswald', sans-serif;
-
  }
 
-
+ .sub-body {
+    width: 80%;
+     margin: 0 auto;
+ }
 
  #layout-nav {
    background: whitesmoke;
@@ -21,7 +35,6 @@ body {
    box-shadow: 2px 2px 2px lightgrey;
  }
 
-
  #main-logo {
    font-family: 'Oswald', sans-serif !important;
    margin: 0;
@@ -30,7 +43,6 @@ body {
    display: inline-block;
    padding-right: 20px;
    margin-top: 8px;
-
  }
 
 #cart-image {
@@ -47,7 +59,6 @@ body {
   display: inline-block;
   padding: 0;
   margin: 0;
-
 }
 
 #search input {
@@ -88,6 +99,9 @@ body {
   float: right;
   margin-right: 10px;
 }
+
+
+/* --- Product Page Layout --- */
 
 .item-box {
   display: inline-block;
@@ -156,11 +170,6 @@ body {
   color: green;
 }
 
-.sub-body {
-   width: 80%;
-    margin: 0 auto;
-}
-
 .show-destroy-edit {
   /*background: grey;*/
 }
@@ -205,32 +214,3 @@ body {
   font-size: 1em;
   margin: 0 10px 15px 10px;
 }
-
- /*h1 {
-   display: block;
-   text-align: center;
- }
-
-#main_nav_bar  {
-  display: block;
-  height: auto;
-  width: auto;
-  background-color: rgb(28, 36, 188);
-  font-style: bolder;
-  font-size: 1.2em;
-}
-
-  #main_nav_bar ul {
-    color: #ffffff;
-    text-align: center;
-
-    }
-
-  #main_nav_bar li {
-    display: inline-block;
-    list-style-type: none;
-    padding: 0;
-    margin-left: 10px;
-    color: #ffffff;
-    text-align: justify;
-    }*/
