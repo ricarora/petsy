@@ -17,17 +17,15 @@
               <td>Quantity</td>
               <td>Subtotal</td>
             </tr>
-
-              <% @cart.orderitems.each do |item| %>
-                <tr>
-                  <td><%= item.product.name %></td>
-                  <td><%= format_money(item.product.price) %></td>
-                  <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
-                  <td><%= format_money(item.total_price) %></td>
-                  <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
-                </tr>
-              <% end %>
-
+            <% @cart.orderitems.each do |item| %>
+              <tr>
+                <td><%= item.product.name %></td>
+                <td><%= format_money(item.product.price) %></td>
+                <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
+                <td><%= format_money(item.total_price) %></td>
+                <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
+              </tr>
+            <% end %>
             <tr>
               <td></td>
               <td></td>
@@ -36,7 +34,6 @@
             </tr>
           </table>
         </div>
-        
         <%= f.submit "Update" %>
       <% end %>
 
@@ -45,7 +42,12 @@
 
       <!-- checkout button -->
       <div class="checkout">
-        <%= link_to("Checkout", new_order_path) %>
+        <% if @user %>
+          <%= link_to("Checkout", new_order_path) %>
+        <% else %>
+          <%= link_to("Checkout As Guest", new_order_path) %>
+          <%= link_to("Become A Merchant", new_user_path) %>
+        <% end %>
       </div>
 
     </div>
