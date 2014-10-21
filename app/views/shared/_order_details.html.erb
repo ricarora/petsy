@@ -5,7 +5,11 @@
     <p>Order ID: <%= obj.id %></p>
   <% end %>
   <p>Order Status: <%= obj.status %></p>
+  <p>Date Placed: <%= obj.orderdate %></p>
 </div>
+
+<hr>
+
 <table>
   <tr>
     <th>Product Name</th>
@@ -16,7 +20,7 @@
   </tr>
   <% obj.orderitems.each do |order_item|  %>
     <tr>
-      <td><%= order_item.product.name %></td>
+      <td><%= link_to order_item.product.name, show_product_path(order_item.product.id) %></td>
       <td><%= order_item.qty %></td>
       <td><%= format_money(order_item.product.price) %></td>
       <td><%= format_money(order_item.total_price) %></td>
@@ -24,7 +28,10 @@
     </tr>
   <% end %>
 </table>
+
+<hr>
+
 <div class="order-totals">
   <p>Order Total: <%= format_money(obj.total_price) %></p>
-  <%= button_to("Cancel", cancel_order_path(obj.id), method: :put) %>
+  <%#= button_to("Cancel", cancel_order_path(obj.id), method: :put) %>
 </div>
