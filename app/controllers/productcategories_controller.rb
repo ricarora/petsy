@@ -10,10 +10,11 @@ class ProductcategoriesController < ApplicationController
      @productcategory = Productcategory.new
      @productcategory.category_id = id
      @productcategory.product_id = @product.id
-      unless @productcategory.save
-        render:root_path
-      end
+        if @productcategory.save
+          render:root_path
+        else
+          redirect_to products_path
+        end
     end
-    redirect_to products_path
   end
 end
