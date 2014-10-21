@@ -1,7 +1,7 @@
 /* --- Styling for Forms --- */
 
 .form-wrapper {
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   padding: 25px;
   background: rgba(245, 245, 245, 0.8);
@@ -15,13 +15,16 @@
   float: left;
   text-align: right;
   margin-right: 15px;
-  width: 100px;
+  width: 150px;
 }
 
-.form-field input {
+.form-field input,
+.form-field textarea {
   border-radius: 10px;
   border: none;
-  font-size: 1em;
+  font-size: 0.75em;
+  width: 50%;
+  padding: 5px;
 }
 
 .form-wrapper input[type=submit] {
@@ -34,6 +37,33 @@
   margin-left: 125px;
 }
 
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* --- Styling for Cart --- */
+.cart-wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.cart-wrapper
+
+.cart-summary {
+  margin-bottom: 15px;
+}
+
+.cart-summary table {
+  margin: 0 auto;
+}
+
+.cart-summary td {
+  padding: 5px;
+}
+
 
 /* --- Forms Media Queries --- */
 
@@ -44,7 +74,7 @@
   }
 
   .form-field label,
-  .form-field input[type=text],
+  .form-field input,
   .form-wrapper input[type=submit] {
     width: 100%;
   }
@@ -56,11 +86,15 @@
   }
 
   .checkbox label, .checkbox input {
+    width: 0;
     float: left;
   }
 
+  .checkbox input {
+    margin: 10% 10% 0 0;
+  }
+
   .checkbox label {
-    width: 0;
     margin-left: 10px;
   }
 

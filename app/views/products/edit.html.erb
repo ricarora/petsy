@@ -1,15 +1,44 @@
-<h2>Edit '<%= @product.name %>'</h2>
+<h2 class = "page-title">Edit '<%= @product.name %>'</h2>
 
-<form action="/products/<%= @product.id %>" method="post">
-  <input type="hidden" name="_method" value="PUT">
-  Name <input type="text" name="product[name]" value="<%= @product.name %>" />
-  Price <input type="text" name="product[price]" value="<%= @product.price %>" />
-  Description <input type="text" name="product[description]" value="<%= @product.description %>" />
-  Image URL <input type="text" name="product[image_url]" value="<%= @product.image_url %>" />
-  Stock <input type="text" name="product[stock]" value="<%= @product.stock %>" />
-  <%= check_box_tag("is_retired", true) %>
-  <%= label_tag(:retire) %>
+<div class="form-wrapper">
+  <form action="/products/<%= @product.id %>" method="post">
 
-  <input type="submit"/>
-</form>
+    <input type="hidden" name="_method" value="PUT">
+
+    <div class="form-field">
+      <label for="product[name]">Name:</label>
+      <input type="text" name="product[name]" value="<%= @product.name %>" />
+    </div>
+
+    <div class="form-field">
+      <label for="product[price]">Price:</label>
+      <input type="text" name="product[price]" value="<%= @product.price %>" />
+    </div>
+
+    <div class="form-field">
+      <label for="product[description]">Description:</label>
+      <input type="text" name="product[description]" value="<%= @product.description %>" />
+    </div>
+
+    <div class="form-field">
+      <label for="product[image_url]">Image URL:</label>
+      <input type="text" name="product[image_url]" value="<%= @product.image_url %>" />
+    </div>
+
+    <div class="form-field">
+      <label for="product[stock]">Stock:</label>
+      <input type="text" name="product[stock]" value="<%= @product.stock %>" />
+    </div>
+
+    <div class="form-field">
+      <%= check_box_tag("is_retired", true) %>
+      <%= label_tag(:retire) %>
+    </div>
+
+    <div class="form-field">
+      <input type="submit"/>
+    </div>
+
+  </form>
+</div>
 <!-- MAKE ME A RAILS FORM AND MAKE ME WORK! -->
