@@ -6,6 +6,7 @@
     <p class = "show-attributes">$<%= @product.price %></p>
     <p class = "show-attributes">Description: <%= @product.description %></p>
     <p class = "show-attributes">Stock: <%= @product.stock %> remaining</p>
+    <%= submit_tag "Add to Cart", :class => "button", :id => "cart-button" %>
     <div class = "show-destroy-edit">
       <tr>
         <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
@@ -16,7 +17,6 @@
 </div>
 
   <div class = "review-add">
-  <%= submit_tag "Add to Cart" %>
   <%=link_to "Write a review", new_product_review_path %>
   </div>
 </div>

@@ -18,6 +18,7 @@ body {
    padding: 0;
    margin: 0;
    height: 70px;
+   box-shadow: 2px 2px 2px lightgrey;
  }
 
 
@@ -119,7 +120,7 @@ body {
 }
 
 .item-popup {
-  /* display: none; */
+   display: none;
 }
 
 .page-title {
@@ -181,6 +182,7 @@ body {
   margin: 10px;
   padding: 0 10px 0 10px;
   /*float: right;*/
+  /*border: 5px solid lightgrey;*/
 }
 
 .page-div {
@@ -197,6 +199,11 @@ body {
 
 .show-de-link:hover {
   color:red;
+}
+
+#cart-button {
+  font-size: 1em;
+  margin: 0 10px 15px 10px;
 }
 
  /*h1 {
