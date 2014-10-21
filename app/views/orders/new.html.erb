@@ -80,13 +80,7 @@
 
       <div class="form-field">
           <%= f.label :email, "Email:" %>
-
-          <% if @user %>
-            <%= f.text_field :email, value: @user.email, disabled: true %>
-          <% else %>
-            <%= f.email_field :email %>
-          <% end %>
-
+          <%= f.email_field :email %>
           <%= render "shared/error_messages", obj: @order, col: :email %>
       </div>
 

@@ -18,14 +18,10 @@ class OrdersController < ApplicationController
   end
 
   def create # create order when paid
-    if find_user_email
-      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
+    if find_cart
+      save_order
     else
-      if find_cart
-        save_order
-      else
-        error_message
-      end
+      error_message
     end
   end
 
@@ -64,10 +60,6 @@ class OrdersController < ApplicationController
 
   def find_user_session
     @user = User.find_by(id: session[:current_user_id])
-  end
-
-  def find_user_email
-    @user = User.find_by(email: params[:order][:email])
   end
 
   def find_order
