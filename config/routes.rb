@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   delete "/sessions",               to: "logins#destroy"
   get "/users/test",                to: "users#test"
   get "/logins/new",                to: "logins#new",                  as: :new_login
-  get "/logins/destroy",            to: "logins#destroy"
+  get "/logins/destroy",            to: "logins#destroy",              as: :logoff
   get "/users/edit",                to: "users#edit",                  as: :edit_user
   get "/users/profile",             to: "users#profile",               as: :user_profile
   get "/users/orderfulfillment",    to: "users#orderfulfillment",      as: :user_orderfulfillment

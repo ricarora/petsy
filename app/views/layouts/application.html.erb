@@ -9,21 +9,33 @@
 </head>
 <body>
 
-<header id = "layout-nav">
-  <h1 id = "main-logo">Petsy</h1>
+  <header id = "layout-nav">
+    <h1 id = "main-logo">Petsy</h1>
 
     <div id="search">
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil, :class => "button" %>
     </div>
-  <div id = "floating-stuff">
-    <div id ="browse-div">
-      <a href="" id = "browse">Browse</a>
-    </div>
+    <div id = "floating-stuff">
+      <div id ="browse-div">
+        <a href="" id = "browse">Browse</a>
+      </div>
 
-  <%= image_tag "cart4.png", :id => "cart-image" %>
-</div>
-</header>
+      <%= image_tag "cart4.png", :id => "cart-image" %>
+
+      <% if session[:current_user_id] %>
+        <div id ="log-div">
+          <%= link_to "Logoff", logoff_path, {id: "browse"} %>
+        </div>
+      <% else %>
+        <div id ="log-div">
+          <%= link_to "Login", new_login_path, {id: "browse"} %>
+        </div>
+      <% end %>
+
+
+    </div>
+  </header>
 
 <%= render "shared/flash_messages" %>
 
