@@ -18,7 +18,8 @@
   width: 150px;
 }
 
-.form-field input {
+.form-field input,
+.form-field textarea {
   border-radius: 10px;
   border: none;
   font-size: 0.75em;
