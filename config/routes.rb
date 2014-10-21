@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # Cart Routes
   get    "/cart",                   to: "carts#edit",                  as: :cart
+  patch  "/cart",                   to: "orderitems#update",           as: :update_cart
   delete "/cart",                   to: "carts#destroy",               as: :delete_cart
 
 
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
   # Orderitem Routes
   post   "/orderitems/new",         to: "orderitems#create",           as: :orderitems_new
-  put    "/orders/:id",             to: "orderitems#update",           as: :update_cart
+  # patch  "/cart/:id",             to: "orderitems#update",           as: :update_cart
   get    "/orderitem/:id/delete",   to: "orderitems#destroy",          as: :delete_orderitem
   put    "/orderitem/cancel",       to: "orderitems#cancel",           as: :cancel_orderitem
   put    "/orderitem/ship",         to: "orderitems#ship",             as: :ship_orderitem

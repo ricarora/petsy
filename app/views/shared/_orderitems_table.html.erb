@@ -8,14 +8,17 @@
     </tr>
 
     <% if cart %>
-      <% obj.orderitems.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= format_money(item.product.price) %></td>
-          <td><%= number_field_tag("cart[#{item.id}[qty]]", item.qty, in: 0..item.product.stock, step: 1 ) %></td>
-          <td><%= format_money(item.total_price) %></td>
-          <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
-        </tr>
+      <%= form_for obj do |f| %>
+        <% obj.orderitems.each do |item| %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td><%= format_money(item.product.price) %></td>
+            <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
+            <td><%= format_money(item.total_price) %></td>
+            <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
+          </tr>
+        <% end %>
+        <%= f.submit "Update" %>
       <% end %>
 
     <% else %>
