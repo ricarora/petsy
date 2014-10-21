@@ -1,76 +1,73 @@
 Rails.application.routes.draw do
 
 #Product Routes
-  # resources :products
-
-  get  "/products",     to: "products#index",              as: :products_index
-  get  "/products/new", to: "products#new"
-  post "/products/new", to: "products#create"
-  get "/products/destroy/:id",  to: "products#destroy"
-  get "/products/:id/edit", to: "products#edit"
-  get "/products/:id/newcategory", to: "products#newcategory"
-  put "/products/:id", to: "products#update"
-  get "/products/:id",  to: "products#show", as: :show_product
+  get  "/products",                 to: "products#index",              as: :products
+  get  "/products/new",             to: "products#new",                as: :new_product
+  post "/products/new",             to: "products#create"
+  get "/products/destroy/:id",      to: "products#destroy",            as: :destroy_product
+  get "/products/:id/edit",         to: "products#edit",               as: :edit_product
+  get "/products/:id/newcategory",  to: "products#newcategory",        as: :new_product_category
+  put "/products/:id",              to: "products#update"
+  get "/products/:id",              to: "products#show",               as: :show_product
 
   post "/products/:id/newcategory", to: "product_categories#create"
 
 
   # Cart Routes
-  get    "/cart",                 to: "carts#edit",        as: :cart
-  delete "/cart",                 to: "carts#destroy",     as: :delete_cart
+  get    "/cart",                   to: "carts#edit",                  as: :cart
+  delete "/cart",                   to: "carts#destroy",               as: :delete_cart
 
 
   # Orders Routes
-  get    "/orders",               to: "orders#index",       as: :orders
-  get    "/checkout",             to: "orders#new",         as: :new_order
-  get    "/orders/info",          to: "orders#info",        as: :order_info
+  get    "/orders",               to: "orders#index",                  as: :orders
+  get    "/checkout",             to: "orders#new",                    as: :new_order
+  get    "/orders/info",          to: "orders#info",                   as: :order_info
   post   "/checkout",             to: "orders#create"
-  get    "/order-confirmation",   to: "orders#confirmation",        as: :order_confirmation
-  get    "/orders/:id",           to: "orders#show",         as: :show_order
+  get    "/order-confirmation",   to: "orders#confirmation",           as: :order_confirmation
+  get    "/orders/:id",           to: "orders#show",                   as: :show_order
 
 
   # Orderitem Routes
-  post   "/orderitems/new",       to: "orderitems#create",  as: :orderitems_new
-  put    "/orders/:id",           to: "orderitems#update",  as: :update_cart
-  get    "/orderitem/:id/delete", to: "orderitems#destroy", as: :delete_orderitem
-  put    "/orderitem/cancel",        to: "orderitems#cancel",       as: :cancel_orderitem
-  put    "/orderitem/ship",        to: "orderitems#ship",       as: :ship_orderitem
+  post   "/orderitems/new",         to: "orderitems#create",           as: :orderitems_new
+  put    "/orders/:id",             to: "orderitems#update",           as: :update_cart
+  get    "/orderitem/:id/delete",   to: "orderitems#destroy",          as: :delete_orderitem
+  put    "/orderitem/cancel",       to: "orderitems#cancel",           as: :cancel_orderitem
+  put    "/orderitem/ship",         to: "orderitems#ship",             as: :ship_orderitem
+
 
   # Reviews Routes
-  get "/products/:id/reviews/",             to: "reviews#index",      as: :product_reviews
-  get "/products/:id/reviews/new",          to: "reviews#new",        as: :new_product_review
-  post "/products/:id/reviews/new",         to: "reviews#create"
+  get "/products/:id/reviews/",     to: "reviews#index",               as: :product_reviews
+  get "/products/:id/reviews/new",  to: "reviews#new",                 as: :new_product_review
+  post "/products/:id/reviews/new", to: "reviews#create"
 
   # Categories Routes
-  get "/categories",              to: "categories#index",   as: :categories
-  get "/categories/new",          to: "categories#new",     as: :new_category
-  post "/categories/new",         to: "categories#create"
-  get "/categories/:id/products", to: "categories#products", as: :category_products
+  get "/categories",                to: "categories#index",            as: :categories
+  get "/categories/new",            to: "categories#new",              as: :new_category
+  post "/categories/new",           to: "categories#create"
+  get "/categories/:id/products",   to: "categories#products",         as: :category_products
 
   # Product Categories Routes
-  get "/product_categories",      to: "product_categories#index", as: :productitems_new
+  get "/product_categories",        to: "product_categories#index",    as: :productitems_new
   # post "/product_categories/:id", to: "product_categories#create"
 
   # Users Routes
-  get "/users/new", to: "users#new"
-  post "/users", to: "users#create"
-  get "/logins", to: "logins#create"
-  post "/sessions", to: "logins#create"
-  delete "/sessions", to: "logins#destroy"
-  get "/users/test", to: "users#test"
-  get "/logins/new", to: "logins#new", as: :new_login
-  get "/logins/destroy", to: "logins#destroy"
-  get "/users/edit", to: "users#edit", as: :edit_user
-  get "/users/profile", to: "users#profile"
-  get "/users/orderfulfillment", to: "users#orderfulfillment", as: :user_orderfulfillment
-  post "/users/orderfulfillment", to: "users#orderfulfillment"
-
-  put "/users/:id", to: "users#update"
-  get "/users/:id/user_category", to: "users#user_category"
-
-
+  get "/users/new",                 to: "users#new",                   as: :new_user
+  post "/users",                    to: "users#create"
+  get "/logins",                    to: "logins#create"
+  post "/sessions",                 to: "logins#create"
+  delete "/sessions",               to: "logins#destroy"
+  get "/users/test",                to: "users#test"
+  get "/logins/new",                to: "logins#new",                  as: :new_login
+  get "/logins/destroy",            to: "logins#destroy"
+  get "/users/edit",                to: "users#edit",                  as: :edit_user
+  get "/users/profile",             to: "users#profile",               as: :user_profile
+  get "/users/orderfulfillment",    to: "users#orderfulfillment",      as: :user_orderfulfillment
+  post "/users/orderfulfillment",   to: "users#orderfulfillment"
+  put "/users/:id",                 to: "users#update"
+  get "/users/:id/user_category",   to: "users#user_category"
 
   root "home#index"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

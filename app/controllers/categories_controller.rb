@@ -9,11 +9,16 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to categories_path
+    if session[:current_user_id]
+      @category = Category.new(category_params)
+      if @category.save
+        redirect_to categories_path
+      else
+        render:new
+      end
     else
-      render:new
+      flash[:notice] = "You must be logged-in to add category."
+      redirect_to categories_path
     end
   end
 
