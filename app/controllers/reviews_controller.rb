@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     author
     title
     if @review.save
-      redirect_to product_reviews_path
+      redirect_to show_product_path
     else
       render:new
     end
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
 
   def title
     if @review.title.empty?
-      @review.title = nil
+      @review.title = "Untitled"
     end
   end
 

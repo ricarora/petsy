@@ -8,6 +8,7 @@
   <link href='http://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div class = "overlay">
 
   <header id = "layout-nav">
     <h1 id = "main-logo">Petsy</h1>
@@ -37,11 +38,26 @@
     </div>
   </header>
 
+<div id = sub-nav>
+  <a  href= "" class = "sub-nav-link">Products</a>
+  <a  href= "" class = "sub-nav-link">Catagories</a>
+  <a  href= "" class = "sub-nav-link">Sales</a>
+</div>
+
+<div id = "browse-dropdown">
+  <ul>
+    <li>Cats</li>
+    <li>Dogs</li>
+    <li>Reptiles</li>
+    <li>Fish</li>
+    <li>Small Mammals</li>
+  </ul>
+</div>
 <%= render "shared/flash_messages" %>
 
 <div class = "sub-body">
   <%= yield %>
 </div>
-
+</div>
 </body>
 </html>
