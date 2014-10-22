@@ -31,6 +31,7 @@
   <div class = "review-add">
 
   <%=link_to "Write a review", new_product_review_path %>
+
   <p id = average_rating>Average Rating: <%= average_rating %></p>
 
   <div class = "average-rating-div">
@@ -52,5 +53,6 @@
       <p class = "review" id = "review-comment"><%= review.comment %></p>
     </div>
     <% end %>
+
   </div>
 </div>

@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   end
 
   def newcategory
-    @categories = Category.all
     @product = Product.find(params[:id])
+    @categories = Category.all.where.not(id: [@product.categories.map { |category| category.id }])
   end
 
   def new
