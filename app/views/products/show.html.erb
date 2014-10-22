@@ -3,6 +3,11 @@
 <%= image_tag @product.image_url, :class => "show-image" %>
 <div class = "show-text">
   <h1><%= @product.name %></h1>
+<<<<<<< HEAD
+  <div class = "average-rating-div">
+      <%= render "shared/stars", obj: average_rating %>
+  </div>
+=======
   <% if @product.reviews.size != 0 %>
     <div class = "average-rating-div">
       <div class = "average-star-div">
@@ -10,6 +15,7 @@
       </div>
     </div>
   <% end %>
+>>>>>>> master
 
     <p class = "show-attributes"><%= format_money(@product.price) %></p>
     <p class = "show-attributes">Description: <%= @product.description %></p>
@@ -31,6 +37,7 @@
 </div>
 
   <div class = "review-add">
+
 
   <%=link_to "Write a review", new_product_review_path %>
 
@@ -58,5 +65,11 @@
     <% end %>
 
   </div>
+
+<div class = "review-div">
+    <%=link_to "Write a review", new_product_review_path, :class => "new-review" %>
+</div>
+
 <% end %>
+
 </div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "/products/destroy/:id",      to: "products#destroy",            as: :destroy_product
   get "/products/:id/edit",         to: "products#edit",               as: :edit_product
   get "/products/:id/newcategory",  to: "products#newcategory",        as: :new_product_category
-  put "/products/:id",              to: "products#update"
+  patch "/products/:id",              to: "products#update"
   get "/products/:id",              to: "products#show",               as: :show_product
 
   post "/products/:id/newcategory", to: "productcategories#create"
