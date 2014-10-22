@@ -100,6 +100,8 @@ body {
 
 #log-div {
   background: green;
+  width: 80px;
+  text-align: center;
 }
 #log-div:hover {
   background: black;
@@ -249,7 +251,7 @@ body {
   /*position: absolute;*/
   float: right;
   /*margin-right: 69px;*/
-  margin-right: 155px;
+  margin-right: 157px;
   vertical-align: top;
   margin-top: 1px;
   background: rgba(245,245,245,.7);
@@ -297,6 +299,39 @@ body {
   font-size: 1.1em;
   margin-bottom: 10px;
 }
+
+.review {
+  margin: 0;
+  padding: 10px;
+}
+
+#review-rating {
+  background: white;
+}
+
+#review-title {
+  background: gainsboro;
+  font-size: 1.3em;
+}
+
+
+#review-author {
+  background: whitesmoke;
+  color: dimgrey;
+}
+#review-date {
+  background: lightgrey;
+}
+
+#review-comment {
+  background: white;
+}
+
+#rev-name {
+  font-weight: bold;
+  color: black;
+}
+
  /*h1 {
    display: block;
    text-align: center;

@@ -2,11 +2,11 @@
 <h2 class = "page-title">All Products</h2>
 
 <% @products.each do |product| %>
-  <% unless product.is_retired == true %>
+  <% unless product.is_retired == true && session[:current_user_id] != product.user_id %>
     <div class = "item-box">
         <%= image_tag product.image_url, :class => "item-image" %>
         <%= link_to product.name, "/products/#{product.id}", :class => "item-name" %>
-        <a href="#" class = "item-price">$<%= product.price %></a>
+        <a href="#" class = "item-price"><%= format_money(product.price) %></a>
 
   <% if session[:current_user_id] && product.user_id == session[:current_user_id] %>
     <div class = "destroy-edit">
@@ -17,6 +17,8 @@
       </tr>
     </div>
   <% end %>
+
+
 
 
       <div class = "item-popup">
