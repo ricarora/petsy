@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/products/:id",              to: "products#show",               as: :show_product
 
   post "/products/:id/newcategory", to: "productcategories#create"
-
+  delete "/products/:id/newcategory", to: "productcategories#destroy", as: :delete_category
 
   # Cart Routes
   get    "/cart",                   to: "carts#edit",                  as: :cart
@@ -54,10 +54,10 @@ Rails.application.routes.draw do
   # Users Routes
   get "/users/new",                 to: "users#new",                   as: :new_user
   post "/users",                    to: "users#create"
-  get "/logins",                    to: "logins#create"
+  #get "/logins",                    to: "logins#create"
   post "/sessions",                 to: "logins#create"
   delete "/sessions",               to: "logins#destroy"
-  get "/users/test",                to: "users#test"
+  #get "/users/test",                to: "users#test"
   get "/logins/new",                to: "logins#new",                  as: :new_login
   get "/logins/destroy",            to: "logins#destroy",              as: :logoff
   get "/users/edit",                to: "users#edit",                  as: :edit_user

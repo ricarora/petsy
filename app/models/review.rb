@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
   validates :comment, presence: true
 
   validate do |review|
-    UserValidator.new(review).validate
+    UserValidator.new(review).review_product
   end
 
   belongs_to :product
@@ -16,7 +16,7 @@ class UserValidator < ActiveModel::Validator
    @review = review
   end
 
-  def validate
+  def review_product
     if @review.user_id == @review.product.user_id
       @review.errors[:user_id] << "You cannot review your own product."
     end

@@ -3,6 +3,12 @@
 <%= image_tag @product.image_url, :class => "show-image" %>
 <div class = "show-text">
   <h1><%= @product.name %></h1>
+  <div class = "average-rating-div">
+    <div class = "average-star-div">
+      <%= render "shared/stars", obj: average_rating %>
+    </div>
+  </div>
+
     <p class = "show-attributes"><%= format_money(@product.price) %></p>
     <p class = "show-attributes">Description: <%= @product.description %></p>
     <p class = "show-attributes">Stock: <%= @product.stock %> remaining</p>
@@ -25,13 +31,28 @@
   <div class = "review-add">
 
   <%=link_to "Write a review", new_product_review_path %>
-  <p id = average_rating>Average Rating: <%= average_rating %></p>
-  <% @product.reviews.each do |review| %>
-  <p class = "review" id = "review-rating"><%= review.rating %></p>
-  <p class = "review" id = "review-title"><%= review.title %></p>
-  <p class = "review" id = "review-author">Created by <span id = rev-name><%= review.author %></span> on <span id = rev-name><%= review.created_at.to_datetime.strftime("%D") %></span></p>
-  <p class = "review" id = "review-date"><%= review.created_at.to_datetime.strftime("%D") %></p>
-  <p class = "review" id = "review-comment"><%= review.comment %></p>
-  <% end %>
+
+  <p id = "average_rating">Average Rating: <%= average_rating %></p>
+
+  <div class = "average-rating-div">
+    <div class = "average-star-div">
+      <h2>Average Product Rating:</h2>
+      <%= render "shared/stars", obj: average_rating %>
+    </div>
+  </div>
+
+    <% @product.reviews.each do |review| %>
+    <div id = "full-review">
+      <p class = "review" id = "review-title"><%= review.title %></p>
+      <div class = "star-div">
+        <div class = "inside-star-div">
+        <%= render "shared/stars", obj: review.rating %>
+      </div>
+      </div>
+      <p class = "review" id = "review-author">By <span id = rev-name><%= review.author %></span> on <span id = rev-name><%= review.created_at.to_datetime.strftime("%D") %></span></p>
+      <p class = "review" id = "review-comment"><%= review.comment %></p>
+    </div>
+    <% end %>
+
   </div>
 </div>
