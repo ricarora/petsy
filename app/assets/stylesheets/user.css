@@ -1,4 +1,5 @@
-.profile-wrapper {
+.profile-wrapper,
+.merchant-stats {
   width: 50%;
   margin: 0 auto;
   padding: 25px;
@@ -38,4 +39,13 @@
 
 .user-links a:hover {
   background-color: black;
+}
+
+.fulfillment-table {
+  width: 75%;
+  margin: 20px auto;
+}
+
+.fulfillment-table table tr:first-child {
+  border-bottom: 1px solid black;
 }

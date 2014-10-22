@@ -1,47 +1,50 @@
 <h2 class = "page-title">Order Fulfillment</h2>
 
 <div class="merchant-stats">
-  <table><tr><th>Total Revenue: </th>
-    <td><%= format_money(@orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td></tr>
-  <tr><th>Shipped items=> </th><th>Total Revenue: </th>
-    <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Ship"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
-    <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Ship"}.count %></td>
-    </tr>
-  <tr><th>Pending items=> </th><th>Total Revenue: </th>
-    <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Pending"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
-    <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Pending"}.count %></td>
-  </tr>
-  <tr><th>Cancelled items=> </th><th>Total Revenue: </th>
-    <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Cancel"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
-    <td>&nbsp;</td><th>Number of order: </th><td><%= @orderfulfillment.find_all{|ord| ord.status == "Cancel"}.count %></td>
-  </tr>
-  </table>
+  <div class="profile-row">
+      <h4>Total Revenue: </h4>
+      <p><%= format_money(@orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
+  </div>
+  <div class="profile-row">
+      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Ship"}.count %> Shipped Items): </h4>
+      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Ship"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
+  </div>
+  <div class="profile-row">
+      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Pending"}.count %> Pending Items): </h4>
+      <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Pending"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
+  </div>
+  <div class="profile-row">
+      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Cancel"}.count %> Cancelled Items): </h4>
+      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Cancel"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
+  </div>
 </div>
 
-<table>
-  <tr>
-    <th>Product Name</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Total Price</th>
-    <th>Order Date</th>
-    <th><%= link_to "Order Status", :sort => "status" %></th>
-    <th>Cancel Order</th>
-    <th>Update Order</th>
-    <th>Buyer's Information</th>
-  </tr>
-
-  <% @orderfulfillment.each do |each_order| %>
+<div class="fulfillment-table">
+  <table>
     <tr>
-      <td><%= link_to each_order.product.name, "/products/#{each_order.product.id}" %></td>
-      <td><%= each_order.qty %></td>
-      <td><%= format_money(each_order.product.price) %></td>
-      <td><%= format_money(each_order.total_price) %></td>
-      <td><%= each_order.order.orderdate.strftime("%m/%d/%Y")  %></td>
-      <td><%= each_order.status %></td>
-      <td><%= button_to("Cancel", cancel_orderitem_path(each_order.id), method: :put) %></td>
-      <td><%= button_to("Ship", ship_orderitem_path(each_order.id), method: :put) %></td>
-      <td><%= link_to "Buyer's Details", order_info_path(each_order.id), method: :get %></td>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total Price</th>
+      <th>Order Date</th>
+      <th><%= link_to "Order Status", :sort => "status" %></th>
+      <th>Cancel Order</th>
+      <th>Update Order</th>
+      <th>Buyer's Information</th>
     </tr>
-  <% end %>
-</table>
+
+    <% @orderfulfillment.each do |each_order| %>
+      <tr>
+        <td><%= link_to each_order.product.name, "/products/#{each_order.product.id}" %></td>
+        <td><%= each_order.qty %></td>
+        <td><%= format_money(each_order.product.price) %></td>
+        <td><%= format_money(each_order.total_price) %></td>
+        <td><%= each_order.order.orderdate.strftime("%m/%d/%Y")  %></td>
+        <td><%= each_order.status %></td>
+        <td><%= button_to("Cancel", cancel_orderitem_path(each_order.id), method: :put) %></td>
+        <td><%= button_to("Ship", ship_orderitem_path(each_order.id), method: :put) %></td>
+        <td><%= link_to "Buyer's Details", order_info_path(each_order.id), method: :get %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
