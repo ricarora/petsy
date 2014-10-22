@@ -1,7 +1,5 @@
 <h2 class= "page-title" >Welcome, <%= @user.name.capitalize %>!</h2>
 
-
-
 <div class="profile-wrapper">
 
   <div class="profile-row">
@@ -16,8 +14,9 @@
     <h4>Storename: </h4><p><%= @user.storename %></p>
   </div>
 
-  <div class="profile-row user-links"><%= link_to "Edit Profile", edit_user_path %>
+  <div class="profile-row user-links">
+    <%= link_to "Edit Profile", edit_user_path %>
     <%= link_to "Orderfulfillment", user_orderfulfillment_path %>
     <%= link_to "My Purchases", orders_path %>
-    </div>
+  </div>
 </div>

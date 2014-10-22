@@ -3,12 +3,12 @@
 <%= image_tag @product.image_url, :class => "show-image" %>
 <div class = "show-text">
   <h1><%= @product.name %></h1>
-  <% if @product.reviews != nil %>
-  <div class = "average-rating-div">
-    <div class = "average-star-div">
-      <%= render "shared/stars", obj: average_rating %>
+  <% if @product.reviews.size != 0 %>
+    <div class = "average-rating-div">
+      <div class = "average-star-div">
+        <%= render "shared/stars", obj: average_rating %>
+      </div>
     </div>
-  </div>
   <% end %>
 
     <p class = "show-attributes"><%= format_money(@product.price) %></p>
@@ -34,7 +34,7 @@
 
   <%=link_to "Write a review", new_product_review_path %>
 
-<% if @product.reviews !=  nil %>
+<% if @product.reviews.size != 0 %>
   <p id = "average_rating">Average Rating: <%= average_rating %></p>
 
   <div class = "average-rating-div">

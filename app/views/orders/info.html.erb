@@ -1,12 +1,36 @@
-<h3>Buyer's Information</h3>
+<h2 class="page-title">Buyer's Information</h2>
 
-<table>
-  <tr><th>Name:</th><td><%= @buyer.name_on_card %></td></tr>
-  <tr><th>Address:</th><td><%= @buyer.address %></td></tr>
-  <tr><th>City:</th><td><%= @buyer.city %></td></tr>
-  <tr><th>State:</th><td><%= @buyer.state %></td></tr>
-  <tr><th>Zip:</th><td><%= @buyer.zip %></td></tr>
-  <tr><th>Email:</th><td><%= @buyer.email %></td></tr>
-  <tr><th>Last-four digit of Credit Card:</th><td><%= @buyer.card_number[-4..-1] %></td></tr>
-  <tr><th>Expiration date on Credit Card:</th><td><%= @buyer.card_exp.mon %> / <%= @buyer.card_exp.year %></td></tr>
-</table>
+<div class="merchant-stats">
+  <div class="profile-row">
+    <h4>Name:</h4>
+    <p><%= @buyer.name_on_card %></p>
+  </div>
+  <div class="profile-row">
+    <h4>Address:</h4>
+    <p><%= @buyer.address %></p>
+  </div>
+  <div class="profile-row">
+    <h4>City:</h4>
+    <p><%= @buyer.city %></p>
+  </div>
+  <div class="profile-row">
+    <h4>State:</h4>
+    <p><%= @buyer.state %></p>
+  </div>
+  <div class="profile-row">
+    <h4>Zip:</h4>
+    <p><%= @buyer.zip %></p>
+  </div>
+  <div class="profile-row">
+    <h4>Email:</h4>
+    <p><%= @buyer.email %></p>
+  </div>
+  <div class="profile-row">
+    <h4>Last-four digit of Credit Card:</h4>
+    <p><%= @buyer.card_number[-4..-1] %></p>
+  </div>
+  <div class="profile-row">
+    <h4>Expiration date on Credit Card:</h4>
+    <p><%= @buyer.card_exp.mon %> / <%= @buyer.card_exp.year %></p>
+  </div>
+</div>

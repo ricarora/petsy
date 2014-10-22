@@ -20,7 +20,9 @@
 
     <%= form_tag(orderitems_new_path, method: "post") do %>
       <%= hidden_field_tag :product_id, product.id %>
-      <%= submit_tag "Add to Cart" %>
+      <div class="submit-button">
+        <%= submit_tag "Add to Cart" %>
+      </div>
     <% end %>
   </div>
 <% end %>

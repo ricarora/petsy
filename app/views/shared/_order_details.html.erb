@@ -1,15 +1,13 @@
 <div class="order-wrapper">
   <div class="order-details">
     <% if index %>
-      <p> <%= link_to "Order ID: #{obj.id}", show_order_path(obj.id) %></p>
+      <p> <%= link_to "Order ID: #{obj.id}", show_order_path(obj.id), {class: "order-detail-links"} %></p>
     <% else %>
       <p>Order ID: <%= obj.id %></p>
     <% end %>
     <p>Order Status: <%= obj.status %></p>
     <p>Date Placed: <%= obj.orderdate.strftime("%m/%d/%Y @ %l:%M%P") %></p>
   </div>
-
-  <hr>
 
   <table>
     <tr>
@@ -30,13 +28,9 @@
     <% end %>
   </table>
 
-  <hr>
-
   <div class="order-totals">
     <p>Order Total: <%= format_money(obj.total_price) %></p>
     <%#= button_to("Cancel", cancel_order_path(obj.id), method: :put) %>
   </div>
 
 </div>
-
-<%= render "shared/back_browse" %>
