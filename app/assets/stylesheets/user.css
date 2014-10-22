@@ -21,3 +21,21 @@
 .user-links {
   margin-top: 3%;
 }
+
+.user-links a {
+  width: 25%;
+  border-radius: 20px;
+  border: none;
+  margin: 5px;
+  padding: 5px 10px;
+  font-family: 'Oswald';
+  font-size: 14px;
+  color: white;
+  background-color: dimgrey;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-links a:hover {
+  background-color: black;
+}
