@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
 
     if @user
       @order = @user.orders.new
+      @order.name_on_card = @user.name
+      @order.email = @user.email
     else
       @order = Order.new
     end
