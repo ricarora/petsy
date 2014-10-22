@@ -109,6 +109,10 @@
   color: green;
 }
 
+.order-detail-links {
+  font-size: 16px !important;
+}
+
 
 /* --- Forms Media Queries --- */
 
