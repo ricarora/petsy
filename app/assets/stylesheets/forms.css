@@ -68,7 +68,7 @@
 
 .checkout,
 .login,
-.browse-path a {
+.browse-path {
   margin: 15px 0;
 }
 
@@ -125,8 +125,7 @@
 }
 
 .browse-path {
-  text-align: center;
-  margin: 25px 0;
+  display: inline-block;
 }
 
 /* --- Forms Media Queries --- */
