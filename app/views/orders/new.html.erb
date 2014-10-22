@@ -44,7 +44,7 @@
 
       <div class="form-field">
           <%= f.label :card_exp, "Expiration Date:" %>
-          <%= f.date_field :card_exp %>
+          <%= f.date_select :card_exp, { discard_day: true, order: [:month, :year], use_short_month: true } %>
           <%= render "shared/error_messages", obj: @order, col: :card_exp %>
       </div>
 
