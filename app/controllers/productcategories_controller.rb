@@ -11,7 +11,7 @@ class ProductcategoriesController < ApplicationController
      @productcategory.category_id = id
      @productcategory.product_id = @product.id
         if @productcategory.save
-          render:root_path
+          render :root_path
         else
           redirect_to products_path
         end
