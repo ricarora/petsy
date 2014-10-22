@@ -17,10 +17,14 @@
       </div>
 
       <div class="form-field">
-        <input type = "submit" value="Sign In" class = "submit">
+        <div class="submit-button">
+          <input type = "submit" value="Sign In" class = "submit">
+        </div>
       </div>
-      
+
     </form>
-    <%= link_to "SignUp", "/users/new" %> /
-    <%= link_to "Guest Access", "/products/index" %>
+    <div class="submit-button login">
+      <%= link_to "SignUp", "/users/new" %>
+      <%= link_to "Guest Access", "/products/index" %>
+    </div>
   </div>

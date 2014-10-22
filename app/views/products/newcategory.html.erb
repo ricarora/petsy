@@ -4,5 +4,8 @@
     <%= check_box_tag("category[]", category.id) %>
     <%= label_tag(category.name) %>
   <% end %>
-<%= submit_tag("Submit") %>
+
+  <div class="submit-button">
+    <%= submit_tag("Submit") %>
+  </div>
 <% end %>

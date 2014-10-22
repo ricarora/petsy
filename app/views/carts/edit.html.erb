@@ -19,7 +19,7 @@
             </tr>
             <% @cart.orderitems.each do |item| %>
               <tr>
-                <td><%= item.product.name %></td>
+                <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
                 <td><%= format_money(item.product.price) %></td>
                 <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
                 <td><%= format_money(item.total_price) %></td>
@@ -34,22 +34,28 @@
             </tr>
           </table>
         </div>
-        <%= f.submit "Update" %>
+        <div class="submit-button">
+          <%= f.submit "Update" %>
+        </div>
       <% end %>
 
       <!-- clear cart button -->
-      <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>
+      <div class="submit-button clear-cart">
+        <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>
+      </div>
 
       <!-- checkout button -->
-      <div class="checkout">
+      <div class="checkout submit-button">
         <% if @user %>
           <%= link_to("Checkout", new_order_path) %>
         <% else %>
-          <%= link_to("Checkout As Guest", new_order_path) %>
-          <%= link_to("Become A Merchant", new_user_path) %>
+          <%= link_to("Guest Checkout", new_order_path) %>
+          <%= link_to("Signin / Register", new_user_path) %>
         <% end %>
       </div>
 
     </div>
   <% end %>
 </div>
+
+<%= render "shared/back_browse" %>
