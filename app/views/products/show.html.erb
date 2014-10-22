@@ -4,9 +4,7 @@
 <div class = "show-text">
   <h1><%= @product.name %></h1>
   <div class = "average-rating-div">
-    <div class = "average-star-div">
       <%= render "shared/stars", obj: average_rating %>
-    </div>
   </div>
 
     <p class = "show-attributes"><%= format_money(@product.price) %></p>
@@ -30,17 +28,6 @@
 
   <div class = "review-add">
 
-  <%=link_to "Write a review", new_product_review_path %>
-
-  <p id = average_rating>Average Rating: <%= average_rating %></p>
-
-  <div class = "average-rating-div">
-    <div class = "average-star-div">
-      <h2>Average Product Rating:</h2>
-      <%= render "shared/stars", obj: average_rating %>
-    </div>
-  </div>
-
     <% @product.reviews.each do |review| %>
     <div id = "full-review">
       <p class = "review" id = "review-title"><%= review.title %></p>
@@ -55,4 +42,7 @@
     <% end %>
 
   </div>
+<div class = "review-div">
+    <%=link_to "Write a review", new_product_review_path, :class => "new-review" %>
+</div>
 </div>
