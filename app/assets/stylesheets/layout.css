@@ -236,7 +236,6 @@ body {
 #sub-nav {
   background: green;
   box-shadow: 2px 2px 2px lightgrey;
-  display: none;
 }
 
 .sub-nav-link {

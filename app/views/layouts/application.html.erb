@@ -38,9 +38,9 @@
   </header>
 
 <div id = sub-nav>
-  <a  href= "" class = "sub-nav-link">Products</a>
-  <a  href= "" class = "sub-nav-link">Catagories</a>
-  <a  href= "" class = "sub-nav-link">Sales</a>
+  <%= link_to "Add Product", new_product_path, { class: "sub-nav-link" }%>
+  <%= link_to "Create Category", new_category_path, { class: "sub-nav-link" }%>
+  <%= link_to "Dashboard", user_profile_path, { class: "sub-nav-link" }%>
 </div>
 
 <div id = "browse-dropdown">
