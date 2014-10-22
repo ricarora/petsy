@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-field">
-      <label for="email">Email</label>
+      <label for="email">Email(required)</label>
       <input type="string" name="user[email]" value = "<%= @user.email %>"/>
       <%= render "shared/error_messages", obj: @user, col: :email %>
     </div>
