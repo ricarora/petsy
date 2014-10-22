@@ -44,8 +44,17 @@
 .fulfillment-table {
   width: 75%;
   margin: 20px auto;
+  text-align: center;
+}
+
+.fulfillment-table table tr {
+  height: 55px;
 }
 
 .fulfillment-table table tr:first-child {
-  border-bottom: 1px solid black;
+  background-color: whitesmoke;
+}
+
+.fulfillment-table table tr:first-child th {
+  padding: 5px;
 }
