@@ -39,7 +39,9 @@
 
     <%= f.hidden_field :user_id, :value => session[:current_user_id] %>
 
-    <%= f.submit %>
+    <div class="submit-button">
+      <%= f.submit %>
+    </div>
 
   <% end %>
 </div>
