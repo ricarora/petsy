@@ -12,7 +12,7 @@
 
       <% @cart.orderitems.each do |item| %>
         <tr>
-          <td><%= link_to item.product.name, show_product_path(item.product.id) %></td>
+          <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
           <td><%= format_money(item.product.price) %></td>
           <td><%= item.qty %></td>
           <td><%= format_money(item.total_price) %></td>

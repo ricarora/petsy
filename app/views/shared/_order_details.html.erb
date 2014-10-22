@@ -21,7 +21,7 @@
     </tr>
     <% obj.orderitems.each do |order_item|  %>
       <tr>
-        <td><%= link_to order_item.product.name, show_product_path(order_item.product.id), {class: "item-name order-detail-links"} %></td>
+        <td><%= link_to order_item.product.name, show_product_path(order_item.product.id), {class: "order-detail-links"} %></td>
         <td><%= order_item.qty %></td>
         <td><%= format_money(order_item.product.price) %></td>
         <td><%= format_money(order_item.total_price) %></td>
