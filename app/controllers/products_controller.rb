@@ -9,8 +9,12 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @categories = Category.all
-    @product = Product.new
+    if session[:current_user_id]
+      @categories = Category.all
+      @product = Product.new
+    else
+      redirect_to products_path
+    end
   end
 
   def edit
@@ -23,7 +27,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-      if @product.update(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active))
+      if @product.update(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active, :user_id))
         redirect_to products_path
       else
         render :edit
@@ -31,11 +35,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active))
+    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active, :user_id))
     if @product.save
       redirect_to products_path
     else
-      redirect_to new_product_path
+      render :new
     end
   end
 

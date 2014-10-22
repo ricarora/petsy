@@ -5,26 +5,31 @@
     <div class="form-field">
       <%= f.label :name, "Name:" %>
       <%= f.text_field :name %>
+      <%= render "shared/error_messages", obj: @product, col: :name %>
     </div>
 
     <div class="form-field">
       <%= f.label :price, "Price:" %>
       <%= f.text_field :price %>
+      <%= render "shared/error_messages", obj: @product, col: :price %>
     </div>
 
     <div class="form-field">
       <%= f.label :description, "Description:" %>
       <%= f.text_field :description %>
+      <%= render "shared/error_messages", obj: @product, col: :description %>
     </div>
 
     <div class="form-field">
       <%= f.label :image_url, "Image URL:" %>
       <%= f.text_field :image_url %>
+      <%= render "shared/error_messages", obj: @product, col: :image_url %>
     </div>
 
     <div class="form-field">
       <%= f.label :stock, "Quantity:" %>
       <%= f.text_field :stock %>
+      <%= render "shared/error_messages", obj: @product, col: :stock %>
     </div>
 
     <div class="form-field checkbox">
@@ -32,12 +37,7 @@
       <%= f.label :is_retired, "Retire" %>
     </div>
 
-    <% @categories.each do |category| %>
-      <%= check_box_tag("category[]", category.id) %>
-      <%= label_tag(category.name) %>
-    <% end %>
-
-    <%= hidden_field_tag :user_id, session[:current_user_id] %>
+    <%= f.hidden_field :user_id, :value => session[:current_user_id] %>
 
     <%= f.submit %>
 
