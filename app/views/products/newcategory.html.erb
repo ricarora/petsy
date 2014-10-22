@@ -1,11 +1,17 @@
 <%= form_tag("/products/#{@product.id}/newcategory", method: "post") do %>
 
-  <% @categories.each do |category| %>
-    <%= check_box_tag("category[]", category.id) %>
-    <%= label_tag(category.name) %>
-  <% end %>
+Your Categories:<br/>
 
-  <div class="submit-button">
-    <%= submit_tag("Submit") %>
-  </div>
+<% @product.categories.each do |category| %>
+  <%= label_tag(category.name) %>
+  <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
+<% end %>
+
+<br/><br/>
+Add Category:<br/>
+  <% @categories.each do |category| %>
+    <%= label_tag(category.name) %>
+    <%= button_to "+", {:controller => "productcategories", :action => "create",
+      :category_id => category.id} , {:method=>:post} %>
+  <% end %>
 <% end %>
