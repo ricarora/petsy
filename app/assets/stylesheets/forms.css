@@ -124,6 +124,10 @@
   color: black;
 }
 
+.browse-path {
+  text-align: center;
+  margin: 25px 0;
+}
 
 /* --- Forms Media Queries --- */
 

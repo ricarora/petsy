@@ -37,7 +37,6 @@
     <%#= button_to("Cancel", cancel_order_path(obj.id), method: :put) %>
   </div>
 
-  <div class="browse-path">
-    <%= link_to "Back to Catalog", products_path %>
-  </div>
 </div>
+
+<%= render "shared/back_browse" %>
