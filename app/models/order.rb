@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
   validate :expiration_date_cannot_be_in_the_past
   validates :card_number, length: { minimum: 12, maximun: 16 }
   validates :security_code, length: { minimum: 3, maximun: 4 }
-  validates :zip, length: 5
+  validates :zip, length: { is: 5 }
 
   def pending?
     status == "pending"
