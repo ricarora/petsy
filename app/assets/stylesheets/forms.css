@@ -32,7 +32,8 @@
 }
 
 .form-wrapper input[type=submit],
-.checkout a {
+.checkout a,
+.login a {
   width: 25%;
   border-radius: 20px;
   border: none;
@@ -44,22 +45,26 @@
   cursor: pointer;
 }
 
-.form-wrapper input[type=submit]:hover,
-.checkout a:hover {
-  background-color: black;
+.checkout a,
+.login a {
+  text-decoration: none;
+  padding: 5px 10px;
 }
 
-.clear-cart input[type=submit] {
+.clear-cart input[type=submit],
+.login a {
   background-color: dimgrey;
 }
 
-.checkout {
-  margin: 15px 0;
+.form-wrapper input[type=submit]:hover,
+.checkout a:hover,
+.login a:hover {
+  background-color: black;
 }
 
-.checkout a {
-  text-decoration: none;
-  padding: 5px 10px;
+.checkout,
+.login {
+  margin: 15px 0;
 }
 
 .error-message {
