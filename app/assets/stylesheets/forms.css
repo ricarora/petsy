@@ -68,7 +68,7 @@
 
 .checkout,
 .login,
-.browse-path a {
+.browse-path {
   margin: 15px 0;
 }
 
@@ -108,6 +108,9 @@
 
 .order-wrapper table {
   margin: 0 auto;
+  padding: 10px 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .order-wrapper .order-totals {
@@ -125,8 +128,7 @@
 }
 
 .browse-path {
-  text-align: center;
-  margin: 25px 0;
+  display: inline-block;
 }
 
 /* --- Forms Media Queries --- */

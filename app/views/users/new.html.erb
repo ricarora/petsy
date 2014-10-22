@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-field">
-      <label for="email">Email</label>
+      <label for="email">Email(required)</label>
       <input type="string" name="user[email]" value = "<%= @user.email %>"/>
       <%= render "shared/error_messages", obj: @user, col: :email %>
     </div>
@@ -45,7 +45,9 @@
     </div>
 
     <div class="form-field">
-      <input type = "submit" value="Sign Up" class = "submit">
+      <div class="submit-button">
+        <input type = "submit" value="Sign Up" class = "submit">
+      </div>
     </div>
 
   </form>

@@ -14,6 +14,10 @@ class OrdersController < ApplicationController
 
     if @user
       @order = @user.orders.new
+      # @order = Order.new
+      # @order.user_id = @user.id
+      # @order.name_on_card = @user.name
+      # @order.email = @user.email
     else
       @order = Order.new
     end
@@ -98,7 +102,7 @@ class OrdersController < ApplicationController
   def setup_order
     @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.total_price = @cart.total_price
-    @order.status = "pending"
+    @order.status = "Pending"
     @order.orderdate = DateTime.now
   end
 
@@ -106,12 +110,12 @@ class OrdersController < ApplicationController
     add_orderitems_to_order
     update_product_stocks
     cleanse_sessions
-    @order.update!(status: "paid")
+    @order.update!(status: "Paid")
   end
 
   def add_orderitems_to_order
     @cart.orderitems.each do |item|
-      item.update(order_id: @order.id, status: "pending")
+      item.update(order_id: @order.id, status: "Pending")
     end
   end
 
