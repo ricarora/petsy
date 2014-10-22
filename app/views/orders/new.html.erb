@@ -84,8 +84,9 @@
           <%= render "shared/error_messages", obj: @order, col: :email %>
       </div>
 
-      </table>
-      <%= f.submit "Confirm Order" %>
+      <div class="submit-button">
+        <%= f.submit "Confirm Order" %>
+      </div>
     <% end %>
   </div>
 </div>

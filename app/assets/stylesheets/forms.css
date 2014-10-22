@@ -27,15 +27,39 @@
   padding: 5px;
 }
 
-.form-wrapper input[type=submit] {
-  color: white;
-  background: green;
-  border: none;
-  font-family: 'Oswald';
-  margin: 0;
-  border-radius: 20px;
-  margin-left: 125px;
+.submit-button {
+  text-align: center;
+}
+
+.form-wrapper input[type=submit],
+.checkout a {
   width: 25%;
+  border-radius: 20px;
+  border: none;
+  margin: 5px;
+  font-family: 'Oswald';
+  font-size: 14px;
+  color: white;
+  background-color: green;
+  cursor: pointer;
+}
+
+.form-wrapper input[type=submit]:hover,
+.checkout a:hover {
+  background-color: black;
+}
+
+.clear-cart input[type=submit] {
+  background-color: dimgrey;
+}
+
+.checkout {
+  margin: 15px 0;
+}
+
+.checkout a {
+  text-decoration: none;
+  padding: 5px 10px;
 }
 
 .error-message {
