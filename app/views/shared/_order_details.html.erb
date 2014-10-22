@@ -6,7 +6,7 @@
       <p>Order ID: <%= obj.id %></p>
     <% end %>
     <p>Order Status: <%= obj.status %></p>
-    <p>Date Placed: <%= obj.orderdate %></p>
+    <p>Date Placed: <%= obj.orderdate.strftime("%m/%d/%Y @ %l:%M%P") %></p>
   </div>
 
   <hr>
