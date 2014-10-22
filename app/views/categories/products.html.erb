@@ -1,19 +1,34 @@
-<h2><%= @category.name %></h2>
+<h2 class = "page-title"><%= @category.name %></h2>
 
 <% @category_products.flatten.each do |product| %>
-  <div class = "product-box">
-      <a href="#"><%= product.name %></a>
-      <a href="#">$<%= product.price %></a>
-  </div>
+<% unless product.is_retired == true && session[:current_user_id] != product.user_id %>
+  <div class = "item-box">
+      <%= image_tag product.image_url, :class => "item-image" %>
+      <%= link_to product.name, "/products/#{product.id}", :class => "item-name" %>
+      <a href="#" class = "item-price"><%= format_money(product.price) %></a>
 
-    <div class = "product-popup">
-      <p><%= image_tag (product.image_url) %>
-      <p>Description: <%= product.description %></p>
-      <p>Stock: <%= product.stock %> remaining</p>
+<% if session[:current_user_id] && product.user_id == session[:current_user_id] %>
+  <div class = "destroy-edit">
+    <tr>
+      <td><%= link_to "Destroy", "/products/destroy/#{product.id}",  :class => "de-link" %></td>
+      <td><%= link_to "Edit", "/products/#{product.id}/edit",  :class => "de-link" %></td>
+      <td><%= link_to "Add Category", "/products/#{product.id}/newcategory",  :class => "de-link" %></td>
+    </tr>
+  </div>
+<% end %>
+
+
+
+
+    <div class = "item-popup">
+      <p class = "item-link">Description: <%= product.description %></p>
+      <p class = "item-link">Stock: <%= product.stock %> remaining</p>
 
       <%= form_tag(orderitems_new_path, method: "post") do %>
         <%= hidden_field_tag :product_id, product.id %>
-        <%= submit_tag "Add to Cart" %>
+        <%= submit_tag "Add to Cart", :class => "add-to-cart" %>
       <% end %>
     </div>
+</div>
+<% end %>
 <% end %>

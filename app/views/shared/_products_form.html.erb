@@ -1,0 +1,64 @@
+<div class="form-wrapper">
+  <%= form_for @product, url: {action: obj} do |f| %>
+    <div class="form-field">
+      <%= f.label :name, "Name:" %>
+      <%= f.text_field :name %>
+      <%= render "shared/error_messages", obj: @product, col: :name %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :price, "Price:" %>
+      <%= f.text_field :price %>
+      <%= render "shared/error_messages", obj: @product, col: :price %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :description, "Description:" %>
+      <%= f.text_field :description %>
+      <%= render "shared/error_messages", obj: @product, col: :description %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :image_url, "Image URL:" %>
+      <%= f.text_field :image_url %>
+      <%= render "shared/error_messages", obj: @product, col: :image_url %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :stock, "Quantity:" %>
+      <%= f.text_field :stock %>
+      <%= render "shared/error_messages", obj: @product, col: :stock %>
+    </div>
+
+    <div class="form-field checkbox">
+      <%= f.check_box :is_retired, {}, "true", "false" %>
+      <%= f.label :is_retired, "Retire" %>
+    </div>
+
+    <%= f.hidden_field :user_id, :value => session[:current_user_id] %>
+
+    <div class="submit-button">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+
+  <%= form_tag("/products/#{@product.id}/newcategory", method: "post") do %>
+
+  Your Categories:<br/>
+
+  <% @product.categories.each do |category| %>
+    <%= label_tag(category.name) %>
+    <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
+  <% end %>
+
+  <br/><br/>
+  Add Category:<br/>
+    <% @categories.each do |category| %>
+      <%= label_tag(category.name) %>
+      <%= button_to "+", {:controller => "productcategories", :action => "create",
+        :category_id => category.id} , {:method=>:post} %>
+    <% end %>
+  <% end %>
+  
+</div>

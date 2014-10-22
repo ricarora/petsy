@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     @product = Product.find(params[:id])
   end
 
