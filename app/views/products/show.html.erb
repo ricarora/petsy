@@ -6,8 +6,13 @@
     <p class = "show-attributes">$<%= @product.price %></p>
     <p class = "show-attributes">Description: <%= @product.description %></p>
     <p class = "show-attributes">Stock: <%= @product.stock %> remaining</p>
-    <%= submit_tag "Add to Cart", :class => "button", :id => "cart-button" %>
-    
+
+
+    <%= form_tag(orderitems_new_path, method: "post") do %>
+      <%= hidden_field_tag :product_id, @product.id %>
+      <%= submit_tag "Add to Cart", :class => "add-to-cart" %>
+    <% end %>
+
     <div class = "show-destroy-edit">
       <tr>
         <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>

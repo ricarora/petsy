@@ -45,11 +45,9 @@
 
 <div id = "browse-dropdown">
   <ul>
-    <li>Cats</li>
-    <li>Dogs</li>
-    <li>Reptiles</li>
-    <li>Fish</li>
-    <li>Small Mammals</li>
+    <% all_categories.all.each do |category| %>
+      <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
+    <% end %>
   </ul>
 </div>
 <%= render "shared/flash_messages" %>

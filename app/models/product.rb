@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   has_many :reviews
   has_many :orderitems
 
-  # validates :user_id, presence: true
+  validates :user_id, presence: true
 end
 
 # , numericality: =>  {:greater_than => 0}, numericality:  true
