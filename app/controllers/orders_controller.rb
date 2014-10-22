@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
     if find_user_session
-      @myorders = Order.where(email: @user.email)
+      @myorders = @user.orders
     else
       redirect_to new_login_path, alert: "Please log in to view your orders."
     end
@@ -11,21 +11,23 @@ class OrdersController < ApplicationController
   def new # checkout page
     find_user_session
     find_cart
-    @order = Order.new
+
+    if @user
+      @order = @user.orders.new
+    else
+      @order = Order.new
+    end
+
     if @cart == nil
       error_message
     end
   end
 
   def create # create order when paid
-    if find_user_email
-      redirect_to new_login_path, alert: "You have an account! Please sign in to continue."
+    if find_cart
+      save_order
     else
-      if find_cart
-        save_order
-      else
-        error_message
-      end
+      error_message
     end
   end
 
@@ -66,10 +68,6 @@ class OrdersController < ApplicationController
     @user = User.find_by(id: session[:current_user_id])
   end
 
-  def find_user_email
-    @user = User.find_by(email: params[:order][:email])
-  end
-
   def find_order
     @order = Order.find_by(id: session[:order_id])
   end
@@ -77,7 +75,7 @@ class OrdersController < ApplicationController
   def find_order_dashboard
     @order = Order.find_by(id: params[:id])
     find_user_session
-    if @order && @order.email != @user.email
+    if @order.user_id != @user.id
       @order = nil
     end
   end
