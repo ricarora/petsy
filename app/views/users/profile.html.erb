@@ -1,29 +1,23 @@
 <h2 class= "page-title" >Welcome, <%= @user.name.capitalize %>!</h2>
 
-<%= link_to "Edit Profile", edit_user_path %>
-<table>
-  <tr>
-    <th>
-      Username:
-    </th>
-    <td>
-      <%= @user.username %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      Email:
-    </th>
-    <td>
-      <%= @user.email %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      Storename:
-    </th>
-    <td>
-      <%= @user.storename %>
-    </td>
-  </tr>
-</table>
+
+
+<div class="profile-wrapper">
+
+  <div class="profile-row">
+    <h4>Username: </h4><p><%= @user.username %></p>
+  </div>
+
+  <div class="profile-row">
+    <h4>Email: </h4><p><%= @user.email %></p>
+  </div>
+
+  <div class="profile-row">
+    <h4>Storename: </h4><p><%= @user.storename %></p>
+  </div>
+
+  <div class="profile-row user-links"><%= link_to "Edit Profile", edit_user_path %>
+    <%= link_to "Orderfulfillment", user_orderfulfillment_path %>
+    <%= link_to "My Purchases", orders_path %>
+    </div>
+</div>

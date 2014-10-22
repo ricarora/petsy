@@ -27,14 +27,49 @@
   padding: 5px;
 }
 
-.form-wrapper input[type=submit] {
-  color: white;
-  background: green;
-  border: none;
-  font-family: 'Oswald';
-  margin: 0;
+.submit-button {
+  text-align: center;
+}
+
+.form-wrapper input[type=submit],
+.checkout a,
+.login a,
+.browse-path a {
+  width: 25%;
   border-radius: 20px;
-  margin-left: 125px;
+  border: none;
+  margin: 5px;
+  font-family: 'Oswald';
+  font-size: 14px;
+  color: white;
+  background-color: green;
+  cursor: pointer;
+}
+
+.checkout a,
+.login a,
+.browse-path a {
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.clear-cart input[type=submit],
+.login a,
+.browse-path a {
+  background-color: dimgrey;
+}
+
+.form-wrapper input[type=submit]:hover,
+.checkout a:hover,
+.login a:hover,
+.browse-path a:hover {
+  background-color: black;
+}
+
+.checkout,
+.login,
+.browse-path a {
+  margin: 15px 0;
 }
 
 .error-message {
@@ -64,6 +99,35 @@
   padding: 5px;
 }
 
+
+/* --- Styling for Confirmation Page --- */
+.order-wrapper,
+.cart-summary {
+  text-align: center;
+}
+
+.order-wrapper table {
+  margin: 0 auto;
+}
+
+.order-wrapper .order-totals {
+  font-size: 20px;
+  color: green;
+}
+
+.order-detail-links {
+  text-decoration: none;
+  color: dimgrey;
+}
+
+.order-detail-links:hover {
+  color: black;
+}
+
+.browse-path {
+  text-align: center;
+  margin: 25px 0;
+}
 
 /* --- Forms Media Queries --- */
 

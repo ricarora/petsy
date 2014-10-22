@@ -1,72 +1,92 @@
 <h2 class = "page-title">Checkout</h2>
 <div class="form-wrapper">
 
-  <%= render "shared/orderitems_table", obj: @cart, cart: false %>
+  <div class="cart-summary">
+    <table>
+      <tr>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Subtotal</td>
+      </tr>
+
+      <% @cart.orderitems.each do |item| %>
+        <tr>
+          <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
+          <td><%= format_money(item.product.price) %></td>
+          <td><%= item.qty %></td>
+          <td><%= format_money(item.total_price) %></td>
+        </tr>
+      <% end %>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total</strong></td>
+        <td><strong><%= format_money(@cart.total_price) %></strong></td>
+      </tr>
+    </table>
+  </div>
 
   <div class="checkout-form">
     <%= form_for @order, url: {action: "create"} do |f| %>
       <div class="form-field">
-        <%= label_tag(:name_on_card, "Name:") %>
+        <%= f.label :name_on_card, "Name:" %>
         <%= f.text_field :name_on_card %>
         <%= render "shared/error_messages", obj: @order, col: :name_on_card %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:card_number, "Credit Card Number:") %>
+          <%= f.label :card_number, "Credit Card Number:" %>
           <%= f.text_field :card_number %>
           <%= render "shared/error_messages", obj: @order, col: :card_number %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:card_exp, "Expiration Date:") %>
-          <%= f.date_field :card_exp %>
+          <%= f.label :card_exp, "Expiration Date:" %>
+          <%= f.date_select :card_exp, { discard_day: true, order: [:month, :year], use_short_month: true } %>
           <%= render "shared/error_messages", obj: @order, col: :card_exp %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:security_code, "Security Code:") %>
+          <%= f.label :security_code, "Security Code:" %>
           <%= f.text_field :security_code %>
           <%= render "shared/error_messages", obj: @order, col: :security_code %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:address, "Address:") %>
+          <%= f.label :address, "Address:" %>
           <%= f.text_field :address %>
           <%= render "shared/error_messages", obj: @order, col: :address %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:city, "City:") %>
+          <%= f.label :city, "City:" %>
           <%= f.text_field :city %>
           <%= render "shared/error_messages", obj: @order, col: :city %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:state, "State:") %>
+          <%= f.label :state, "State:" %>
           <%= f.text_field :state %>
           <%= render "shared/error_messages", obj: @order, col: :state %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:zip, "Zip:") %>
+          <%= f.label :zip, "Zip:" %>
           <%= f.text_field :zip %>
           <%= render "shared/error_messages", obj: @order, col: :zip %>
       </div>
 
       <div class="form-field">
-          <%= label_tag(:email, "Email:") %>
-
-          <% if @user %>
-            <%= f.text_field :email, value: @user.email, disabled: true %>
-          <% else %>
-            <%= f.email_field :email %>
-          <% end %>
-
+          <%= f.label :email, "Email:" %>
+          <%= f.email_field :email %>
           <%= render "shared/error_messages", obj: @order, col: :email %>
       </div>
 
-      </table>
-      <%= f.submit "Confirm Order" %>
+      <div class="submit-button">
+        <%= f.submit "Confirm Order" %>
+      </div>
     <% end %>
   </div>
 </div>

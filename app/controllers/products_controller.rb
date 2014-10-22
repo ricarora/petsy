@@ -9,8 +9,12 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @categories = Category.all
-    @product = Product.new
+    if session[:current_user_id]
+      @categories = Category.all
+      @product = Product.new
+    else
+      redirect_to products_path
+    end
   end
 
   def edit
@@ -23,26 +27,26 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-      if @product.update(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active))
-        redirect_to products_path
+      if @product.update(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active, :user_id, :is_retired))
+        redirect_to products_path, notice: "Product was successfully updated."
       else
         render :edit
       end
   end
 
   def create
-    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active))
+    @product = Product.new(params.require(:product).permit(:name, :price, :description, :image_url, :stock, :is_active, :user_id, :is_retired))
     if @product.save
-      redirect_to products_path
+      redirect_to products_path, notice: "Product created successfully."
     else
-      redirect_to new_product_path
+      render :new
     end
   end
 
   def destroy
     @product = Product.all.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path, notice: "Product was successfully destroyed."
   end
 
   def lookup

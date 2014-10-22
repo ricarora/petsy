@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :orderitems
   has_many :products, through: :orderitems
+  belongs_to :user
 
   # validates that orderitems are attached to order (on order.update(status: "paid"))
   validates :orderitems, presence: true, unless: :pending?

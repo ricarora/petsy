@@ -18,10 +18,10 @@
     </div>
     <div id = "floating-stuff">
       <div id ="browse-div">
-        <a href="" id = "browse">Browse</a>
+        <%= link_to "Browse", products_path, :id => "browse" %>
       </div>
 
-      <%= image_tag "cart4.png", :id => "cart-image" %>
+      <%= link_to image_tag("cart4.png", :id => "cart-image"), cart_path %>
 
       <% if session[:current_user_id] %>
         <div id ="log-div">
@@ -45,11 +45,9 @@
 
 <div id = "browse-dropdown">
   <ul>
-    <li>Cats</li>
-    <li>Dogs</li>
-    <li>Reptiles</li>
-    <li>Fish</li>
-    <li>Small Mammals</li>
+    <% all_categories.all.each do |category| %>
+      <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
+    <% end %>
   </ul>
 </div>
 <%= render "shared/flash_messages" %>
