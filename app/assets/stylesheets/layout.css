@@ -303,6 +303,7 @@ body {
 .review {
   margin: 0;
   padding: 10px;
+  font-family: arial;
 }
 
 #review-rating {
@@ -310,28 +311,62 @@ body {
 }
 
 #review-title {
-  background: gainsboro;
+  background: whitesmoke;
   font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
 }
 
 
 #review-author {
   background: whitesmoke;
   color: dimgrey;
+  text-align: center;
 }
 #review-date {
   background: lightgrey;
 }
 
 #review-comment {
-  background: white;
+  /*background: whitesmoke;*/
+  /*margin-bottom: 100px;*/
 }
 
 #rev-name {
   font-weight: bold;
-  color: black;
+  color: green;
 }
 
+.star {
+  width: 30px;
+  height: auto;
+}
+
+.star-div {
+  background: white;
+}
+
+.inside-star-div {
+  margin: 0 auto;
+  width: 165px;
+}
+
+#full-review {
+  /*box-shadow: 0px 0px 5px grey;*/
+  margin-bottom: 30px;
+  border: 5px solid whitesmoke;
+}
+
+.average-rating-div {
+  /*background: gainsboro;*/
+  margin-bottom: 30px;
+}
+
+.average-star-div {
+  margin: 0 auto;
+  width: 250px;
+  text-align: center;
+}
  /*h1 {
    display: block;
    text-align: center;
