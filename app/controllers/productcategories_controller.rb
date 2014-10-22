@@ -5,16 +5,16 @@ class ProductcategoriesController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:id])
-    params[:category].each do |id|
+     @product = Product.find(params[:id])
      @productcategory = Productcategory.new
-     @productcategory.category_id = id
+     @productcategory.category_id = params[:category_id]
      @productcategory.product_id = @product.id
-        if @productcategory.save
-          render :root_path
-        else
-          redirect_to products_path
-        end
-    end
+     @productcategory.save
+     redirect_to new_product_category_path
+  end
+
+  def destroy
+    Productcategory.find_by(product_id: params[:id], category_id: params[:category_id]).destroy
+    redirect_to new_product_category_path
   end
 end

@@ -3,10 +3,16 @@
 <%= image_tag @product.image_url, :class => "show-image" %>
 <div class = "show-text">
   <h1><%= @product.name %></h1>
-    <p class = "show-attributes">$<%= @product.price %></p>
+    <p class = "show-attributes"><%= format_money(@product.price) %></p>
     <p class = "show-attributes">Description: <%= @product.description %></p>
     <p class = "show-attributes">Stock: <%= @product.stock %> remaining</p>
-    <%= submit_tag "Add to Cart", :class => "button", :id => "cart-button" %>
+
+
+    <%= form_tag(orderitems_new_path, method: "post") do %>
+      <%= hidden_field_tag :product_id, @product.id %>
+      <%= submit_tag "Add to Cart", :class => "add-to-cart" %>
+    <% end %>
+
     <div class = "show-destroy-edit">
       <tr>
         <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
@@ -19,13 +25,15 @@
   <div class = "review-add">
 
   <%=link_to "Write a review", new_product_review_path %>
-  <%= average_rating %>
+
+  <p id = average_rating>Average Rating: <%= average_rating %></p>
   <% @product.reviews.each do |review| %>
-  <p><%= review.rating %></p>
-  <p><%= review.title %></p>
-  <p><%= review.author %></p>
-  <p><%= review.created_at.to_datetime.strftime("%D") %></p>
-  <p><%= review.comment %></p>
+  <p class = "review" id = "review-rating"><%= review.rating %></p>
+  <p class = "review" id = "review-title"><%= review.title %></p>
+  <p class = "review" id = "review-author">Created by <span id = rev-name><%= review.author %></span> on <span id = rev-name><%= review.created_at.to_datetime.strftime("%D") %></span></p>
+  <p class = "review" id = "review-date"><%= review.created_at.to_datetime.strftime("%D") %></p>
+  <p class = "review" id = "review-comment"><%= review.comment %></p>
   <% end %>
+
   </div>
 </div>

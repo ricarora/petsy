@@ -12,7 +12,7 @@
 
       <% @cart.orderitems.each do |item| %>
         <tr>
-          <td><%= link_to item.product.name, show_product_path(item.product.id) %></td>
+          <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
           <td><%= format_money(item.product.price) %></td>
           <td><%= item.qty %></td>
           <td><%= format_money(item.total_price) %></td>
@@ -44,7 +44,7 @@
 
       <div class="form-field">
           <%= f.label :card_exp, "Expiration Date:" %>
-          <%= f.date_field :card_exp %>
+          <%= f.date_select :card_exp, { discard_day: true, order: [:month, :year], use_short_month: true } %>
           <%= render "shared/error_messages", obj: @order, col: :card_exp %>
       </div>
 
@@ -84,8 +84,9 @@
           <%= render "shared/error_messages", obj: @order, col: :email %>
       </div>
 
-      </table>
-      <%= f.submit "Confirm Order" %>
+      <div class="submit-button">
+        <%= f.submit "Confirm Order" %>
+      </div>
     <% end %>
   </div>
 </div>
