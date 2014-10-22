@@ -95,6 +95,21 @@
 }
 
 
+/* --- Styling for Confirmation Page --- */
+.order-wrapper {
+  text-align: center;
+}
+
+.order-wrapper table {
+  margin: 0 auto;
+}
+
+.order-wrapper .order-totals {
+  font-size: 20px;
+  color: green;
+}
+
+
 /* --- Forms Media Queries --- */
 
 @media (max-width: 755px) {
