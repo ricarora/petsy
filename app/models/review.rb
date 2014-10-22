@@ -4,13 +4,13 @@ class Review < ActiveRecord::Base
 
   validates :comment, presence: true
 
-  validate do |review|
-    UserValidator.new(review).validate
-  end
-
   belongs_to :product
 end
 
+  validate do |review|
+    UserValidator.new(review).validate
+  end
+  
 class UserValidator < ActiveModel::Validator
   def initialize(review)
    @review = review

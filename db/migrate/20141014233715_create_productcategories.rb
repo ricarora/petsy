@@ -1,4 +1,4 @@
-class CreateProductCategories < ActiveRecord::Migration
+class CreateProductcategories < ActiveRecord::Migration
   def change
     create_table :product_categories do |t|
       t.integer :product_id
