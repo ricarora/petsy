@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to "/users/test"
+    if @user.update(params.require(:user).permit(:name, :storename, :email, :image_url))
+      redirect_to user_profile_path
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :storename, :email, :username, :password, :image_url)
+    params.require(:user).permit(:name, :storename, :email, :username, :password, :password_confirmation, :image_url)
   end
 
   def orderfulfillment
