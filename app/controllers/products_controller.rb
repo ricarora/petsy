@@ -15,6 +15,11 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @categories = Category.all.where.not(id: @product.categories.map { |category| category.id })
+
+    find_user
+    if !@user || @product.user_id != @user.id
+      redirect_to products_path
+    end
   end
 
   def show
