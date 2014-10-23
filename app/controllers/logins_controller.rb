@@ -1,7 +1,11 @@
 class LoginsController < ApplicationController
 
   def new
-    render :new
+    if find_user
+      redirect_to user_profile_path
+    else
+      render :new
+    end
   end
 
   def current_user

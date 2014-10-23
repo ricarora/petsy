@@ -2,7 +2,6 @@ class CartsController < ApplicationController
 
   def edit #view cart
     if find_cart #this returns @cart
-      find_user
       @line_items = @cart.orderitems.sort_by { |a| a.created_at } #this finds the associated orderitems
       empty_cart_catch(@line_items) #if no orderitems, empty cart message displays
     else
@@ -20,18 +19,6 @@ class CartsController < ApplicationController
 
 
   private
-
-  def find_cart
-    @cart = Cart.find_by(id: session[:cart_id])
-  end
-
-  def find_items
-    @line_items = @order.orderitems
-  end
-
-  def find_user
-    @user = User.find_by(id: session[:current_user_id])
-  end
 
   def empty_cart
     @empty_cart = "Your cart is empty!"

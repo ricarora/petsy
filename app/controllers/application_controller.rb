@@ -3,8 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
 helper_method :all_categories
+
 private
+
   def all_categories
     @categories = Category.all
+  end
+
+  def find_user
+    @user = User.find_by(id: session[:current_user_id])
+  end
+
+  def find_cart
+    @cart = Cart.find_by(id: session[:cart_id])
   end
 end

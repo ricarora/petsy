@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if find_user
+      redirect_to user_profile_path
+    else
+      @user = User.new
+    end
   end
 
   def edit
@@ -39,8 +43,11 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(session[:current_user_id])
-    @user_products = Product.where(user_id: (session[:current_user_id]))
+    if find_user
+      @products = Product.where(user_id: (session[:current_user_id]))
+    else
+      redirect_to new_login_path, alert: "Please login to view your dashboard."
+    end
   end
 
   def user_params
@@ -48,10 +55,14 @@ class UsersController < ApplicationController
   end
 
   def orderfulfillment
-    if params[:sort]
-      @orderfulfillment = ordfull.sort_by {|ord| ord.status}
+    if find_user
+      if params[:sort]
+        @orderfulfillment = ordfull.sort_by {|ord| ord.status}
+      else
+        @orderfulfillment = ordfull
+      end
     else
-      @orderfulfillment = ordfull
+      redirect_to new_login_path, alert: "Please login to view your order fulfillment."
     end
   end
 

@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    if find_user_session
+    if find_user
       @myorders = @user.orders
     else
       redirect_to new_login_path, alert: "Please log in to view your orders."
@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def new # checkout page
-    find_user_session
+    find_user
     find_cart
 
     if @user
@@ -62,15 +62,17 @@ class OrdersController < ApplicationController
   # end
 
   def info
-    @buyer = Orderitem.find(params[:format]).order
+    @order = Order.find(params[:id])
+
+    if find_user && find_orderitems
+      @buyer = @order
+    else
+      redirect_to root_path
+    end
   end
 
 
   private
-
-  def find_user_session
-    @user = User.find_by(id: session[:current_user_id])
-  end
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
@@ -78,14 +80,22 @@ class OrdersController < ApplicationController
 
   def find_order_dashboard
     @order = Order.find_by(id: params[:id])
-    find_user_session
-    if @order.user_id != @user.id
+    if find_user
+      @user_id = @user.id
+    else
+      @user_id = "foo"
+    end
+
+    if @order.user_id != @user_id
       @order = nil
     end
   end
 
-  def find_cart
-    @cart = Cart.find_by(id: session[:cart_id])
+  def find_orderitems
+    orderitems = @order.orderitems
+    among_sellers = false
+    orderitems.each { |orderitem| among_sellers = true if orderitem.product.user_id == @user.id }
+    return among_sellers
   end
 
   def save_order
@@ -94,7 +104,7 @@ class OrdersController < ApplicationController
       post_order_save_tidying
       redirect_to order_confirmation_path
     else
-      find_user_session
+      find_user
       render :new
     end
   end
