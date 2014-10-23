@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   has_many :products, through: :orderitems
   belongs_to :user
 
-  # validates that orderitems are attached to order (on order.update(status: "paid"))
+  # validates that orderitems are attached to order (on order.update(status: "Paid"))
   validates :orderitems, presence: true, unless: :pending?
 
   # validates the credit card form
@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
   validates :zip, length: { is: 5 }
 
   def pending?
-    status == "pending"
+    status == "Pending"
   end
 
   def expiration_date_cannot_be_in_the_past
