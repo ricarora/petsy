@@ -30,7 +30,6 @@ Rails.application.routes.draw do
 
   # Orderitem Routes
   post   "/orderitems/new",         to: "orderitems#create",           as: :orderitems_new
-  # patch  "/cart/:id",             to: "orderitems#update",           as: :update_cart
   get    "/orderitem/:id/delete",   to: "orderitems#destroy",          as: :delete_orderitem
   put    "/orderitem/cancel",       to: "orderitems#cancel",           as: :cancel_orderitem
   put    "/orderitem/ship",         to: "orderitems#ship",             as: :ship_orderitem
