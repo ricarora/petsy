@@ -43,22 +43,23 @@
 
   <% end %>
 
-  <%= form_tag("/products/#{@product.id}/newcategory", method: "post") do %>
+  <% if @product.save %>
 
-  Your Categories:<br/>
+    Your Categories:<br/>
 
-  <% @product.categories.each do |category| %>
-    <%= label_tag(category.name) %>
-    <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
-  <% end %>
+    <% @product.categories.each do |category| %>
+      <%= label_tag(category.name) %>
+      <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
+    <% end %>
 
-  <br/><br/>
-  Add Category:<br/>
+    <br/><br/>
+    Add Category:<br/>
+
     <% @categories.each do |category| %>
       <%= label_tag(category.name) %>
       <%= button_to "+", {:controller => "productcategories", :action => "create",
         :category_id => category.id} , {:method=>:post} %>
     <% end %>
   <% end %>
-  
+
 </div>

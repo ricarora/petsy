@@ -18,8 +18,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all
+    # @categories = Category.all
     @product = Product.find(params[:id])
+    @categories = Category.all.where.not(id: [@product.categories.map { |category| category.id }])
   end
 
   def show
