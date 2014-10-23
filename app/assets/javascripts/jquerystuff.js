@@ -8,7 +8,8 @@ $(document).ready(function() {
   //   $("#mobilenav").css("left", "-150")
   // });
 
-    $("#browse-div").click(function () {
+    $("#browse-div").hover(function () {
     $("#browse-dropdown").slideToggle(600);
     });
+
 });

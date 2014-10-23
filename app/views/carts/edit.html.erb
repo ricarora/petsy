@@ -18,19 +18,19 @@
               <td>Subtotal</td>
             </tr>
             <% @cart.orderitems.each do |item| %>
-              <tr>
-                <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
-                <td><%= format_money(item.product.price) %></td>
-                <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
-                <td><%= format_money(item.total_price) %></td>
-                <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
-              </tr>
+                <tr>
+                  <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
+                  <td><%= format_money(item.product.price) %></td>
+                  <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
+                  <td><%= format_money(item.total_price) %></td>
+                  <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
+                </tr>
             <% end %>
             <tr>
-              <td></td>
-              <td></td>
-              <td><strong>Total</strong></td>
-              <td><strong><%= format_money(@cart.total_price) %></strong></td>
+                <td></td>
+                <td></td>
+                <td><strong>Total</strong></td>
+                <td><strong><%= format_money(@cart.total_price) %></strong></td>
             </tr>
           </table>
         </div>
@@ -43,7 +43,7 @@
       <div class="submit-button clear-cart">
         <%= button_to("Clear Cart", delete_cart_path(@cart.id), method: :delete) %>
       </div>
-    </div>
+    <!-- </div> -->
   <% end %>
 </div>
 
