@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   patch "/products/:id",              to: "products#update"
   get "/products/:id",              to: "products#show",               as: :show_product
 
-  post "/products/:id/newcategory", to: "productcategories#create"
-  delete "/products/:id/newcategory", to: "productcategories#destroy", as: :delete_category
+  post "/products/:id/newcategory", to: "products#create_category",    as: :create_category
+  delete "/products/:id/newcategory", to: "products#destroy_category", as: :delete_category
 
   # Cart Routes
   get    "/cart",                   to: "carts#edit",                  as: :cart
