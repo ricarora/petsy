@@ -22,12 +22,14 @@
 <div class="fulfillment-table">
   <table>
     <tr>
+      <th>Order #</th>
       <th>Product Name</th>
       <th>Quantity</th>
       <th>Price</th>
       <th>Total Price</th>
       <th>Order Date</th>
-      <th><%= link_to "Order Status", :sort => "status" %></th>
+      <th>Order Status</th>
+      <th><%= link_to "Orderitem Status", :sort => "status" %></th>
       <th>Cancel Order</th>
       <th>Update Order</th>
       <th>Buyer's Information</th>
@@ -35,11 +37,13 @@
 
     <% @orderfulfillment.each do |each_order| %>
       <tr>
+        <td><%= link_to each_order.order.id, order_info_path(each_order.order_id) %></td>
         <td><%= link_to each_order.product.name, "/products/#{each_order.product.id}" %></td>
         <td><%= each_order.qty %></td>
         <td><%= format_money(each_order.product.price) %></td>
         <td><%= format_money(each_order.total_price) %></td>
-        <td><%= each_order.order.orderdate.strftime("%m/%d/%Y")  %></td>
+        <td><%= each_order.order.orderdate.strftime("%m/%d/%Y @ %l:%M%P")  %></td>
+        <td><%= each_order.order.status %></td>
         <td><%= each_order.status %></td>
         <td>
           <% if each_order.status != "Cancel" %>
