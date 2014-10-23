@@ -43,8 +43,11 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(session[:current_user_id])
-    @user_products = Product.where(user_id: (session[:current_user_id]))
+    if find_user
+      @user_products = Product.where(user_id: (session[:current_user_id]))
+    else
+      redirect_to new_login_path, alert: "Please login to view your dashboard."
+    end
   end
 
   def user_params
