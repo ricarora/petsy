@@ -33,20 +33,22 @@ class OrderitemsController < ApplicationController
   end
 
   def cancel
-    orditm = Orderitem.find(params[:format])
-    orditm.update(status: "Cancel")
+    @orditm = Orderitem.find(params[:format])
+    @orditm.update(status: "Cancelled")
+    update_order_status
     redirect_to user_orderfulfillment_path
   end
 
   def ship
-    orditm = Orderitem.find(params[:format])
-    orditm.update(status: "Ship")
+    @orditm = Orderitem.find(params[:format])
+    @orditm.update(status: "Shipped")
+    update_order_status
     redirect_to user_orderfulfillment_path
   end
 
   # def sort_by_status
-  #   orditm = Orderitem.find(params[:format])
-  #   orditm.sort_by {|ord| ord.status}.reverse
+  #   @orditm = Orderitem.find(params[:format])
+  #   @orditm.sort_by {|ord| ord.status}.reverse
   #   redirect_to user_orderfulfillment_path
   # end
 
@@ -115,5 +117,15 @@ class OrderitemsController < ApplicationController
 
   def error_save_message
     redirect_to cart_path, alert: "Something went wrong. :( Try again?"
+  end
+
+  def update_order_status
+    @order = @orditm.order
+    @order_items = @order.orderitems
+    if @order_items.all? { |item| item.status == "Shipped" }
+      @order.update(status: "Complete")
+    elsif @order_items.all? { |item| item.status == "Cancelled" }
+      @order.update(status: "Cancelled")
+    end
   end
 end

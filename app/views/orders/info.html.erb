@@ -1,4 +1,4 @@
-<h2 class="page-title">Buyer's Information</h2>
+<h2 class="page-title">Buyer Information</h2>
 
 <div class="merchant-stats">
   <div class="profile-row">
@@ -26,11 +26,44 @@
     <p><%= @buyer.email %></p>
   </div>
   <div class="profile-row">
-    <h4>Last-four digit of Credit Card:</h4>
-    <p><%= @buyer.card_number[-4..-1] %></p>
+    <h4>Credit Card Number:</h4>
+    <p>**** **** **** <%= @buyer.card_number[-4..-1] %></p>
   </div>
   <div class="profile-row">
-    <h4>Expiration date on Credit Card:</h4>
+    <h4>Credit Card Expiration Date:</h4>
     <p><%= @buyer.card_exp.mon %> / <%= @buyer.card_exp.year %></p>
   </div>
+</div>
+
+<div class="order-wrapper">
+  <div class="order-details">
+    <p>Order ID: <%= @buyer.id %></p>
+    <p>Order Status: <%= @buyer.status %></p>
+    <p>Date Placed: <%= @buyer.orderdate.strftime("%m/%d/%Y @ %l:%M%P") %></p>
+  </div>
+
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+      <th>Status</th>
+    </tr>
+    <% @buyer_items.each do |order_item|  %>
+      <tr>
+        <td><%= link_to order_item.product.name, show_product_path(order_item.product.id), {class: "order-detail-links"} %></td>
+        <td><%= order_item.qty %></td>
+        <td><%= format_money(order_item.product.price) %></td>
+        <td><%= format_money(order_item.total_price) %></td>
+        <td><%= order_item.status %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="order-totals">
+    <p>Order Total: <%= format_money(@buyer.total_price) %></p>
+    <%#= button_to("Cancel", cancel_order_path(@buyer.id), method: :put) %>
+  </div>
+
 </div>

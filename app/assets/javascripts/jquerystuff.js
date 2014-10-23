@@ -17,7 +17,7 @@ $(document).ready(function() {
 // });
 
 $("#browse-div").hover(function () {
-$("#browse-dropdown").slideDown(600);
+$("#browse-dropdown").slideDown(500);
 });
 
 $(".sub-body").hover(function () {
