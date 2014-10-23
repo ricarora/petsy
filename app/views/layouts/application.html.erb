@@ -37,23 +37,26 @@
 
 
     </div>
+
+    <div id = "browse-dropdown">
+      <ul>
+        <% all_categories.all.each do |category| %>
+          <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
+        <% end %>
+      </ul>
+    </div>
+
   </header>
 
   <% if session[:current_user_id] %>
-    <div id = sub-nav>
+    <div id = "sub-nav">
       <%= link_to "Add Product", new_product_path, { class: "sub-nav-link" }%>
       <%= link_to "Create Category", new_category_path, { class: "sub-nav-link" }%>
       <%= link_to "Dashboard", user_profile_path, { class: "sub-nav-link" }%>
     </div>
   <% end %>
 
-  <div id = "browse-dropdown">
-    <ul>
-      <% all_categories.all.each do |category| %>
-        <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
-      <% end %>
-    </ul>
-  </div>
+
   <%= render "shared/flash_messages" %>
 
   <div class = "sub-body">
