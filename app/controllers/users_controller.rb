@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def profile
     if find_user
-      @user_products = Product.where(user_id: (session[:current_user_id]))
+      @products = Product.where(user_id: (session[:current_user_id]))
     else
       redirect_to new_login_path, alert: "Please login to view your dashboard."
     end
