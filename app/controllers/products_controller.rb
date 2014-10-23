@@ -59,14 +59,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def lookup
-    #srch = params[:params][:search]
-    srch = params[:search]
-    if srch
-      @products = Product.all.where('lower(name) LIKE ?', "%#{srch.downcase}%")
-    else
-      @products = index
-    end
+  def search
+    @search = "%#{params[:search]}%"
+    @products = Product.where('lower(name) LIKE ? or lower(description) LIKE ?', @search.downcase, @search.downcase)
+    render :search
   end
 
   def searchby
@@ -80,12 +76,13 @@ class ProductsController < ApplicationController
      @productcategory.category_id = params[:category_id]
      @productcategory.product_id = @product.id
      @productcategory.save
-     redirect_to edit_product_path
+     redirect_to edit_product_path(@product, :anchor => "category")
   end
 
   def destroy_category
+    @product = Product.find(params[:id])
     Productcategory.find_by(product_id: params[:id], category_id: params[:category_id]).destroy
-    redirect_to edit_product_path
+    redirect_to edit_product_path(@product, :anchor => "category")
   end
 
 end
