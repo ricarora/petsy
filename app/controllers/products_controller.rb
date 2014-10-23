@@ -3,6 +3,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def landing
+    @products = Product.all
+  end
+
   def new
     if session[:current_user_id]
       @categories = Category.all
