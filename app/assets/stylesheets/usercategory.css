@@ -1,0 +1,23 @@
+.product-box {
+  display: inline-block;
+  background-color: whitesmoke;
+  width: 28%;
+  height: auto;
+  /*text-align: center;*/
+  padding: 10px;
+  margin-left: 2%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.item-image {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 10px;
+}
+
+.item-link {
+  text-decoration: none;
+  color: black;
+}

@@ -1,7 +1,12 @@
-<%= @user.storename %>!<br/>
+<div class="sub-body">
+
+</i><h1><%= @user.storename %>!</h1>
 
 <br/><br/>
 <% @user_products.each do |product| %>
+<div class="product-box">
+
+
 <div class = "product-box">
     <a href="#"><%= product.name %></a>
     <a href="#">$<%= product.price %></a>
@@ -20,4 +25,8 @@
       </div>
     <% end %>
   </div>
+</div>
 <% end %>
+</div>
+
+---------------------------------
