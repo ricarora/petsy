@@ -42,23 +42,25 @@
     </div>
 
   <% end %>
+</div>
 
-  <% if @product.save %>
+<% if @product.save %>
+  <h2 class="page-title">Your Categories</h2>
+  <div class="form-wrapper">
 
-    Your Categories:<br/>
-
+    <h4>Current Categories:</h4>
     <% @product.categories.each do |category| %>
       <%= label_tag(category.name) %>
       <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
     <% end %>
 
-    <br/><br/>
-    Add Category:<br/>
-
-    <% @categories.each do |category| %>
-      <%= label_tag(category.name) %>
-      <%= button_to "+", create_category_path(@product.id, category_id: category.id), method: :post %>
+    <h4>Add Category:</h4>
+    <% if @categories %>
+      <% @categories.each do |category| %>
+        <%= label_tag(category.name) %>
+        <%= button_to "+", create_category_path(@product.id, category_id: category.id), method: :post %>
+      <% end %>
     <% end %>
-  <% end %>
-
-</div>
+    <%= link_to "Add New Category", new_category_path, { class: "button-link" } %>
+  </div>
+<% end %>

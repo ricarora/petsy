@@ -35,7 +35,8 @@
 .checkout a,
 .login a,
 .browse-path a,
-a.print {
+a.print,
+a.button-link {
   width: 25%;
   border-radius: 20px;
   border: none;
@@ -50,7 +51,8 @@ a.print {
 .checkout a,
 .login a,
 .browse-path a,
-a.print {
+a.print,
+a.button-link {
   text-decoration: none;
   padding: 5px 10px;
 }
@@ -65,7 +67,8 @@ a.print {
 .checkout a:hover,
 .login a:hover,
 .browse-path a:hover,
-a.print:hover {
+a.print:hover,
+a.button-link:hover {
   background-color: black;
 }
 
