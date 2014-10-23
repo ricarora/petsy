@@ -106,7 +106,8 @@ body {
 #search input {
   border-radius: 10px;
   border: none;
-  font-size: 1em;
+  font-size: 13px;
+  padding: 5px;
   /*margin-top: 20px;*/
 }
 
@@ -122,6 +123,15 @@ body {
 
 .button:hover {
   background: black;
+}
+
+.search-button {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.search-copy {
+  opacity: 0.3;
 }
 
 #browse {

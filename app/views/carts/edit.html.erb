@@ -21,7 +21,7 @@
                 <tr>
                   <td><%= link_to item.product.name, show_product_path(item.product.id), {class: "order-detail-links"} %></td>
                   <td><%= format_money(item.product.price) %></td>
-                  <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 0..item.product.stock, step: 1 } %></td>
+                  <td><%= f.number_field "#{item.id}[qty]", { value: item.qty, in: 1..item.product.stock, step: 1 } %></td>
                   <td><%= format_money(item.total_price) %></td>
                   <td><%= link_to image_tag("delete.png", alt: "Delete Button"), delete_orderitem_path(item.id) %></td>
                 </tr>
