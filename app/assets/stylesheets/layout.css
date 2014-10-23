@@ -106,7 +106,8 @@ body {
 #search input {
   border-radius: 10px;
   border: none;
-  font-size: 1em;
+  font-size: 13px;
+  padding: 5px;
   /*margin-top: 20px;*/
 }
 
