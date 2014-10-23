@@ -6,7 +6,7 @@
       <%= link_to product.name, "/products/#{product.id}", :class => "item-name" %>
       <a href="#" class = "item-price"><%= format_money(product.price) %></a>
 
-      <% if session[:current_user_id] && product.user_id == session[:current_user_id] %>
+      <% if session[:current_user_id] && product.user_id == session[:current_user_id] && dashboard %>
         <div class = "destroy-edit">
           <tr>
             <td><%= link_to "Destroy", "/products/destroy/#{product.id}",  :class => "de-link" %></td>
