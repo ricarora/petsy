@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   get "/users/orderfulfillment",    to: "users#orderfulfillment",      as: :user_orderfulfillment
   post "/users/orderfulfillment",   to: "users#orderfulfillment"
   put "/users/:id",                 to: "users#update"
-  get "/users/:id/user_category",   to: "users#user_category"
+  get "/users/:id/user_category",   to: "users#user_category",         as: :user_category
 
   root "home#index"
 
