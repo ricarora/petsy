@@ -1,8 +1,8 @@
 class LoginsController < ApplicationController
 
   def new
-    if find_user
-      redirect_to user_profile_path
+    if session[:current_user_id]
+      redirect_to root_path
     else
       render :new
     end
