@@ -13,11 +13,7 @@ class OrdersController < ApplicationController
     find_cart
 
     if @user
-      @order = @user.orders.new
-      # @order = Order.new
-      # @order.user_id = @user.id
-      # @order.name_on_card = @user.name
-      # @order.email = @user.email
+      @order = Order.new(user_id: @user.id, name_on_card: @user.name, email: @user.email)
     else
       @order = Order.new
     end
