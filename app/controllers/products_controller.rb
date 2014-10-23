@@ -69,6 +69,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def searchby
+    @category = Category.all
+    @userall = User.all
+  end
+
   def create_category
      @product = Product.find(params[:id])
      @productcategory = Productcategory.new

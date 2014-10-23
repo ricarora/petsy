@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   get  "/products",                 to: "products#index",              as: :products
   get  "/products/new",             to: "products#new",                as: :new_product
   post "/products/new",             to: "products#create"
+  get "/products/searchby",         to: "products#searchby",           as: :browse_by
   get "/products/destroy/:id",      to: "products#destroy",            as: :destroy_product
   get "/products/:id/edit",         to: "products#edit",               as: :edit_product
   patch "/products/:id",              to: "products#update"
-  get  "products/landing",                 to: "products#landing"  
+  get  "products/landing",                 to: "products#landing"
   get "/products/:id",              to: "products#show",               as: :show_product
+
 
   post "/products/:id/newcategory", to: "products#create_category",    as: :create_category
   delete "/products/:id/newcategory", to: "products#destroy_category", as: :delete_category
