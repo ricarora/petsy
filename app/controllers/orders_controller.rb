@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index # view all orders; don't want people to see this
-    if find_user_session
+    if find_user
       @myorders = @user.orders
     else
       redirect_to new_login_path, alert: "Please log in to view your orders."
@@ -9,15 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def new # checkout page
-    find_user_session
+    find_user
     find_cart
 
     if @user
-      @order = @user.orders.new
-      # @order = Order.new
-      # @order.user_id = @user.id
-      # @order.name_on_card = @user.name
-      # @order.email = @user.email
+      @order = Order.new(user_id: @user.id, name_on_card: @user.name, email: @user.email)
     else
       @order = Order.new
     end
@@ -62,15 +58,17 @@ class OrdersController < ApplicationController
   # end
 
   def info
-    @buyer = Orderitem.find(params[:format]).order
+    @order = Order.find(params[:id])
+
+    if find_user && find_orderitems
+      @buyer = @order
+    else
+      redirect_to root_path
+    end
   end
 
 
   private
-
-  def find_user_session
-    @user = User.find_by(id: session[:current_user_id])
-  end
 
   def find_order
     @order = Order.find_by(id: session[:order_id])
@@ -78,14 +76,22 @@ class OrdersController < ApplicationController
 
   def find_order_dashboard
     @order = Order.find_by(id: params[:id])
-    find_user_session
-    if @order.user_id != @user.id
+    if find_user
+      @user_id = @user.id
+    else
+      @user_id = "foo"
+    end
+
+    if @order.user_id != @user_id
       @order = nil
     end
   end
 
-  def find_cart
-    @cart = Cart.find_by(id: session[:cart_id])
+  def find_orderitems
+    orderitems = @order.orderitems
+    among_sellers = false
+    orderitems.each { |orderitem| among_sellers = true if orderitem.product.user_id == @user.id }
+    return among_sellers
   end
 
   def save_order
@@ -94,13 +100,13 @@ class OrdersController < ApplicationController
       post_order_save_tidying
       redirect_to order_confirmation_path
     else
-      find_user_session
+      find_user
       render :new
     end
   end
 
   def setup_order
-    @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order = Order.new(params.require(:order).permit(:user_id, :name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.total_price = @cart.total_price
     @order.status = "Pending"
     @order.orderdate = DateTime.now

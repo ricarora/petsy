@@ -22,15 +22,14 @@ Rails.application.routes.draw do
   # Orders Routes
   get    "/orders",               to: "orders#index",                  as: :orders
   get    "/checkout",             to: "orders#new",                    as: :new_order
-  get    "/orders/info",          to: "orders#info",                   as: :order_info
   post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#confirmation",           as: :order_confirmation
   get    "/orders/:id",           to: "orders#show",                   as: :show_order
+  get    "/orders/:id/info",      to: "orders#info",                   as: :order_info
 
 
   # Orderitem Routes
   post   "/orderitems/new",         to: "orderitems#create",           as: :orderitems_new
-  # patch  "/cart/:id",             to: "orderitems#update",           as: :update_cart
   get    "/orderitem/:id/delete",   to: "orderitems#destroy",          as: :delete_orderitem
   put    "/orderitem/cancel",       to: "orderitems#cancel",           as: :cancel_orderitem
   put    "/orderitem/ship",         to: "orderitems#ship",             as: :ship_orderitem
@@ -65,7 +64,7 @@ Rails.application.routes.draw do
   get "/users/orderfulfillment",    to: "users#orderfulfillment",      as: :user_orderfulfillment
   post "/users/orderfulfillment",   to: "users#orderfulfillment"
   put "/users/:id",                 to: "users#update"
-  get "/users/:id/user_category",   to: "users#user_category"
+  get "/users/:id/user_category",   to: "users#user_category",         as: :user_category
 
   root "home#index"
 

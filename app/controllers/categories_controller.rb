@@ -31,6 +31,8 @@ class CategoriesController < ApplicationController
       product = Product.where(id: join_item[1])
       @category_products << product
     end
+
+    @products = @category_products.flatten
   end
 
   private

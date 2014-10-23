@@ -6,6 +6,10 @@
   background: rgba(245, 245, 245, 0.8);
 }
 
+.profile-products {
+  margin-top: 15px;
+}
+
 .profile-row {
   text-align: center;
 }
