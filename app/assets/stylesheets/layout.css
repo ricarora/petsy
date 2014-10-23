@@ -124,6 +124,11 @@ body {
   background: black;
 }
 
+.search-button {
+  text-align: center;
+  margin-top: 25px;
+}
+
 #browse {
   text-decoration: none;
   color: white;

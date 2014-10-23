@@ -31,6 +31,7 @@
   text-align: center;
 }
 
+.search-button input[type=submit],
 .form-wrapper input[type=submit],
 .checkout a,
 .login a,
@@ -63,6 +64,7 @@ a.button-link {
   background-color: dimgrey;
 }
 
+.search-button input[type=submit]:hover,
 .form-wrapper input[type=submit]:hover,
 .checkout a:hover,
 .login a:hover,
@@ -70,6 +72,10 @@ a.button-link {
 a.print:hover,
 a.button-link:hover {
   background-color: black;
+}
+
+.search-button input[type=submit] {
+  width: 10%;
 }
 
 .checkout,

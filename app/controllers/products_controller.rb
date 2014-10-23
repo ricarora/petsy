@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
   def search
     @search = "%#{params[:search]}%"
     @products = Product.where('lower(name) LIKE ? or lower(description) LIKE ?', @search.downcase, @search.downcase)
-    render :index
+    render :search
   end
 
   def create_category
