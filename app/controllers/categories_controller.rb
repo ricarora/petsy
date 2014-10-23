@@ -5,7 +5,11 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    if find_user
+      @category = Category.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create

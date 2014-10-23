@@ -19,6 +19,11 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @categories = Category.all.where.not(id: @product.categories.map { |category| category.id })
+
+    find_user
+    if !@user || @product.user_id != @user.id
+      redirect_to products_path
+    end
   end
 
   def show
@@ -45,8 +50,13 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.all.find(params[:id])
-    @product.destroy
-    redirect_to products_path, notice: "Product was successfully destroyed."
+    find_user
+    if !@user || @product.user_id != @user.id
+      redirect_to products_path
+    else
+      @product.destroy
+      redirect_to products_path, notice: "Product was successfully destroyed."
+    end
   end
 
   def lookup
