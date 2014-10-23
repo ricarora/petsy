@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post "/products/new",             to: "products#create"
   get "/products/destroy/:id",      to: "products#destroy",            as: :destroy_product
   get "/products/:id/edit",         to: "products#edit",               as: :edit_product
-  get "/products/:id/newcategory",  to: "products#newcategory",        as: :new_product_category
   patch "/products/:id",              to: "products#update"
   get "/products/:id",              to: "products#show",               as: :show_product
 
@@ -45,10 +44,6 @@ Rails.application.routes.draw do
   get "/categories/new",            to: "categories#new",              as: :new_category
   post "/categories/new",           to: "categories#create"
   get "/categories/:id/products",   to: "categories#products",         as: :category_products
-
-  # Product Categories Routes
-  # get "/productcategories",        to: "productcategories#index",    as: :productitems_new
-  # post "/productcategories/:id",   to: "productcategories#create"
 
   # Users Routes
   get "/users/new",                 to: "users#new",                   as: :new_user
