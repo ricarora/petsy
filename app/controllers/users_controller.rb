@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if find_user
+      redirect_to user_profile_path
+    else
+      @user = User.new
+    end
   end
 
   def edit
