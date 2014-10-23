@@ -22,5 +22,11 @@
 </div>
 
 <div class="profile-products">
-  <%= render "shared/product_list", dashboard: true %>
+  <% if @user.products.size > 0 %>
+      <%= render "shared/product_list", dashboard: true %>
+  <% else %>
+    <div class="new-products-wrapper">
+      <%= link_to "Add Your First Product!", new_product_path, class: "button-link add-products" %>
+    </div>
+  <% end %>
 </div>
