@@ -3,11 +3,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def newcategory
-    @product = Product.find(params[:id])
-    @categories = Category.all.where.not(id: [@product.categories.map { |category| category.id }])
-  end
-
   def new
     if session[:current_user_id]
       @categories = Category.all
@@ -18,7 +13,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # @categories = Category.all
     @product = Product.find(params[:id])
     @categories = Category.all.where.not(id: [@product.categories.map { |category| category.id }])
   end
@@ -59,6 +53,20 @@ class ProductsController < ApplicationController
     else
       @products = index
     end
+  end
+
+  def create_category
+     @product = Product.find(params[:id])
+     @productcategory = Productcategory.new
+     @productcategory.category_id = params[:category_id]
+     @productcategory.product_id = @product.id
+     @productcategory.save
+     render :edit
+  end
+
+  def destroy_category
+    Productcategory.find_by(product_id: params[:id], category_id: params[:category_id]).destroy
+    render :edit
   end
 
 end
