@@ -69,22 +69,24 @@ body {
 #browse-dropdown {
   /*float: right;*/
   z-index: 50;
-
+  position: absolute;
+  top: 0;
   /*margin-right: 157px;*/
-  margin-right: -89px;
+  /*margin-right: -89px;*/
   /*vertical-align: top;*/
   /*margin-top: 1px;*/
   /*margin-top: 70px;*/
   /*background: rgba(245,245,245);*/
+  margin-top: 0px;
   background: whitesmoke;
   padding: 0;
   box-shadow: 1px 1px 5px lightgrey;
   display:none;
-  z-index: -1;
+  z-index: 1;
   width: 150px;
   /*margin-right: 100px;*/
-  margin-left: auto;
-  float: right;
+  /*margin-left: auto;*/
+  /*float: right;*/
   margin-top:70px;
   /*height: 0%;
   overflow: hidden;*/
@@ -95,6 +97,21 @@ body {
 /*margin-top: -50px;*/
 }
 
+#nav-body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1000;
+  background: whitesmoke;
+}
+
+
+#more-floats {
+  float: right;
+  /*margin-right: 61px;*/
+  margin-right: 308px;
+
+}
 #browse-dropdown ul {
   list-style: none;
   text-align: right;
@@ -498,6 +515,26 @@ body {
 
 .pagination li.current a {
     background-position:0 -12px;
+}
+
+.bold {
+  font-weight: bold;
+  font-family: 'Oswald';
+}
+
+.show-attributes {
+  font-family: arial;
+}
+
+.logo {
+  width: 80px;
+  margin-top: 10px;
+  margin-left: 10px;
+  /*padding-top: 8px;
+  padding-bottom: 0;
+  margin-left: 10px;
+  margin-right: 30px;
+  margin-bottom: 0;*/
 }
  /*h1 {
    display: block;
