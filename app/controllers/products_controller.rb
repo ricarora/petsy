@@ -71,12 +71,13 @@ class ProductsController < ApplicationController
      @productcategory.category_id = params[:category_id]
      @productcategory.product_id = @product.id
      @productcategory.save
-     redirect_to edit_product_path
+     redirect_to edit_product_path(@product, :anchor => "category")
   end
 
   def destroy_category
+    @product = Product.find(params[:id])
     Productcategory.find_by(product_id: params[:id], category_id: params[:category_id]).destroy
-    redirect_to edit_product_path
+    redirect_to edit_product_path(@product, :anchor => "category")
   end
 
 end
