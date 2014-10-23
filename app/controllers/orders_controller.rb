@@ -71,13 +71,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def find_orderitems
-    orderitems = @order.orderitems
-    among_sellers = false
-    orderitems.each { |orderitem| among_sellers = true if orderitem.product.user_id == @user.id }
-    return among_sellers
-  end
-
 
   private
 
@@ -96,6 +89,13 @@ class OrdersController < ApplicationController
     if @order.user_id != @user_id
       @order = nil
     end
+  end
+
+  def find_orderitems
+    orderitems = @order.orderitems
+    among_sellers = false
+    orderitems.each { |orderitem| among_sellers = true if orderitem.product.user_id == @user.id }
+    return among_sellers
   end
 
   def find_cart
