@@ -55,10 +55,14 @@ class UsersController < ApplicationController
   end
 
   def orderfulfillment
-    if params[:sort]
-      @orderfulfillment = ordfull.sort_by {|ord| ord.status}
+    if find_user
+      if params[:sort]
+        @orderfulfillment = ordfull.sort_by {|ord| ord.status}
+      else
+        @orderfulfillment = ordfull
+      end
     else
-      @orderfulfillment = ordfull
+      redirect_to new_login_path, alert: "Please login to view your order fulfillment."
     end
   end
 
