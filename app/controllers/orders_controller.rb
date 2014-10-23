@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
 
   def info
     if find_user
-      @buyer = Orderitem.find(params[:format]).order
+      @buyer = Orderitem.find(params[:id]).order
     else
       redirect_to root_path
     end

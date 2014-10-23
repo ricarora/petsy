@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post   "/checkout",             to: "orders#create"
   get    "/order-confirmation",   to: "orders#confirmation",           as: :order_confirmation
   get    "/orders/:id",           to: "orders#show",                   as: :show_order
-  get    "/orders/info",          to: "orders#info",                   as: :order_info
+  get    "/orders/:id/info",      to: "orders#info",                   as: :order_info
 
 
   # Orderitem Routes
