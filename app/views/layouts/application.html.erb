@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link href='http://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag "application", 'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed', :media => "all" %>
   <script language="javascript" type="text/javascript" src="jquery-1.8.3.js"></script>
   <script src="/javascript/jquery.js"></script>
 </head>
@@ -18,9 +18,12 @@
     <%= image_tag "tag3.png", :class => "logo" %>
 
     <div id="search">
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <%= form_tag search_products_path do %>
+        <%= text_field_tag :search, params[:search], :value => "Name or keyword", :class => "search-copy" %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <% end %>
     </div>
+
     <div id = "floating-stuff">
 
       <div id ="browse-div">
@@ -50,6 +53,8 @@
         </ul>
       </div>
   </div>
+
+
 
   </header>
 
