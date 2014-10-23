@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  validates :rating, presence: true, numericality: true
+  validates :rating, presence: true, numericality: { only_integer: true }
   validates_inclusion_of :rating, :in => (1..5)
 
   validates :comment, presence: true
