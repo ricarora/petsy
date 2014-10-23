@@ -82,8 +82,13 @@ class OrdersController < ApplicationController
 
   def find_order_dashboard
     @order = Order.find_by(id: params[:id])
-    find_user_session
-    if @order.user_id != @user.id
+    if find_user_session
+      @user_id = @user.id
+    else
+      @user_id = "foo"
+    end
+
+    if @order.user_id != @user_id
       @order = nil
     end
   end
