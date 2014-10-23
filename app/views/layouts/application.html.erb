@@ -17,7 +17,7 @@
 
     <div id="search">
       <%= form_tag search_products_path do %>
-        <%= text_field_tag :search, params[:search], :value => "Name or keyword", :class => "search-copy" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Name or keyword" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
       <% end %>
     </div>
