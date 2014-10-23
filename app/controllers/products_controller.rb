@@ -46,8 +46,13 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.all.find(params[:id])
-    @product.destroy
-    redirect_to products_path, notice: "Product was successfully destroyed."
+    find_user
+    if !@user || @product.user_id != @user.id
+      redirect_to products_path
+    else
+      @product.destroy
+      redirect_to products_path, notice: "Product was successfully destroyed."
+    end
   end
 
   def lookup
