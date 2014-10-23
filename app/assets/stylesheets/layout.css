@@ -24,6 +24,7 @@ body {
  .sub-body {
     width: 80%;
      margin: 0 auto;
+     margin-top: 120px;
  }
 
  #layout-nav {
@@ -33,6 +34,8 @@ body {
    margin: 0;
    height: 70px;
    box-shadow: 2px 2px 2px lightgrey;
+   position: fixed;
+   top: 0;
    /*z-index: 100;
    position: absolute;
    margin-top :-26px;*/
@@ -78,6 +81,10 @@ body {
   margin: 0;
   border-radius: 20px;
   margin: 5px;
+}
+
+.button:hover {
+  background: black;
 }
 
 #browse {
@@ -237,31 +244,43 @@ body {
 
 
 #sub-nav {
-  background: green;
+  /*background: rgb(255, 255, 255, 0.8);*/
+  background: white;
+  /*opacity: .7;*/
   box-shadow: 2px 2px 2px lightgrey;
+  position: fixed;
+  width: 100%;
+  padding:0;
+  margin: 0;
+  /*margin-top: -80px;*/
+  margin-top: -50px;
+  z-index: 50;
 }
 
 .sub-nav-link {
-  color: white;
+  color: green;
   text-decoration: none;
   margin: 0 12.5% 0 12.5%;
   font-size: 1.2em;
+}
 
+.sub-nav-link:hover {
+  color:black;
 }
 
 #browse-dropdown {
-  /*position: absolute;*/
   float: right;
-  /*margin-right: 69px;*/
   margin-right: 157px;
   vertical-align: top;
   margin-top: 1px;
-  /*margin-top: -100px;*/
   background: rgba(245,245,245,.7);
   padding: 0;
   box-shadow: 1px 1px 5px lightgrey;
   display:none;
-
+  /*position: fixed;*/
+/*margin-right: 69px;*/
+/*position: absolute;*/
+/*margin-top: -50px;*/
 }
 
 #browse-dropdown ul {
@@ -303,6 +322,9 @@ body {
   margin-bottom: 10px;
 }
 
+.add-to-cart:hover {
+  background: black;
+}
 .review {
   margin: 0;
   padding: 10px;
@@ -374,6 +396,13 @@ body {
   font-size: 1.3em;
 }
 
+.new-review:hover {
+  background: black;
+}
+#new-review-top:hover {
+  background: black;
+}
+
 .review-add {
   margin-top: 50px;
 }
@@ -382,6 +411,11 @@ body {
   width: 125px;
   margin: 0 auto;
   margin-bottom: 100px;
+}
+
+#new-review-top {
+  font-size: 1em;
+  background: dimgrey;
 }
  /*h1 {
    display: block;
