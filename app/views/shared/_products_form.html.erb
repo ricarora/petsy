@@ -49,7 +49,7 @@
   <div class="form-wrapper">
 
     <h4>Current Categories:</h4>
-    <% if @product.categories %>
+    <% if @product.categories.size > 0 %>
       <% @product.categories.each do |category| %>
         <%= label_tag(category.name) %>
         <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
@@ -59,7 +59,7 @@
     <% end %>
 
     <h4>Add Category:</h4>
-    <% if @categories %>
+    <% if @categories.size > 0 %>
       <% @categories.each do |category| %>
         <%= label_tag(category.name) %>
         <%= button_to "+", create_category_path(@product.id, category_id: category.id), method: :post %>
