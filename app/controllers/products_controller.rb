@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @categories = Category.all.where.not(id: [@product.categories.map { |category| category.id }])
+    @categories = Category.all.where.not(id: @product.categories.map { |category| category.id })
   end
 
   def show
@@ -61,12 +61,12 @@ class ProductsController < ApplicationController
      @productcategory.category_id = params[:category_id]
      @productcategory.product_id = @product.id
      @productcategory.save
-     render :edit
+     redirect_to edit_product_path
   end
 
   def destroy_category
     Productcategory.find_by(product_id: params[:id], category_id: params[:category_id]).destroy
-    render :edit
+    redirect_to edit_product_path
   end
 
 end
