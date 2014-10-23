@@ -45,23 +45,13 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def cancel
-  #   orditm = Orderitem.find(params[:format])
-  #   orditm.order.update(status: "Cancel")
-  #   redirect_to user_orderfulfillment_path
-  # end
-  #
-  # def ship
-  #   orditm = Orderitem.find(params[:format])
-  #   orditm.order.update(status: "Ship")
-  #   redirect_to user_orderfulfillment_path
-  # end
-
   def info
     @order = Order.find(params[:id])
+    @buyer_items = @order.orderitems.collect { |item| item if item.product.user_id == 5 }.compact
 
     if find_user && find_orderitems
       @buyer = @order
+      @buyer_items = @order.orderitems.collect { |item| item if item.product.user_id == 5 }.compact
     else
       redirect_to root_path
     end
