@@ -1,4 +1,24 @@
 <div class="form-wrapper">
+  <% if %>
+    <%= form_tag("/products/#{@product.id}/newcategory", method: "post") do %>
+
+    Your Categories:<br/>
+
+    <% @product.categories.each do |category| %>
+      <%= label_tag(category.name) %>
+      <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
+    <% end %>
+
+    <br/><br/>
+    Add Category:<br/>
+      <% @categories.each do |category| %>
+        <%= label_tag(category.name) %>
+        <%= button_to "+", {:controller => "productcategories", :action => "create",
+          :category_id => category.id} , {:method=>:post} %>
+      <% end %>
+    <% end %>
+
+  <% end %>
   <%= form_for @product, url: {action: obj} do |f| %>
     <div class="form-field">
       <%= f.label :name, "Name:" %>

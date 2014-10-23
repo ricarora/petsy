@@ -4,6 +4,7 @@
 <div class = "show-text">
   <h1><%= @product.name %></h1>
 
+
   <% if @product.reviews.size != 0 %>
     <div class = "average-rating-div">
       <div class = "average-star-div">
@@ -36,17 +37,14 @@
   <div class = "review-add">
 
 
-  <%=link_to "Write a review", new_product_review_path %>
-
 <% if @product.reviews.size != 0 %>
-  <p id = "average_rating">Average Rating: <%= average_rating %></p>
 
-  <div class = "average-rating-div">
+  <!-- <div class = "average-rating-div">
     <div class = "average-star-div">
       <h2>Average Product Rating:</h2>
       <%= render "shared/stars", obj: average_rating %>
     </div>
-  </div>
+  </div> -->
 
     <% @product.reviews.each do |review| %>
     <div id = "full-review">
