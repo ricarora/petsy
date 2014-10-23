@@ -86,11 +86,29 @@ a.button-link:hover {
 
 .form-wrapper input[type=submit].category-button {
   font-size: 20px;
+  padding: 0 0 35px 0;
+  width: 25px;
+  height: 25px;
 }
 
 .category-div {
   display: inline-block;
   width: 20%;
+}
+
+.category-wrapper {
+  margin: 0 0 5px 0;
+}
+.category-wrapper h3 {
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.add-new-category-wrapper {
+  padding: 50px 0 0 0;
+  text-align: center;
 }
 
 /* --- Styling for Cart --- */
