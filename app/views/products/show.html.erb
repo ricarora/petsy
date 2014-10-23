@@ -22,13 +22,15 @@
       <%= submit_tag "Add to Cart", :class => "add-to-cart" %>
     <% end %>
 
-    <div class = "show-destroy-edit">
-      <tr>
-        <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
-        <td><%= link_to "Edit", "/products/#{@product.id}/edit",  :class => "show-de-link" %></td>
-        <td><%= link_to "Add Category", "/products/#{@product.id}/newcategory",  :class => "show-de-link"  %></td>
-      </tr>
-    </div>
+    <% if session[:current_user_id] && @product.user_id == session[:current_user_id] %>
+      <div class = "show-destroy-edit">
+        <tr>
+          <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
+          <td><%= link_to "Edit", "/products/#{@product.id}/edit",  :class => "show-de-link" %></td>
+          <td><%= link_to "Add Category", "/products/#{@product.id}/newcategory",  :class => "show-de-link"  %></td>
+        </tr>
+      </div>
+    <% end %>
 </div>
 
   <div class = "review-add">
