@@ -65,6 +65,11 @@ class ProductsController < ApplicationController
     render :search
   end
 
+  def searchby
+    @category = Category.all
+    @userall = User.all
+  end
+
   def create_category
      @product = Product.find(params[:id])
      @productcategory = Productcategory.new

@@ -44,6 +44,7 @@
 
     <div id = "browse-dropdown">
       <ul>
+        <%= link_to "Browse by", browse_by_path, {class: "category-link"} %>
         <% all_categories.all.each do |category| %>
           <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
         <% end %>
