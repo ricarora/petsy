@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
 
   def search
     @search = "%#{params[:search]}%"
-    @products = Product.where(:conditions => ['lower(name) LIKE ?', @search.downcase])
+    @products = Product.where('lower(name) LIKE ?', @search.downcase)
     render :index
   end
 
