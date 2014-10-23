@@ -1,26 +1,23 @@
-<%= @user.storename %>!<br/>
 
-<br/><br/>
+
+<div class = "page-title">Welcome to Store <%= @user.storename %>!</div>
+
+
 <% @user_products.each do |product| %>
-<div class = "product-box">
-    <a href="#"><%= product.name %></a>
-    <a href="#">$<%= product.price %></a>
-</div>
+  <div class = "item-box">
+    <%= image_tag (product.image_url), :class => "item-image" %>
+    <%= link_to product.name, "/products/#{product.id}", :class => "item-name" %>
+    <a href="#" class = "item-price"><%= format_money(product.price) %></a>
 
-  <div class = "product-popup">
-    <p><%= image_tag (product.image_url) %>
-    <p>Description: <%= product.description %></p>
-    <p>Stock: <%= product.stock %> remaining</p>
+    <div class = "item-popup">
+      <p class = "item-link">Description: <%= product.description %></p>
+      <p class = "item-link">Stock: <%= product.stock %> remaining</p>
 
-    <%= form_tag(orderitems_new_path, method: "post") do %>
+      <%= form_tag(orderitems_new_path, method: "post") do %>
       <%= hidden_field_tag :product_id, product.id %>
+      <%= submit_tag "Add to Cart", :class => "add-to-cart" %>
+      <% end %>
 
-      <div class="submit-button">
-        <%= submit_tag "Add to Cart" %>
-      </div>
-    <% end %>
+    </div>
   </div>
 <% end %>
-
-
-------------------------------------------------------------
