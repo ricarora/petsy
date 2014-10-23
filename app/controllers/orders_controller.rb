@@ -106,7 +106,7 @@ class OrdersController < ApplicationController
   end
 
   def setup_order
-    @order = Order.new(params.require(:order).permit(:name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
+    @order = Order.new(params.require(:order).permit(:user_id, :name_on_card, :card_number, :card_exp, :security_code, :address, :city, :state, :zip, :email))
     @order.total_price = @cart.total_price
     @order.status = "Pending"
     @order.orderdate = DateTime.now
