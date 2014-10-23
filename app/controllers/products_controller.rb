@@ -59,14 +59,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def lookup
-    #srch = params[:params][:search]
-    srch = params[:search]
-    if srch
-      @products = Product.all.where('lower(name) LIKE ?', "%#{srch.downcase}%")
-    else
-      @products = index
-    end
+  def search
+    @search = "%#{params[:search]}%"
+    @products = Product.where(:conditions => ['lower(name) LIKE ?', @search.downcase])
+    render :index
   end
 
   def create_category

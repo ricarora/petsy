@@ -43,30 +43,45 @@
 
   <% end %>
 </div>
+<div class="category-wrapper">
+  <% if @product.save %>
+    <h2 class="page-title">Your Categories</h2>
+    <div class="form-wrapper">
+      <div class="current-category-wrapper">
+        <h3>Current Categories:</h3>
+          <% if @product.categories.size > 0 %>
+            <% @product.categories.each do |category| %>
+              <div class="category-wrapper">
+                <%= label_tag(category.name) %>
+                <div class="category-div">
+                  <%= button_to "-", delete_category_path(@product.id, category_id: category.id), class: "category-button", method: :delete %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p>No Categories Added</p>
+          <% end %>
+      </div>
 
-<% if @product.save %>
-  <h2 class="page-title">Your Categories</h2>
-  <div class="form-wrapper">
+      <div class="add-category-wrapper">
+        <h3>Add Category:</h3>
+          <% if @categories.size > 0 %>
+            <% @categories.each do |category| %>
+              <div class="category-wrapper">
+                <%= label_tag(category.name) %>
+                <div class="category-div">
+                  <%= button_to "+", create_category_path(@product.id, category_id: category.id), class: "category-button", method: :post %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p>No More Categories Available</p>
+          <% end %>
+      </div>
 
-    <h4>Current Categories:</h4>
-    <% if @product.categories.size > 0 %>
-      <% @product.categories.each do |category| %>
-        <%= label_tag(category.name) %>
-        <%= button_to "-", delete_category_path(@product.id, category_id: category.id), method: :delete %>
-      <% end %>
-    <% else %>
-      <p>No Categories Added</p>
-    <% end %>
-
-    <h4>Add Category:</h4>
-    <% if @categories.size > 0 %>
-      <% @categories.each do |category| %>
-        <%= label_tag(category.name) %>
-        <%= button_to "+", create_category_path(@product.id, category_id: category.id), method: :post %>
-      <% end %>
-    <% else %>
-      <p>No More Categories Available</p>
-    <% end %>
-    <%= link_to "Add New Category", new_category_path, { class: "button-link" } %>
-  </div>
-<% end %>
+      <div class="add-new-category-wrapper">
+        <%= link_to "Create New Category", new_category_path, { class: "button-link" } %>
+      </div>
+    </div>
+  <% end %>
+</div>
