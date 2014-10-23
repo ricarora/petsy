@@ -47,9 +47,11 @@ class OrdersController < ApplicationController
 
   def info
     @order = Order.find(params[:id])
+    @buyer_items = @order.orderitems.collect { |item| item if item.product.user_id == 5 }.compact
 
     if find_user && find_orderitems
       @buyer = @order
+      @buyer_items = @order.orderitems.collect { |item| item if item.product.user_id == 5 }.compact
     else
       redirect_to root_path
     end
