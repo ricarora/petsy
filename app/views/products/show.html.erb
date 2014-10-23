@@ -13,8 +13,8 @@
   <% end %>
 
     <p class = "show-attributes"><%= format_money(@product.price) %></p>
-    <p class = "show-attributes">Description: <%= @product.description %></p>
-    <p class = "show-attributes">Stock: <%= @product.stock %> remaining</p>
+    <p class = "show-attributes"><span class = "bold">Description:</span> <%= @product.description %></p>
+    <p class = "show-attributes"><span class = "bold">Stock:</span> <%= @product.stock %> remaining</p>
 
 
     <%= form_tag(orderitems_new_path, method: "post") do %>

@@ -2,24 +2,27 @@
 <html>
 <head>
   <title>Petsy</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed' rel='stylesheet' type='text/css'>
   <script language="javascript" type="text/javascript" src="jquery-1.8.3.js"></script>
-  <script type="text/javascript" src="js/slides.min.jquery.js"></script>
   <script src="/javascript/jquery.js"></script>
 </head>
 <body>
 
   <header id = "layout-nav">
-    <h1 id = "main-logo">Petsy</h1>
+    <div id = "nav-body">
+
+    <!-- <h1 id = "main-logo">Petsy</h1> -->
+    <%= image_tag "tag3.png", :class => "logo" %>
 
     <div id="search">
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :name => nil, :class => "button" %>
     </div>
     <div id = "floating-stuff">
+
       <div id ="browse-div">
         <%= link_to "Browse", products_path, :id => "browse" %>
       </div>
@@ -35,17 +38,18 @@
           <%= link_to "Login", new_login_path, {id: "browse"} %>
         </div>
       <% end %>
-
-
     </div>
+  </div>
 
-    <div id = "browse-dropdown">
-      <ul>
-        <% all_categories.all.each do |category| %>
-          <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
-        <% end %>
-      </ul>
-    </div>
+    <div id = "more-floats">
+      <div id = "browse-dropdown">
+        <ul>
+          <% all_categories.all.each do |category| %>
+            <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
+          <% end %>
+        </ul>
+      </div>
+  </div>
 
   </header>
 
