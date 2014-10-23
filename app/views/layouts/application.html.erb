@@ -15,9 +15,12 @@
     <h1 id = "main-logo">Petsy</h1>
 
     <div id="search">
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <%= form_tag search_products_path do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil, :class => "button" %>
+      <% end %>
     </div>
+
     <div id = "floating-stuff">
       <div id ="browse-div">
         <%= link_to "Browse", products_path, :id => "browse" %>

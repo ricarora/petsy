@@ -45,14 +45,10 @@ class ProductsController < ApplicationController
     redirect_to products_path, notice: "Product was successfully destroyed."
   end
 
-  def lookup
-    #srch = params[:params][:search]
-    srch = params[:search]
-    if srch
-      @products = Product.all.where('lower(name) LIKE ?', "%#{srch.downcase}%")
-    else
-      @products = index
-    end
+  def search
+    @search = "%#{params[:search]}%"
+    @products = Product.where('name LIKE ?', @search)
+    render :index
   end
 
   def create_category

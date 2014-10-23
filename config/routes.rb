@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   get  "/products/new",             to: "products#new",                as: :new_product
   post "/products/new",             to: "products#create"
   get "/products/destroy/:id",      to: "products#destroy",            as: :destroy_product
+  post "/products/search",          to: "products#search",             as: :search_products
   get "/products/:id/edit",         to: "products#edit",               as: :edit_product
   get "/products/:id/newcategory",  to: "products#newcategory",        as: :new_product_category
   patch "/products/:id",              to: "products#update"
   get "/products/:id",              to: "products#show",               as: :show_product
-
   post "/products/:id/newcategory", to: "products#create_category",    as: :create_category
   delete "/products/:id/newcategory", to: "products#destroy_category", as: :delete_category
 
