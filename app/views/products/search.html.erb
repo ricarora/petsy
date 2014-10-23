@@ -1,0 +1,11 @@
+
+<h2 class = "page-title">Search Results</h2>
+
+<%= render "shared/product_list", dashboard: false %>
+
+
+<div class="search-button">
+  <%= form_tag(products_path, method: "get") do %>
+    <%= submit_tag "Clear Results" %>
+  <% end %>
+</div>

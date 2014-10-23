@@ -1,0 +1,11 @@
+.text-spacing {
+  margin: 0 5px;
+  text-decoration: none;
+  color: dimgrey;
+  font-size: 1.2em;
+
+}
+
+.text-spacing:hover {
+  color:red;
+}
