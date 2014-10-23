@@ -62,11 +62,20 @@ class OrdersController < ApplicationController
   # end
 
   def info
-    if find_user
-      @buyer = Orderitem.find(params[:id]).order
+    @order = Order.find(params[:id])
+
+    if find_user && find_orderitems
+      @buyer = @order
     else
       redirect_to root_path
     end
+  end
+
+  def find_orderitems
+    orderitems = @order.orderitems
+    among_sellers = false
+    orderitems.each { |orderitem| among_sellers = true if orderitem.product.user_id == @user.id }
+    return among_sellers
   end
 
 
