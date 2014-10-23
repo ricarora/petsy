@@ -13,4 +13,8 @@ private
   def find_user
     @user = User.find_by(id: session[:current_user_id])
   end
+
+  def find_cart
+    @cart = Cart.find_by(id: session[:cart_id])
+  end
 end

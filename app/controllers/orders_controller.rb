@@ -98,10 +98,6 @@ class OrdersController < ApplicationController
     return among_sellers
   end
 
-  def find_cart
-    @cart = Cart.find_by(id: session[:cart_id])
-  end
-
   def save_order
     setup_order
     if @order.save

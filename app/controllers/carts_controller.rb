@@ -20,10 +20,6 @@ class CartsController < ApplicationController
 
   private
 
-  def find_cart
-    @cart = Cart.find_by(id: session[:cart_id])
-  end
-
   def empty_cart
     @empty_cart = "Your cart is empty!"
   end
