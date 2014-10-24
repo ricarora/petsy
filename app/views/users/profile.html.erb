@@ -16,11 +16,18 @@
 
   <div class="profile-row user-links">
     <%= link_to "Edit Profile", edit_user_path %>
-    <%= link_to "Orderfulfillment", user_orderfulfillment_path %>
+    <%= link_to "Order Fulfillment", user_orderfulfillment_path %>
     <%= link_to "My Purchases", orders_path %>
   </div>
 </div>
 
 <div class="profile-products">
-  <%= render "shared/product_list", dashboard: true %>
+  <h3>My Products</h3>
+  <% if @user.products.size > 0 %>
+      <%= render "shared/product_list", dashboard: true %>
+  <% else %>
+    <div class="new-products-wrapper">
+      <%= link_to "Add Your First Product!", new_product_path, class: "button-link add-products" %>
+    </div>
+  <% end %>
 </div>

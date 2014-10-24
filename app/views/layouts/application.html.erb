@@ -6,8 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", 'https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed', :media => "all" %>
-  <script language="javascript" type="text/javascript" src="jquery-1.8.3.js"></script>
-  <script src="/javascript/jquery.js"></script>
+
+  <script src="//code.jquery.com/jquery-latest.min.js"></script>
+  <script src="//unslider.com/unslider.min.js"></script>
+
 </head>
 <body>
 
@@ -19,7 +21,7 @@
 
     <div id="search">
       <%= form_tag search_products_path do %>
-        <%= text_field_tag :search, params[:search], :value => "Name or keyword", :class => "search-copy" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Name or keyword" %>
         <%= submit_tag "Search", :name => nil, :class => "button" %>
       <% end %>
     </div>
@@ -45,8 +47,10 @@
   </div>
 
     <div id = "more-floats">
+
       <div id = "browse-dropdown">
         <ul>
+          <li><%= link_to "Browse By", browse_by_path, {class: "category-link"} %></li>
           <% all_categories.all.each do |category| %>
             <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
           <% end %>

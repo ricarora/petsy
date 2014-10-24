@@ -8,6 +8,21 @@
 |  links hover:       dimgrey;                          |
 | -----------------------------------------------------*/
 
+/* --- Slider --- */
+.banner {
+  position: relative;
+  overflow: auto;
+}
+
+.banner li {
+  list-style: none;
+  height: 100px;
+}
+
+.banner ul li {
+  float: left;
+}
+
 
 /* --- Main Layout & Nav Styling --- */
 body {
@@ -147,10 +162,6 @@ body {
 .search-button {
   text-align: center;
   /*margin-top: 25px;*/
-}
-
-.search-copy {
-  opacity: 0.3;
 }
 
 #browse {

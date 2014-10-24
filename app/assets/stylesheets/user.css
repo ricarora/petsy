@@ -7,7 +7,7 @@
 }
 
 .profile-products {
-  margin-top: 15px;
+  margin-top: 35px;
 }
 
 .profile-row {
@@ -46,7 +46,6 @@
 }
 
 .fulfillment-table {
-  width: 75%;
   margin: 20px auto;
   text-align: center;
 }
@@ -61,4 +60,8 @@
 
 .fulfillment-table table tr:first-child th {
   padding: 5px;
+}
+
+.profile-products h3 {
+  text-align: center;
 }
