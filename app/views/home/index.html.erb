@@ -1,13 +1,22 @@
+
+<div class = "landing-text">
+  <div id = "sub-landing">
+  <h1>Welcome to <span>Petsy</span></h1>
+  <h2>Your new best friend is only a click away!<h2>
+    <%=link_to "Shop Now", products_path, :class => "shop-now" %>
+  </div>
+</div>
 <div class="banner">
     <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
+        <li><%= image_tag "2cats.jpg", :class => "slider-image" %></li>
+        <li><%= image_tag "dog5.jpg", :class => "slider-image" %></li>
+        <li><%= image_tag "cat4.jpg", :class => "slider-image" %></li>
+        <li><%= image_tag "dog4.jpg", :class => "slider-image" %></li>
+        <li><%= image_tag "2kittens.jpg", :class => "slider-image" %></li>
+        <li><%= image_tag "dog2.jpg", :class => "slider-image" %></li>
     </ul>
 </div>
+
 
 <!-- <a href="#" class="unslider-arrow prev"><</a>
 <a href="#" class="unslider-arrow next">></a> -->
@@ -29,7 +38,7 @@
   });
 
   // var unslider = $('.banner').unslider();
-  // 
+  //
   // $('.unslider-arrow').click(function() {
   //     var fn = this.className.split(' ')[1];
   //

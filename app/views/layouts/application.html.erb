@@ -65,9 +65,11 @@
 
   <% if session[:current_user_id] %>
     <div id = "sub-nav">
+      <div>
       <%= link_to "Add Product", new_product_path, { class: "sub-nav-link" }%>
       <%= link_to "Create Category", new_category_path, { class: "sub-nav-link" }%>
       <%= link_to "Dashboard", user_profile_path, { class: "sub-nav-link" }%>
+    </div>
     </div>
   <% end %>
 
