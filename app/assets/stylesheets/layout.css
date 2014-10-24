@@ -8,6 +8,21 @@
 |  links hover:       dimgrey;                          |
 | -----------------------------------------------------*/
 
+/* --- Slider --- */
+.banner {
+  position: relative;
+  overflow: auto;
+}
+
+.banner li {
+  list-style: none;
+  height: 100px;
+}
+
+.banner ul li {
+  float: left;
+}
+
 
 /* --- Main Layout & Nav Styling --- */
 body {
@@ -77,7 +92,7 @@ body {
   /*margin-top: 1px;*/
   /*margin-top: 70px;*/
   /*background: rgba(245,245,245);*/
-  margin-top: 0px;
+  /*margin-top: 10px;*/
   background: whitesmoke;
   padding: 0;
   box-shadow: 1px 1px 5px lightgrey;
@@ -87,7 +102,7 @@ body {
   /*margin-right: 100px;*/
   /*margin-left: auto;*/
   /*float: right;*/
-  margin-top:70px;
+  margin-top:73px;
   /*height: 0%;
   overflow: hidden;*/
 
@@ -126,6 +141,8 @@ body {
   font-size: 13px;
   padding: 5px;
   /*margin-top: 20px;*/
+  /*margin: 0;*/
+
 }
 
 .button{
@@ -144,7 +161,7 @@ body {
 
 .search-button {
   text-align: center;
-  margin-top: 25px;
+  /*margin-top: 25px;*/
 }
 
 #browse {
@@ -155,7 +172,8 @@ body {
 }
 
 #browse-div, #log-div {
-  height: 40px;
+  /*height: 40px;*/
+  height: 45px;
   background: dimgrey;
   padding: 0;
   margin:0;
@@ -525,7 +543,8 @@ body {
 .logo {
   width: 80px;
   margin-top: 10px;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   /*padding-top: 8px;
   padding-bottom: 0;
   margin-left: 10px;
