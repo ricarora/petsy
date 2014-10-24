@@ -7,6 +7,7 @@
   background: rgba(245, 245, 245, 0.8);
 }
 
+.category-list,
 .form-field {
   padding: 10px;
 }
@@ -27,7 +28,12 @@
   padding: 5px;
 }
 
+.category-list,
 .submit-button {
+  text-align: center;
+}
+
+.add-category-button {
   text-align: center;
 }
 

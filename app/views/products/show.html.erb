@@ -29,7 +29,7 @@
     <% if session[:current_user_id] && @product.user_id == session[:current_user_id] %>
       <div class = "show-destroy-edit">
         <tr>
-          <td><%= link_to "Destroy", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
+          <td><%= link_to "Delete", "/products/destroy/#{@product.id}", :class => "show-de-link" %></td>
           <td><%= link_to "Edit", "/products/#{@product.id}/edit",  :class => "show-de-link" %></td>
         </tr>
       </div>
