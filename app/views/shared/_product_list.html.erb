@@ -9,7 +9,7 @@
       <% if session[:current_user_id] && product.user_id == session[:current_user_id] && dashboard %>
         <div class = "destroy-edit">
           <tr>
-            <td><%= link_to "Destroy", "/products/destroy/#{product.id}",  :class => "de-link" %></td>
+            <td><%= link_to "Delete", "/products/destroy/#{product.id}",  :class => "de-link" %></td>
             <td><%= link_to "Edit", "/products/#{product.id}/edit",  :class => "de-link" %></td>
           </tr>
         </div>
