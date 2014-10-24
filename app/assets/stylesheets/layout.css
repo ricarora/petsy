@@ -9,20 +9,85 @@
 | -----------------------------------------------------*/
 
 /* --- Slider --- */
+
+.arial {
+  font-family: arial;
+}
 .banner {
   position: relative;
   overflow: auto;
+  margin: 0;
+  padding: 0;
+  margin-top: -65px;
+  /*margin-right:-500px;*/
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
 }
 
+.landing-text {
+  background: rgba(255, 255, 255, .7);
+  position: fixed;
+  height: 100%;
+  width: 35%;
+  z-index: 60;
+  margin-left: -138px;
+  /*margin-top: -10px;*/
+}
+#sub-landing {
+  margin: 0;
+  padding: 10px;
+  /*padding-left: 40px;*/
+  /*padding-right: 0px;*/
+  background: white;
+  width: 85%;
+  margin-left: -2px;
+  height: 100%;
+  color: black;
+  text-align :center;
+}
+#sub-landing h1 {
+  font-size: 2.8em;
+  padding-top: 200px;
+}
+
+#sub-landing h2 {
+  margin-bottom: 40px;
+}
+
+#sub-landing h1 span {
+  color: green;
+}
 .banner li {
   list-style: none;
-  height: 100px;
+  /*height: 100px;*/
+  /*width: 90%;
+  height: auto;*/
+  margin: 0;
+  padding: 0;
+}
+
+.banner img {
+  width: 1350px;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .banner ul li {
+  /*float: right;*/
   float: left;
+  margin: 0;
+  padding: 0;
 }
 
+.shop-now {
+  background: green;
+  color: white;
+  border-radius: 15px;
+  padding: 0 6px 0 6px;
+  text-decoration: none;
+}
 
 /* --- Main Layout & Nav Styling --- */
 body {
@@ -78,7 +143,8 @@ body {
 #search {
   display: inline-block;
   padding: 0;
-  margin: 0;
+  margin: 10px;
+  vertical-align: top;
 }
 
 #browse-dropdown {
@@ -102,7 +168,7 @@ body {
   /*margin-right: 100px;*/
   /*margin-left: auto;*/
   /*float: right;*/
-  margin-top:73px;
+  margin-top:70px;
   /*height: 0%;
   overflow: hidden;*/
 
@@ -124,7 +190,8 @@ body {
 #more-floats {
   float: right;
   /*margin-right: 61px;*/
-  margin-right: 308px;
+  /*margin-right: 308px;*/
+  margin-right: 61px;
 
 }
 #browse-dropdown ul {
@@ -172,8 +239,8 @@ body {
 }
 
 #browse-div, #log-div {
-  /*height: 40px;*/
-  height: 45px;
+  height: 41px;
+  /*height: 45px;*/
   background: dimgrey;
   padding: 0;
   margin:0;
@@ -330,16 +397,29 @@ body {
   position: fixed;
   width: 100%;
   padding:0;
-  margin: 0;
+  margin: 0 auto;
   /*margin-top: -80px;*/
   margin-top: -50px;
   z-index: 50;
 }
 
+#sub-nav div {
+  margin: 0 auto;
+  width: 90%;
+}
+/*#sub-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#sub-nav ul li {
+  display: inline-block;
+}*/
+
 .sub-nav-link {
   color: green;
   text-decoration: none;
-  margin: 0 12.5% 0 12.5%;
+  margin: 0 10% 0 10%;
   font-size: 1.2em;
 }
 
