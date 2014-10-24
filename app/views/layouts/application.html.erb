@@ -50,6 +50,7 @@
 
       <div id = "browse-dropdown">
         <ul>
+          <li><%= link_to "All Products", products_path, {class: "category-link"} %></li>
           <li><%= link_to "Browse By", browse_by_path, {class: "category-link"} %></li>
           <% all_categories.all.each do |category| %>
             <li><%= link_to category.name, category_products_path(category.id), {class: "category-link"} %></li>
