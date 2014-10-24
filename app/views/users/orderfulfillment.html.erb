@@ -6,16 +6,16 @@
       <p><%= format_money(@orderfulfillment.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
   </div>
   <div class="profile-row">
-      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Ship"}.count %> Shipped Items): </h4>
-      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Ship"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
+      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Shipped"}.count %> Shipped Items): </h4>
+      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Shipped"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
   </div>
   <div class="profile-row">
       <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Pending"}.count %> Pending Items): </h4>
       <td><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Pending"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></td>
   </div>
   <div class="profile-row">
-      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Cancel"}.count %> Cancelled Items): </h4>
-      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Cancel"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
+      <h4>Total Revenue (<%= @orderfulfillment.find_all{|ord| ord.status == "Cancelled"}.count %> Cancelled Items): </h4>
+      <p><%= format_money(@orderfulfillment.find_all{|ord| ord.status == "Cancelled"}.inject(0) {|sum, orderitem| sum += orderitem.total_price }) %></p>
   </div>
 </div>
 
@@ -46,12 +46,12 @@
         <td><%= each_order.order.status %></td>
         <td><%= each_order.status %></td>
         <td>
-          <% if each_order.status != "Cancel" %>
+          <% if each_order.status != "Cancelled" %>
             <%= button_to("Cancel", cancel_orderitem_path(each_order.id), method: :put) %>
           <% end %>
         </td>
         <td>
-          <% if each_order.status != "Cancel" %>
+          <% if each_order.status != "Shipped" %>
             <%= button_to("Ship", ship_orderitem_path(each_order.id), method: :put) %>
           <% end %>
         </td>

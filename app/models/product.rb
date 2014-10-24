@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true, numericality: { only_integer: true, :greater_than => 0 }
+  validates :description, length: {maximum: 400 }
   has_many :categories, through: :productcategories
   has_many :productcategories
   belongs_to :user
