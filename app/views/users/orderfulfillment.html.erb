@@ -51,7 +51,7 @@
           <% end %>
         </td>
         <td>
-          <% if each_order.status != "Cancelled" %>
+          <% if each_order.status != "Shipped" %>
             <%= button_to("Ship", ship_orderitem_path(each_order.id), method: :put) %>
           <% end %>
         </td>
